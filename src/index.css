@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components{
+  .mainBgCard {
+    @apply bg-[#fdfdfd] ;
+  }
+  .headerCommonCss {
+    @apply flex flex-col items-center justify-center hover:bg-[#ff7c45] hover:text-white h-16 p-2 px-4 rounded-lg drop-shadow-xl;
+  }
+  .inputCommonCss{
+    @apply w-56 h-8 border-b-2 border-green-500
+  }
+  .primaryButton{
+    @apply w-56 h-8 bg-green-500 rounded-md block text-white hover:bg-green-600 mt-4  focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800
+  }
+  .otpText{
+    @apply w-12 h-12 border-2 rounded bg-transparent outline-none text-center font-semibold text-xl border-gray-400 focus:border-gray-700 focus:text-gray-400 mx-2
+  }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  /* Firefox */
+  -moz-appearance: textfield;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "lato";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@media (max-width: 640px) {
+  .mainBgCard {
+    height: 50px;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  body {
+    height: 50px;
+  }
+
+}
+
+@media (min-width: 400px) {
+  .mainBgCard {
+    height: 50px;
+  }
+  body {
+    height: 50px;
+  }
+}
+/* header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+nav li {
+  margin-left: 1rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 1rem 0;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+} */
+
+/* @media screen and (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+} */
+
+
+
+
