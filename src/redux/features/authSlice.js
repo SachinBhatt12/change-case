@@ -5,9 +5,8 @@ export const register = createAsyncThunk(
   "/user/",
   async ({ FormData }, { rejectWithValue }) => {
     try {
-      const response = api.signUp(FormData);
+      const response =await api.signUp(FormData);
       console.log("successfully registered");
-      console.log(response.data)
       return response.data;
     } catch (e) {
       return rejectWithValue(err.response.data);
@@ -19,14 +18,14 @@ export const verifyOtp = createAsyncThunk(
   'user/verifyOtp',
   async ({ id, otp }, { rejectWithValue }) => {
     try {
-      const response = await api.verifyOtp(id, otp);
-      console.log('OTP verified successfully');
+      const response = await verifyOtp(id, otp);
       return response.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );
+
 
 const authSlice = createSlice({
   name: "auth",
