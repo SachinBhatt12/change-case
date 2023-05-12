@@ -14,7 +14,7 @@ function Home() {
         <div>
           <HowWeWork/>
           <WhyWeAreBest/>
-          <ServiceForHouseHold/>
+          {/* <ServiceForHouseHold/> */}
           <Cooperate/>
         </div>
       </div>

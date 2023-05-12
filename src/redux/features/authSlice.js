@@ -7,9 +7,10 @@ export const register = createAsyncThunk(
     try {
       const response =await api.signUp(FormData);
       console.log("successfully registered");
-      return response.data;
+      console.log(response)
+      return response;
     } catch (e) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response);
     }
   }
 );
@@ -19,12 +20,21 @@ export const verifyOtp = createAsyncThunk(
   async ({ id, otp }, { rejectWithValue }) => {
     try {
       const response = await verifyOtp(id, otp);
-      return response.data;
+      return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
+
+export const regenerateOtp = createAsyncThunk(
+  'user/regenerateOtp',
+  ({id},{rejectWithValue})=>{
+      return applyMiddleware.regenerateOtp({id})
+      .then(response => response)
+      .catch(error=> console.log(response))
+  }
+)
 
 
 const authSlice = createSlice({
