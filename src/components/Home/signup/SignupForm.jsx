@@ -23,13 +23,12 @@ function SignupForm() {
   const handlePopup = ()=>{
     setShowPopup(true)
   }
-  const handleSubmit = (event, FormData) => {
+  const handleSubmit = async (event, FormData) => {
     event.preventDefault();
-    
-    console.log(FormData )
-    if(email && phone_number){
-       id = dispatch(register({FormData}))
-      setId(id);
+    if (email && phone_number) {
+      const { payload: response } = await dispatch(register({ FormData }));
+      console.log(response);
+      setId(response.id);
       setShowPopup(true);
     }
   };
@@ -38,7 +37,7 @@ function SignupForm() {
       <div>
       {showPopup && (
               <>
-              <div className="">z-
+              <div className="">
               <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup}/>
               </div>
               </>
