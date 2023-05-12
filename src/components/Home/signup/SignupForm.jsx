@@ -35,8 +35,7 @@ function SignupForm() {
       console.log(e);
     }
   };
-  const isDisabled = email === '' || phone_number === '';
-
+  const isFormValid = email && phone_number;
   return (
     <>
       <div>
@@ -75,7 +74,11 @@ function SignupForm() {
             </div>
 
             <div className="py-4 align-middle">
-              <button className="primaryButton" type="submit" disabled={isDisabled}>
+              <button
+                className={isFormValid ? "primaryButton" : "disabledButton"}
+                type="submit"
+                disabled={!isFormValid}
+              >
                 Sign Up
               </button>
             </div>

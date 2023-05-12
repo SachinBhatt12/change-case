@@ -9,13 +9,16 @@
     @apply flex flex-col items-center justify-center hover:bg-[#ff7c45] hover:text-white h-16 p-2 px-4 rounded-lg drop-shadow-xl;
   }
   .inputCommonCss{
-    @apply w-56 h-8 border-b-2 border-green-500
+    @apply w-56 h-8 border-b-2 border-green-500;
   }
   .primaryButton{
-    @apply w-56 h-8 bg-green-500 rounded-md block text-white hover:bg-green-600 mt-4  focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800
+    @apply w-56 h-8 bg-green-500 rounded-md block text-white hover:bg-green-600 mt-4  focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 pb-2.5 text-center dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800;
   }
   .otpText{
-    @apply w-12 h-12 border-2 rounded bg-transparent outline-none text-center font-semibold text-xl border-gray-400 focus:border-gray-700 focus:text-gray-400 mx-2
+    @apply w-12 h-12 border-2 rounded bg-transparent outline-none text-center font-semibold text-xl border-gray-400 focus:border-gray-700 focus:text-gray-400 mx-2;
+  }
+  .disabledButton{
+    @apply w-56 h-8 bg-gray-500 rounded-md block text-white  mt-4  focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 pb-2.5 text-center dark:bg-green-800 dark:hover:bg-gray-400;
   }
 }
 input::-webkit-outer-spin-button,
