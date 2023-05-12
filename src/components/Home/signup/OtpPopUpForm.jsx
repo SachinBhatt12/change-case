@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { verifyOtp } from "../../../redux/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { regenerateOtp, verifyOtp } from "../../../redux/api";
 function OtpPopUpForm(props) {
   let currentOtpIndex = 0;
   const [redirect, setRedirect] = useState(false);
@@ -11,11 +13,11 @@ function OtpPopUpForm(props) {
 
   const [count, setCount] = useState(2);
   const inputRef = useRef(null);
-  const newOtp = otp.join('');
 
   const handleChange = (event) => {
     event.preventDefault();
     const { value } = event.target;
+    const newOtp = [...otp];
     newOtp[currentOtpIndex] = value.substring(value.length - 1);
     if (!value) {
       setActiveOtpIndex(currentOtpIndex - 1);
@@ -39,32 +41,38 @@ function OtpPopUpForm(props) {
     }
   };
 
-  const handleSubmit = async (id=props.id,newOtp=otp.join('')) => {
-    console.log(newOtp)
+  const handleSubmit = async (id = props.id, newOtp = otp.join("")) => {
     try {
-      const response = await verifyOtp(id, newOtp); // Pass newOtp as argument
+      const response = await verifyOtp(id, newOtp);
       console.log(response);
-      if (response?.message === "Successfully verified the user.") {
+      if (response?.status === 200) {
         props.setShowPopup(false);
+        toast("You are Successfully Registered");
+        alert("You are Successfully Registered");
+        handleRedirect();
+      } else if (response.status === 400) {
+        alert("Please Enter a Valid Otp");
+        toast("Please Enter a Valid Otp");
       }
     } catch (error) {
       console.log(error);
-      // Handle the error here
     }
   };
   const handleRedirect = () => {
     window.location.href = "/scraprates";
   };
 
-  const ResendOtp = (e) => {
-    props.setShowPopup(false);
+  const ResendOtp = async (id) => {
+    console.log(id);
     if (count > 0) {
       setCount(count - 1);
     }
+    const response = await regenerateOtp({id});
+    console.log(response);
   };
   useEffect(() => {
     if (activeOtpIndex === 4) {
-      handleSubmit(props.id,newOtp);
+      handleSubmit();
     }
     if (inputRef.current !== null) {
       inputRef.current.focus();
@@ -84,7 +92,7 @@ function OtpPopUpForm(props) {
           <h3 className="py-3 text-lg">
             Otp sent to phone number +91 {props.mobile}
           </h3>
-          <form onSubmit={(event) => handleSubmit(props.id, otp.join(''))}>
+          <form onSubmit={(event) => handleSubmit(props.id, otp.join(""))}>
             <div className="flex justify-center pb-10">
               {otp.map((value, index) => {
                 return (
@@ -107,13 +115,14 @@ function OtpPopUpForm(props) {
             <p className="text-gray-500">The Otp is valid for 15 minutes</p>
             <button
               className="text-blue-600 border-2 p-0.5"
-              onClick={ResendOtp}
+              onClick={() => ResendOtp(props.id)}
             >
               Resend Otp
             </button>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

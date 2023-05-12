@@ -6,45 +6,52 @@ import OtpPopUpForm from "./OtpPopUpForm";
 
 function SignupForm() {
   const [FormData, setFormData] = useState({
-    email:"",
-    phone_number:""
+    email: "",
+    phone_number: "",
   });
-  const {email,phone_number} =FormData;
+  const { email, phone_number } = FormData;
   const [showPopup, setShowPopup] = useState(false);
-  let [id,setId] = useState("");
+  let [id, setId] = useState("");
   const dispatch = useDispatch();
   // const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...FormData, [name]: value });
- 
   };
-  const handlePopup = ()=>{
-    setShowPopup(true)
-  }
+  const handlePopup = () => {
+    setShowPopup(true);
+  };
   const handleSubmit = async (event, FormData) => {
     event.preventDefault();
-    if (email && phone_number) {
-      const { payload: response } = await dispatch(register({ FormData }));
-      console.log(response);
-      setId(response.id);
-      setShowPopup(true);
+    try {
+      if (email && phone_number) {
+        const { payload: response } = await dispatch(register({ FormData }));
+        console.log(response.message);
+        setId(response.id);
+        setShowPopup(true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
+  const isFormValid = email && phone_number;
   return (
     <>
       <div>
-      {showPopup && (
-              <>
-              <div className="">
-              <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup}/>
-              </div>
-              </>
-            )}
+        {showPopup && (
+          <>
+            <div className="">
+              <OtpPopUpForm
+                mobile={FormData.phone_number}
+                id={id}
+                setShowPopup={setShowPopup}
+              />
+            </div>
+          </>
+        )}
         <div className="form">
-        <form className="" onSubmit={(e)=>handleSubmit(e,FormData)}>
-
+          <form className="" onSubmit={(e) => handleSubmit(e, FormData)}>
             <div className="py-2">
               <input
                 className="inputCommonCss"
@@ -67,7 +74,11 @@ function SignupForm() {
             </div>
 
             <div className="py-4 align-middle">
-              <button  className="primaryButton" type="submit">
+              <button
+                className={isFormValid ? "primaryButton" : "disabledButton"}
+                type="submit"
+                disabled={!isFormValid}
+              >
                 Sign Up
               </button>
             </div>

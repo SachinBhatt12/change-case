@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import recyclerLogo from "../../assets/Logo.png";
+import recyclerLogo from "../../assets/logo.png";
 import { FaRegUserCircle, FaTimes } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 function Navigation() {
@@ -21,7 +21,7 @@ function Navigation() {
                 <img
                   src={recyclerLogo}
                   alt="companyLogo"
-                  className="w-40 h-12"
+                  className="w-44 h-10"
                 />
               </div>
             </NavLink>
