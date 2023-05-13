@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { MdOutlineCancel } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { regenerateOtp, verifyOtp } from "../../../redux/api";
 function OtpPopUpForm(props) {
+  console.log(props)
   let currentOtpIndex = 0;
-  const [redirect, setRedirect] = useState(false);
   const [otp, setOtp] = useState(new Array(4).fill(null));
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const dispatch = useDispatch();
@@ -41,21 +41,18 @@ function OtpPopUpForm(props) {
     }
   };
 
-  const handleSubmit = async (id = props.id, newOtp = otp.join("")) => {
+  const handleSubmit = async (id, newOtp = otp.join("")) => {
     try {
-      const response = await verifyOtp(id, newOtp);
-      console.log(response);
+      const response = await verifyOtp(props.id, newOtp);
       if (response?.status === 200) {
         props.setShowPopup(false);
         toast("You are Successfully Registered");
-        alert("You are Successfully Registered");
         handleRedirect();
       } else if (response.status === 400) {
-        alert("Please Enter a Valid Otp");
         toast("Please Enter a Valid Otp");
       }
     } catch (error) {
-      console.log(error);
+      toast("Please Enter a Valid Otp");
     }
   };
   const handleRedirect = () => {
@@ -63,12 +60,13 @@ function OtpPopUpForm(props) {
   };
 
   const ResendOtp = async (id) => {
-    console.log(id);
     if (count > 0) {
       setCount(count - 1);
+      const response = await regenerateOtp({ id });
+      toast(`${response.data}`);
+    } else if (count === 0) {
+      toast("Please try after some time");
     }
-    const response = await regenerateOtp({id});
-    console.log(response);
   };
   useEffect(() => {
     if (activeOtpIndex === 4) {
@@ -81,8 +79,13 @@ function OtpPopUpForm(props) {
 
   return (
     <>
-      <div className="fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-50 flex -flex-col justify-center items-center ">
-        <div className="bg-white p-10 rounded-xl">
+      <div className="fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-50 flex -flex-col justify-center items-center">
+        <div className="bg-white p-10 rounded-xl relative">
+        <MdOutlineCancel
+          className="absolute top-0 right-0 cursor-pointer"
+          size={32}
+          onClick={() => props.setShowPopup(false)}
+        />
           <div className="flex">
             <h1 className="mx-auto text-xl font-bold justify-center">
               Otp Verification
