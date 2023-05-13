@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { register } from "../../../redux/features/authSlice";
 import OtpPopUpForm from "./OtpPopUpForm";
 
@@ -27,15 +28,16 @@ function SignupForm() {
     try {
       if (email && phone_number) {
         const { payload: response } = await dispatch(register({ FormData }));
-        console.log(response.message);
-        setId(response.id);
+        toast(`OTP Sent Successfully`);
+        setId(response?.data?.id)
         setShowPopup(true);
       }
     } catch (e) {
       console.log(e);
+      toast(`Check Credientials`);
     }
   };
-  const isFormValid = email && phone_number;
+  const isFormValid = email && phone_number.length === 10;
   return (
     <>
       <div>
@@ -85,6 +87,7 @@ function SignupForm() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

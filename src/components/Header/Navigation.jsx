@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { NavHashLink } from 'react-router-hash-link';
 import { NavLink } from "react-router-dom";
 import recyclerLogo from "../../assets/logo.png";
-import { FaRegUserCircle, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,21 +28,21 @@ function Navigation() {
             </NavLink>
             <div className="flex justify between">
               <ul className={`md:flex md:items-center sm:transform origin-top transition-all duration-2000 ease-linear md:w-auto w-full ${isMenuOpen ? '' : 'hidden'}`}>
-                <NavLink to="/">
+                <NavHashLink to="/">
                   <li className="m-2 text-xl pl-4 items-center ">Home</li>
-                </NavLink>
-                <NavLink to="/">
+                </NavHashLink>
+                <NavHashLink to="/">
                   <li className="m-2 text-xl pl-4 items-center ">Why Us</li>
-                </NavLink>
-                <NavLink to="/">
+                </NavHashLink>
+                <NavHashLink to="/">
                   <li className="m-2 text-xl pl-4 items-center ">Services</li>
-                </NavLink>
-                <NavLink to="/">
+                </NavHashLink>
+                <NavHashLink to="/">
                   <li className="m-2 text-xl pl-4 items-center ">Reviews</li>
-                </NavLink>
-                <NavLink to="/">
+                </NavHashLink>
+                <NavHashLink to="/">
                   <li className="m-2 text-xl pl-4 items-center ">Our Story</li>
-                </NavLink>
+                </NavHashLink>
                 <NavLink to="/scraprates">
                   <li className="m-2 text-xl pl-4 items-center ">
                     Scrap Rates
@@ -57,10 +58,6 @@ function Navigation() {
                 </button>
               </div>
               {/* Hamburger menu end */}
-              <button className="border-2 flex justify-end p-2 rounded-lg">
-                  <FaRegUserCircle />
-                  Login
-                </button>
             </div>
           </div>
         </header>
