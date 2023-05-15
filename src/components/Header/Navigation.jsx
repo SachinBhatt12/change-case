@@ -28,19 +28,19 @@ function Navigation() {
             </NavLink>
             <div className="flex justify between">
               <ul className={`md:flex md:items-center sm:transform origin-top transition-all duration-2000 ease-linear md:w-auto w-full ${isMenuOpen ? '' : 'hidden'}`}>
-                <NavHashLink to="/">
+                <NavHashLink to="/#herobar">
                   <li className="m-2 text-xl pl-4 items-center ">Home</li>
                 </NavHashLink>
-                <NavHashLink to="/">
+                <NavHashLink to="/#whyUs" smooth>
                   <li className="m-2 text-xl pl-4 items-center ">Why Us</li>
                 </NavHashLink>
-                <NavHashLink to="/">
+                <NavHashLink to="/#household" smooth>
                   <li className="m-2 text-xl pl-4 items-center ">Services</li>
                 </NavHashLink>
-                <NavHashLink to="/">
+                <NavHashLink to="/#customerReviews" smooth>
                   <li className="m-2 text-xl pl-4 items-center ">Reviews</li>
                 </NavHashLink>
-                <NavHashLink to="/">
+                <NavHashLink to="/#ourstory">
                   <li className="m-2 text-xl pl-4 items-center ">Our Story</li>
                 </NavHashLink>
                 <NavLink to="/scraprates">

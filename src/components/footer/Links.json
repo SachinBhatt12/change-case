@@ -3,6 +3,6 @@
     {"label":"Rate Us","path":"/"},
     {"label":"Contact Us","path":"/"},
     {"label":"Our Services","path":"/"},
-    {"label":"Scrap Rate","path":"/"},
+    {"label":"Scrap Rate","path":"/scraprates"},
     {"label":"FAQ's","path":"/"}
 ]

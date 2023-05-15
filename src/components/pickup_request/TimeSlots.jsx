@@ -22,7 +22,7 @@ const TimeSlots = () => {
       }`;
 
       slots.push(
-        <div key={timeSlot} className="py-2 flex flex-col items-center">
+        <div key={timeSlot} className="py-1 flex flex-col items-center">
           {timeSlot}
         </div>
       );
@@ -36,18 +36,21 @@ const TimeSlots = () => {
   };
 
   return (
-    <div className="border-2 rounded-2xl text-center w-full md:w-48 bg-gradient-to-b from-green-300 flex">
-      {timeSlotArray.map((slot, index) => {
-        return (
-          <div className="flex-1" key={index}>
-            <button className="w-48">
-              {slot}
-            </button>
-            <br />
+    <>
+      <h1 className="pickupformheading pb-5">Pickup Time</h1>
+      <div className="grid grid-cols-1 gap-x-4 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 lg:gap-x-6">
+        {timeSlotArray.map((slot, index) => (
+          <div
+            className="bg-gradient-to-b from-green-300 w-52 px-1 rounded-2xl flex"
+            key={index}
+          >
+            <div>
+              <button className="p-1">{slot}</button>
+            </div>
           </div>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

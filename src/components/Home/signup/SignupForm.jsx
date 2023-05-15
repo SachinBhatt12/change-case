@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register } from "../../../redux/features/authSlice";
 import OtpPopUpForm from "./OtpPopUpForm";
+import { NavHashLink } from "react-router-hash-link";
 
 function SignupForm() {
   const [FormData, setFormData] = useState({
@@ -29,7 +30,7 @@ function SignupForm() {
       if (email && phone_number) {
         const { payload: response } = await dispatch(register({ FormData }));
         toast(`OTP Sent Successfully`);
-        setId(response?.data?.id)
+        setId(response?.data?.id);
         setShowPopup(true);
       }
     } catch (e) {
@@ -52,11 +53,11 @@ function SignupForm() {
             </div>
           </>
         )}
-        <div className="form">
-          <form className="" onSubmit={(e) => handleSubmit(e, FormData)}>
-            <div className="py-2">
+        <div className="relative">
+          <form className="pt-3" onSubmit={(e) => handleSubmit(e, FormData)}>
+            <div className=" pt-4">
               <input
-                className="inputCommonCss"
+                className="inputCommonCss w-full"
                 type="email"
                 name="email"
                 value={FormData.email}
@@ -64,9 +65,9 @@ function SignupForm() {
                 placeholder="Enter your Email Id"
               />
             </div>
-            <div className="py-2">
+            <div className="py-4">
               <input
-                className="inputCommonCss"
+                className="inputCommonCss w-full"
                 type="Number"
                 name="phone_number"
                 value={FormData.phone_number}
@@ -85,6 +86,14 @@ function SignupForm() {
               </button>
             </div>
           </form>
+        </div>
+        <div className="justify-end">
+          <NavHashLink
+            to="/#login"
+            className="text-blue-500 pt-0 pr-3 absolute"
+          >
+            <h5>Already a User</h5>
+          </NavHashLink>
         </div>
       </div>
       <ToastContainer />

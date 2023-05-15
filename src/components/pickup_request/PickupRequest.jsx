@@ -24,21 +24,41 @@ function PickupRequest() {
           <h1 className="text-center text-3xl font-bold">Pickup Request</h1>
         </div>
         <div className="m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <label htmlFor="name" className="font-semibold text-xl">
+    Name: johny richard
+  </label>
+  <label htmlFor="email" className="font-semibold text-xl">
+    Email-Id: johny.richard@gmail.com
+  </label>
+  <label htmlFor="mobile" className="font-semibold text-xl">
+    Mobile Number: 9876543210
+  </label>
+</div>
+
+          <br />
+          <hr />
+          <br />
           <form action="">
-            <h1>Date Of Pickup</h1>
-            <div className="flex w-1/2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="">
                 <DateOfPickup />
               </div>
               <div className="">
-              <TimeSlots />
+                <TimeSlots />
               </div>
             </div>
-            <Location />
+
+            <br />
             <hr />
+            <br />
+            <Location />
+            <br />
+            <hr />
+            <br />
             <h4 className=" font-bold py-5">Categories</h4>
             <div className="checkboxes grid grid-cols-2">
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   onChange={handleCheckboxChange}
@@ -47,7 +67,7 @@ function PickupRequest() {
                 />
                 Newspaper
               </label>
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   name="Books"
@@ -56,7 +76,7 @@ function PickupRequest() {
                 />
                 Books
               </label>
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   onChange={handleCheckboxChange}
@@ -65,7 +85,7 @@ function PickupRequest() {
                 />
                 Cardboard
               </label>
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   onChange={handleCheckboxChange}
@@ -74,7 +94,7 @@ function PickupRequest() {
                 />
                 Glass
               </label>
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   name="Iron"
@@ -83,7 +103,7 @@ function PickupRequest() {
                 />
                 Iron
               </label>
-              <label className="px-2">
+              <label className="mx-4">
                 <input
                   type="checkbox"
                   onChange={handleCheckboxChange}
@@ -93,10 +113,12 @@ function PickupRequest() {
                 Plastic and Bottles
               </label>
             </div>
+            <br />
             <hr />
+            <br />
             <QuantityTable selectedCheckboxes={selectedCheckboxes} />
-            <div className="button items-center ">
-              <button type="submit" className="col-span-2 primaryButton ">
+            <div className="button justify-center items-center ">
+              <button type="submit" className=" primaryButton ">
                 {" "}
                 Confirm Pickup{" "}
               </button>
