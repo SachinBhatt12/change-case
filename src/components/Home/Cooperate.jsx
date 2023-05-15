@@ -5,8 +5,8 @@ function Cooperate() {
   return (
     <>
       <div className="bg-teal-50">
-        <div className="container p-10 flex flex-col md:flex-row items-center justify-center">
-          <div className="image md:px-10">
+        <div className="container p-10 flex relative flex-col md:flex-row items-center justify-center">
+          <div className="image md:px-10 absolute left-10 top-10">
             <img src={cooprate_element} alt="" className="w-[100%]" />
           </div>
           <div className="content text-center md:text-left pt-10 md:pt-0 md:pl-20">
