@@ -5,9 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { regenerateOtp, verifyOtp } from "../../../redux/api";
 function OtpPopUpForm(props) {
-  console.log(props)
   let currentOtpIndex = 0;
-  const [otp, setOtp] = useState(new Array(4).fill(null));
+  const [otp, setOtp] = useState(new Array(4).fill(""));
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   const dispatch = useDispatch();
 
@@ -46,13 +45,13 @@ function OtpPopUpForm(props) {
       const response = await verifyOtp(props.id, newOtp);
       if (response?.status === 200) {
         props.setShowPopup(false);
-        toast("You are Successfully Registered");
+        toast.success("You are Successfully Registered");
         handleRedirect();
       } else if (response.status === 400) {
-        toast("Please Enter a Valid Otp");
+        toast.warning("Please Enter a Valid Otp");
       }
     } catch (error) {
-      toast("Please Enter a Valid Otp");
+      toast.error("Please Enter a Valid Otp");
     }
   };
   const handleRedirect = () => {

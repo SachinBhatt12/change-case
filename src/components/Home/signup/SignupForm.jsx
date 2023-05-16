@@ -1,26 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register } from "../../../redux/features/authSlice";
 import OtpPopUpForm from "./OtpPopUpForm";
-import { NavHashLink } from "react-router-hash-link";
 
-function SignupForm() {
+function SignupForm({ handleNewUser }) {
+
   const [FormData, setFormData] = useState({
     email: "",
     phone_number: "",
   });
   const { email, phone_number } = FormData;
   const [showPopup, setShowPopup] = useState(false);
+
   let [id, setId] = useState("");
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...FormData, [name]: value });
   };
+
   const handlePopup = () => {
     setShowPopup(true);
   };
@@ -29,13 +31,13 @@ function SignupForm() {
     try {
       if (email && phone_number) {
         const { payload: response } = await dispatch(register({ FormData }));
-        toast(`OTP Sent Successfully`);
+        toast.success(`OTP Sent Successfully`);
         setId(response?.data?.id);
         setShowPopup(true);
       }
     } catch (e) {
       console.log(e);
-      toast(`Check Credientials`);
+      toast.error(`Check Credientials`);
     }
   };
   const isFormValid = email && phone_number.length === 10;
@@ -54,6 +56,7 @@ function SignupForm() {
           </>
         )}
         <div className="relative">
+          <h1 className="text-2xl hover:text-green-600">Register User</h1>
           <form className="pt-3" onSubmit={(e) => handleSubmit(e, FormData)}>
             <div className=" pt-4">
               <input
@@ -88,12 +91,7 @@ function SignupForm() {
           </form>
         </div>
         <div className="justify-end">
-          <NavHashLink
-            to="/#login"
-            className="text-blue-500 pt-0 pr-3 absolute"
-          >
-            <h5>Already a User</h5>
-          </NavHashLink>
+          <button className="text-blue-600" onClick={()=>handleNewUser(true)}>Already a User</button>
         </div>
       </div>
       <ToastContainer />

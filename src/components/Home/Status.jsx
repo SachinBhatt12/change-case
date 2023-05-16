@@ -10,7 +10,7 @@ function ToggleButton({ active, onClick }) {
       }`}
       onClick={onClick}
     >
-      {active ? "Login" : "Sign Up"}
+      {active ? "Already a user":"New User"}
     </button>
   );
 }

@@ -37,7 +37,7 @@ function ScrapRates() {
                 </div>
                 <div className="justify center p-4">
                   <NavLink to='/pickuprequest'>
-                    <button className="w-full border-2 text-green-500 bg-white p-1 focus:bg-green-600 ">
+                    <button className="w-full border-2 text-green-500 hover:text-white hover:bg-green-600 bg-white p-1 focus:bg-green-600 ">
                       Pickup Request
                     </button>
                   </NavLink>

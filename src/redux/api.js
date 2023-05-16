@@ -1,11 +1,8 @@
-import axios from "axios";
-
-const devEnv = process.env.NODE_ENV !== "production";
-
-// const { REACT_APP_DEV_API, REACT_APP_PROD_API } = process.env;
+import axios, { formToJSON } from "axios";
 
 const API = axios.create({
-  baseURL: "http://208.109.33.187:9000",
+  baseURL: "http://208.109.33.187:9000/",
+         //"http://208.109.33.187:9000/"
   // baseURL: "http://127.0.0.1:9000",
 });
 
@@ -23,3 +20,4 @@ export const verifyOtp = (id, newOtp) =>
   API.patch(`user/${id}/verify_otp/`, { otp: newOtp });
 export const regenerateOtp = ({ id }) =>
   API.patch(`/user/${id}/regenerate_otp/`);
+export const login = (signInData) => API.post("/accounts/login/", signInData);
