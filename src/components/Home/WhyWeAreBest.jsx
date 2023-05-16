@@ -2,6 +2,7 @@ import React from "react";
 import we_are_the_best from "../../assets/we_are_the_best.svg";
 import element from "../../assets/element.svg";
 import check from "../../assets/check.png";
+import { NavLink } from "react-router-dom";
 
 const checkboxes = [
   { label: "Best Price" },
@@ -13,6 +14,9 @@ const checkboxes = [
 ];
 
 function WhyWeAreBest() {
+  const handleNavlink = ()=>{
+    window.scrollTo(0,0);
+  }
   return (
     <div className="container" id="whyUs">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-5 sm:p-20">
@@ -49,9 +53,11 @@ function WhyWeAreBest() {
             ))}
           </div>
           <div className="button pt-8">
-            <button className="px-44 py-2 border-2 border-blue-500 text-blue-500 hover:text-white hover:border-white hover:bg-blue-500">
-              Get Started
-            </button>
+            <NavLink to="/scraprates">
+              <button type="submit" onClick={handleNavlink} className="px-44 py-2 border-2 border-blue-500 text-blue-500 hover:text-white hover:border-white hover:bg-blue-500 transition-all duration-700 transform translate-x-0 group-hover:translate-x-full">
+                Get Started
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
