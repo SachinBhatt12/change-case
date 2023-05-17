@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HowWeWork from './HowWeWork';
 import WhyWeAreBest from './WhyWeAreBest';
 import ServiceForHouseHold from './ServiceForHouseHold';
@@ -9,19 +9,17 @@ import CustomerReview from './CustomerReview';
 
 function Home() {
   return (
-    <>
+    <div>
+      <HeroBar />
       <div>
-        <HeroBar />
-        <div>
-          <HowWeWork />
-          <WhyWeAreBest />
-          <ServiceForHouseHold />
-          <Cooperate />
-          <CustomerReview />
-          <OurStory />
-        </div>
+        <HowWeWork />
+        <WhyWeAreBest />
+        <ServiceForHouseHold />
+        <Cooperate />
+        <CustomerReview />
+        <OurStory />
       </div>
-    </>
+    </div>
   );
 }
 

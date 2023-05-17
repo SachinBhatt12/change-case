@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk, applyMiddleware } from '@reduxjs/toolkit';
 import * as api from '../api';
 
@@ -7,7 +9,7 @@ export const register = createAsyncThunk('/user/', async ({ FormData }, { reject
     // console.log('successfully registered');
     // console.log(response);
     return response;
-  } catch (e) {
+  } catch (err) {
     return rejectWithValue(err.response);
   }
 });
@@ -22,12 +24,10 @@ export const verifyOtp = createAsyncThunk('user/verifyOtp', async ({ id, otp }, 
   }
 });
 
-export const regenerateOtp = createAsyncThunk('user/regenerateOtp', ({ id }, { rejectWithValue }) => {
-  return applyMiddleware
-    .regenerateOtp({ id })
-    .then((response) => response)
-    .catch((error) => console.log(response));
-});
+export const regenerateOtp = createAsyncThunk('user/regenerateOtp', ({ id }, { rejectWithValue }) => applyMiddleware
+  .regenerateOtp({ id })
+  .then((response) => response)
+  .catch((error) => rejectWithValue(error)));
 
 export const loginUser = createAsyncThunk('/accounts/login', async ({ signInData }, { rejectWithValue }) => {
   try {

@@ -1,8 +1,7 @@
-import axios, { formToJSON } from 'axios';
+import axios from 'axios';
 
 const API = axios.create({
   baseURL: 'http://208.109.33.187:9000/',
-  //"http://208.109.33.187:9000/"
   // baseURL: "http://127.0.0.1:9000",
 });
 
