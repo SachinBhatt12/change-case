@@ -1,75 +1,59 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  applyMiddleware,
-} from "@reduxjs/toolkit";
-import * as api from "../api";
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-param-reassign */
+import { createSlice, createAsyncThunk, applyMiddleware } from '@reduxjs/toolkit';
+import * as api from '../api';
 
-export const register = createAsyncThunk(
-  "/user/",
-  async ({ FormData }, { rejectWithValue }) => {
-    try {
-      const response = await api.signUp(FormData);
-      console.log("successfully registered");
-      console.log(response);
-      return response;
-    } catch (e) {
-      return rejectWithValue(err.response);
-    }
+export const register = createAsyncThunk('/user/', async ({ FormData }, { rejectWithValue }) => {
+  try {
+    const response = await api.signUp(FormData);
+    // console.log('successfully registered');
+    // console.log(response);
+    return response;
+  } catch (err) {
+    return rejectWithValue(err.response);
   }
-);
+});
 
-export const verifyOtp = createAsyncThunk(
-  "user/verifyOtp",
-  async ({ id, otp }, { rejectWithValue }) => {
-    try {
-      const response = await verifyOtp(id, otp);
-      console.log(response.data)
-      return response;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
+export const verifyOtp = createAsyncThunk('user/verifyOtp', async ({ id, otp }, { rejectWithValue }) => {
+  try {
+    const response = await verifyOtp(id, otp);
+    // console.log(response.data);
+    return response;
+  } catch (error) {
+    return rejectWithValue(error.response.data);
   }
-);
+});
 
-export const regenerateOtp = createAsyncThunk(
-  "user/regenerateOtp",
-  ({ id }, { rejectWithValue }) => {
-    return applyMiddleware
-      .regenerateOtp({ id })
-      .then((response) => response)
-      .catch((error) => console.log(response));
-  }
-);
+export const regenerateOtp = createAsyncThunk('user/regenerateOtp', ({ id }, { rejectWithValue }) => applyMiddleware
+  .regenerateOtp({ id })
+  .then((response) => response)
+  .catch((error) => rejectWithValue(error)));
 
-export const loginUser = createAsyncThunk(
-  "/accounts/login",
-  async ({ signInData }, { rejectWithValue }) => {
-    try {
-      const response = await api.login(signInData);
-      const { headers } = response;
-      const serializedHeaders = {
-        "content-length": headers["content-length"],
-        "content-type": headers["content-type"],
-        // Add other necessary headers if needed
-      };
-      const serializedResponse = {
-        data: response.data,
-        headers: serializedHeaders,
-        // Include other necessary properties from the response if needed
-      };
-      return serializedResponse;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
+export const loginUser = createAsyncThunk('/accounts/login', async ({ signInData }, { rejectWithValue }) => {
+  try {
+    const response = await api.login(signInData);
+    const { headers } = response;
+    const serializedHeaders = {
+      'content-length': headers['content-length'],
+      'content-type': headers['content-type'],
+      // Add other necessary headers if needed
+    };
+    const serializedResponse = {
+      data: response.data,
+      headers: serializedHeaders,
+      // Include other necessary properties from the response if needed
+    };
+    return serializedResponse;
+  } catch (error) {
+    return rejectWithValue(error.response.data);
   }
-);
+});
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     user: null,
-    error: "",
+    error: '',
     loading: false,
   },
   reducers: {
@@ -83,7 +67,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.loading = false;
-      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      localStorage.setItem('profile', JSON.stringify({ ...action.payload }));
       state.user = action.payload;
     },
     [register.rejected]: (state, action) => {

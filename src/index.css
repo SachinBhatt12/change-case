@@ -23,6 +23,9 @@
   .pickupformheading{
     @apply text-xl font-sans font-semibold
   }
+  .getstarted{
+    @apply px-44 py-2 border-2 border-blue-500 text-blue-500 hover:text-white hover:border-white hover:bg-blue-500 transition-all duration-700 transform translate-x-0 group-hover:translate-x-full
+  }
 }
 
 input::-webkit-outer-spin-button,

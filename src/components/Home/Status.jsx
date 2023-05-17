@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import SignInForm from "./login/SignInForm";
-import SignUpForm from "./signup/SignupForm";
+import React, { useState } from 'react';
+import SignInForm from './login/SignInForm';
+import SignUpForm from './signup/SignupForm';
 
 function ToggleButton({ active, onClick }) {
   return (
-    <button
-      className={`px-14 py-2 rounded-sm ${
-        active ? " text-green-500 border-b-2 border-green-500" : "text-gray-500"
-      }`}
-      onClick={onClick}
-    >
-      {active ? "Already a user":"New User"}
+    <button type='submit' className={`px-14 py-2 rounded-sm ${active ? ' text-green-500 border-b-2 border-green-500' : 'text-gray-500'}`} onClick={onClick}>
+      {active ? 'Already a user' : 'New User'}
     </button>
   );
 }
@@ -21,17 +16,17 @@ function Status() {
 
   const handleSignIn = () => {
     setIsSignUp(false);
-    setIsLogin(true)
+    setIsLogin(true);
   };
 
   const handleSignUp = () => {
     setIsSignUp(true);
-    setIsLogin(false)
+    setIsLogin(false);
   };
 
   return (
-    <div className="flex flex-col items-start">
-      <div className="flex justify-center space-x-2">
+    <div className='flex flex-col items-start'>
+      <div className='flex justify-center space-x-2'>
         <ToggleButton active={isLogin} onClick={handleSignIn} />
         <ToggleButton active={isSignUp} onClick={handleSignUp} />
       </div>
