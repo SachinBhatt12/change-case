@@ -1,25 +1,24 @@
-import React, { useState } from "react";
-import HowWeWork from "./HowWeWork";
-import WhyWeAreBest from "./WhyWeAreBest";
-import ServiceForHouseHold from "./ServiceForHouseHold";
-import Cooperate from "./Cooperate";
-import HeroBar from "./HeroBar";
-import OurStory from "./OurStory";
-import CustomerReview from "./CustomerReview";
+import React, { useState } from 'react';
+import HowWeWork from './HowWeWork';
+import WhyWeAreBest from './WhyWeAreBest';
+import ServiceForHouseHold from './ServiceForHouseHold';
+import Cooperate from './Cooperate';
+import HeroBar from './HeroBar';
+import OurStory from './OurStory';
+import CustomerReview from './CustomerReview';
 
 function Home() {
-
   return (
     <>
       <div>
-        <HeroBar/>
+        <HeroBar />
         <div>
-          <HowWeWork/>
-          <WhyWeAreBest/>
-          <ServiceForHouseHold/>
-          <Cooperate/>
+          <HowWeWork />
+          <WhyWeAreBest />
+          <ServiceForHouseHold />
+          <Cooperate />
           <CustomerReview />
-          <OurStory/>
+          <OurStory />
         </div>
       </div>
     </>

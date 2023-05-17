@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
-import { NavLink } from "react-router-dom";
-import recyclerLogo from "../../assets/logo.png";
-import { FaTimes } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { NavLink } from 'react-router-dom';
+import recyclerLogo from '../../assets/logo.png';
+import { FaTimes } from 'react-icons/fa';
+import { GiHamburgerMenu } from 'react-icons/gi';
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
 
   return (
     <>
@@ -19,11 +18,7 @@ function Navigation() {
           <div className="p-2 flex justify-between">
             <NavLink to="/">
               <div className="logo flex items-center ">
-                <img
-                  src={recyclerLogo}
-                  alt="companyLogo"
-                  className="w-44 h-10"
-                />
+                <img src={recyclerLogo} alt="companyLogo" className="w-44 h-10" />
               </div>
             </NavLink>
             <div className="flex justify between">
@@ -44,18 +39,12 @@ function Navigation() {
                   <li className="m-2 text-xl pl-4 items-center ">Our Story</li>
                 </NavHashLink>
                 <NavLink to="/scraprates">
-                  <li className="m-2 text-xl pl-4 items-center ">
-                    Scrap Rates
-                  </li>
+                  <li className="m-2 text-xl pl-4 items-center ">Scrap Rates</li>
                 </NavLink>
-
-           
               </ul>
               {/* Hamburger menu start */}
               <div className="md:hidden flex justify-end">
-                <button onClick={toggleMenu}>
-                  {isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}
-                </button>
+                <button onClick={toggleMenu}>{isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}</button>
               </div>
               {/* Hamburger menu end */}
             </div>

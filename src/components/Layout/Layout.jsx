@@ -1,7 +1,7 @@
-import React from "react";
-import Header from "../Header/Navigation";
-import { Outlet } from "react-router-dom";
-import SiteFooter from "../footer/SiteFooter";
+import React from 'react';
+import Header from '../Header/Navigation';
+import { Outlet } from 'react-router-dom';
+import SiteFooter from '../footer/SiteFooter';
 
 export const Layout = () => {
   return (
@@ -11,11 +11,11 @@ export const Layout = () => {
       </header>
       <main className=" h-full min-h-screen">
         <div className="">
-            <Outlet />
+          <Outlet />
         </div>
       </main>
       <footer>
-        <SiteFooter/>
+        <SiteFooter />
       </footer>
     </div>
   );

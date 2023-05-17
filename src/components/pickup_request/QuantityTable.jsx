@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function QuantityTable(props) {
   return (
@@ -18,11 +18,7 @@ function QuantityTable(props) {
                 <td className="text-center">{checkedValue}</td>
                 <td></td>
                 <td>
-                  <select
-                    className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
-                    name=""
-                    id=""
-                  >
+                  <select className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500" name="" id="">
                     <option value="<500g"> less than 500g</option>
                     <option value="<500g">500g-5kg</option>
                     <option value="<500g">greater than 5kg</option>

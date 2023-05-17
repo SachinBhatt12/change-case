@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import Status from "./Status";
-import sideImage from "../../assets/illutratin.svg";
-import SignupForm from "./signup/SignupForm";
-import SignInForm from "./login/SignInForm";
+import React, { useState } from 'react';
+import Status from './Status';
+import sideImage from '../../assets/illutratin.svg';
+import SignupForm from './signup/SignupForm';
+import SignInForm from './login/SignInForm';
 
 function HeroBar() {
   const [loginForm, setLoginForm] = useState(false);
@@ -20,16 +20,8 @@ function HeroBar() {
               <span className="text-green-500 text-5xl">Recycle with Us</span>
             </h1>
             <div className="flex justify-center lg:justify-start lg:mt-6 lg:p-3">
-              <div
-                className="signup border-2 p-10 shadow-xl rounded-lg w-full"
-                id="signup"
-              >
-                {loginForm ? (
-                  <SignInForm handleNewUser={handleNewUser} />
-                ) : (
-                  <SignupForm handleNewUser={handleNewUser} />
-                )}
-               
+              <div className="signup border-2 p-10 shadow-xl rounded-lg w-full" id="signup">
+                {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
               </div>
             </div>
           </div>
