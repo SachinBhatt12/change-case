@@ -6,8 +6,6 @@ import * as api from '../api';
 export const register = createAsyncThunk('/user/', async ({ FormData }, { rejectWithValue }) => {
   try {
     const response = await api.signUp(FormData);
-    // console.log('successfully registered');
-    // console.log(response);
     return response;
   } catch (err) {
     return rejectWithValue(err.response);
@@ -17,7 +15,6 @@ export const register = createAsyncThunk('/user/', async ({ FormData }, { reject
 export const verifyOtp = createAsyncThunk('user/verifyOtp', async ({ id, otp }, { rejectWithValue }) => {
   try {
     const response = await verifyOtp(id, otp);
-    // console.log(response.data);
     return response;
   } catch (error) {
     return rejectWithValue(error.response.data);
@@ -36,12 +33,10 @@ export const loginUser = createAsyncThunk('/accounts/login', async ({ signInData
     const serializedHeaders = {
       'content-length': headers['content-length'],
       'content-type': headers['content-type'],
-      // Add other necessary headers if needed
     };
     const serializedResponse = {
       data: response.data,
       headers: serializedHeaders,
-      // Include other necessary properties from the response if needed
     };
     return serializedResponse;
   } catch (error) {
