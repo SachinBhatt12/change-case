@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-  // baseURL: 'http://208.109.33.187:9000/',
-  baseURL: 'api.kabadijee.scom',
+  baseURL: 'http://208.109.33.187:9000/',
+  // baseURL: 'api.kabadijee.scom',
   // baseURL: "http://127.0.0.1:9000",
 });
 

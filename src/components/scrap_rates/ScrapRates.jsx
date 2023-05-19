@@ -23,13 +23,14 @@ function ScrapRates() {
   const dispatch = useDispatch();
   const { loading, data: scrapData, error } = useSelector((state) => state.scrapDetails);
 
-  console.log(scrapData);
+  const scrapRateData = scrapData?.data;
+  const mergedScrapLists = scrapitems?.map((item) => {
+    const scrapItem = scrapRateData?.find((response) => response.item_name === item.item_name) || {};
+    return { ...item, ...scrapItem };
+  });
 
   useEffect(() => {
-    dispatch(fetchScrap()).then((response) => {
-      const { payload: data } = response;
-      // console.log(data, 'data from response');
-    });
+    dispatch(fetchScrap())?.then((response) => {});
   }, [dispatch]);
 
   const renderPickupButton = () => {
@@ -53,17 +54,22 @@ function ScrapRates() {
   };
 
   return (
-    <div className='font-bold ml-28 pt-28 px-4 rounded'>
+    <div className=' ml-28 pt-28 px-4 rounded'>
       <h1 className='text-center text-3xl'>Scrap Rates</h1>
       <div className='flex flex-wrap justify-items-startp'>
-        {scrapitems.map((item, index) => (
+        {mergedScrapLists?.map((item, index) => (
           <div key={index} className='card min-h-0 justify-center w-1/6 p-4 bg-white m-10 rounded-md border-2 shadow-xl bg-center'>
             <div className='p-4'>
-              <img src={item.src} className='w-25 h-25' alt={item.name} />
+              <img src={item.src} className='w-25 h-25' alt={item?.item_name} />
             </div>
             <div className='name text-center'>
-              <h3 className='text-xl'>{item.name}</h3>
-              <p>Price :Rs kg</p>
+              <h3 className=' font-bold text-xl'>{item?.item_name}</h3>
+              <p>
+                Price :
+                {item?.rate}
+                {' '}
+                Rs kg
+              </p>
             </div>
             <div className='justify center p-4'>{renderPickupButton()}</div>
           </div>
