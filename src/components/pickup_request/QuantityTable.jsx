@@ -2,6 +2,7 @@
 import React from 'react';
 
 function QuantityTable(props) {
+  const selectecItems = props.selectedCheckboxes;
   return (
     <table className='w-full'>
       <thead className='border-2'>
@@ -12,10 +13,10 @@ function QuantityTable(props) {
         </tr>
       </thead>
       <tbody className='w-full'>
-        {props.selectedCheckboxes.map((checkedValue, index) => (
-          <tr key={index}>
-            <td className='text-center'>{checkedValue}</td>
-            <td />
+        {selectecItems?.map((checkedValue) => (
+          <tr key={checkedValue.id}>
+            <td className='text-center'>{checkedValue.item_name}</td>
+            <td>{checkedValue.rate}</td>
             <td>
               <select className='block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500' name='' id=''>
                 <option value='<500g'> less than 500g</option>

@@ -1,22 +1,32 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import DateOfPickup from './DateOfPickup';
 import TimeSlots from './TimeSlots';
+import { fetchScrap } from '../../redux/features/scraprateSlice';
 
 function PickupRequest() {
+  // const userProfile = localStorage.getItem('profile');
+  const dispatch = useDispatch();
+  const { data: scrapData } = useSelector((state) => state.scrapDetails);
+  const checkboxData = scrapData.data;
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
+  const handleCheckClick = (event, item) => {
+    const { checked } = event.target;
     if (checked) {
-      setSelectedCheckboxes([...selectedCheckboxes, name]);
+      setSelectedCheckboxes([...selectedCheckboxes, item]);
     } else {
-      setSelectedCheckboxes(selectedCheckboxes.filter((item) => item !== name));
+      setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item.id));
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchScrap())?.then((response) => response);
+  }, [dispatch]);
+
+  // const [formData, setFormData] = useState('');
 
   return (
     <div className='py-20'>
@@ -61,30 +71,12 @@ function PickupRequest() {
           <br />
           <h4 className=' font-bold py-5'>Categories</h4>
           <div className='checkboxes grid grid-cols-2'>
-            <label htmlFor='newspaper' className='mx-4'>
-              <input type='checkbox' onChange={handleCheckboxChange} name='Newspaper' id='newspaper' />
-              Newspaper
-            </label>
-            <label htmlFor='Books' className='mx-4'>
-              <input type='checkbox' name='Books' onChange={handleCheckboxChange} id='Books' />
-              Books
-            </label>
-            <label htmlFor='Cardboard' className='mx-4'>
-              <input type='checkbox' onChange={handleCheckboxChange} name='Cardboard' id='Cardboard' />
-              Cardboard
-            </label>
-            <label htmlFor='Glass' className='mx-4'>
-              <input type='checkbox' onChange={handleCheckboxChange} name='Glass' id='Glass' />
-              Glass
-            </label>
-            <label htmlFor='Iron' className='mx-4'>
-              <input type='checkbox' name='Iron' onChange={handleCheckboxChange} id='Iron' />
-              Iron
-            </label>
-            <label htmlFor='Plastic_Bottles' className='mx-4'>
-              <input type='checkbox' onChange={handleCheckboxChange} name='Plastic_Bottles' id='Plastic_Bottles' />
-              Plastic and Bottles
-            </label>
+            {checkboxData?.map((item) => (
+              <label key={item?.id} htmlFor={item?.item_name} className='mx-4'>
+                <input type='checkbox' onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} />
+                {item?.item_name}
+              </label>
+            ))}
           </div>
           <br />
           <hr />
