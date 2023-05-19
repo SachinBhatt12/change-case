@@ -17,7 +17,7 @@ function DateOfPickup() {
     for (let i = 0; i < 7; i += 1) {
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
       const formattedDate = date.toLocaleDateString('en-US', options);
-      const [, , dateValue] = formattedDate.match(/(\w{3}), (\w{3}) (\d{1,2}),/);
+      const [, , , dateValue] = formattedDate.match(/(\w{3}), (\w{3}) (\d{1,2}),/);
 
       formattedDates.push({ weekday: days[date.getDay()], dateValue });
     }

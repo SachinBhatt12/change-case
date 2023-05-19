@@ -28,9 +28,13 @@ function SignupForm({ handleNewUser }) {
     try {
       if (email && phone_number) {
         const { payload: response } = await dispatch(register({ FormData }));
-        toast.success('OTP Sent Successfully');
-        setId(response?.data?.id);
-        setShowPopup(true);
+        if (response.status === 201) {
+          toast.success('OTP Sent Successfully');
+          setId(response?.data?.id);
+          setShowPopup(true);
+        } else {
+          toast.error(`${response.data.phone_number}`);
+        }
       }
     } catch (e) {
       toast.error('Check Credientials');

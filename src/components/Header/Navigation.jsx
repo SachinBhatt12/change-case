@@ -3,11 +3,40 @@ import { NavHashLink } from 'react-router-hash-link';
 import { NavLink } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { BiUserCircle } from 'react-icons/bi';
 import recyclerLogo from '../../assets/logo.png';
+
+const navigationItems = [
+  {
+    label: 'Home',
+    path: '/#herobar',
+  },
+  {
+    label: 'Why Us',
+    path: '/#whyUs',
+  },
+  {
+    label: 'Services',
+    path: '/#household',
+  },
+  {
+    label: 'Reviews',
+    path: '/#customerReviews',
+  },
+  {
+    label: 'Our Story',
+    path: '/#ourstory',
+  },
+  {
+    label: 'Scrap Rates',
+    path: '/scraprates',
+  },
+];
 
 function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const authToken = localStorage.getItem('AuthToken');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,10 +45,17 @@ function Navigation() {
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
-
+  const handleLogin = () => {
+    window.location.href = '/';
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('AuthToken');
+    localStorage.removeItem('profile');
+    // Additional logout logic
+  };
   return (
     <div>
-      <header className='px-14 h-20 py-1 fixed drop-shadow-xl w-full mainBgCard'>
+      <header className='px-14 fixed drop-shadow-xl w-full mainBgCard'>
         <div className='p-2 flex justify-between'>
           <NavLink to='/'>
             <div className='logo flex items-center'>
@@ -28,24 +64,26 @@ function Navigation() {
           </NavLink>
           <div className='flex justify between'>
             <ul className={`md:flex md:items-center sm:transform origin-top transition-all duration-2000 ease-linear md:w-auto w-full ${isMenuOpen ? '' : 'hidden'}`}>
-              <NavHashLink to='/#herobar' onClick={() => handleTabClick(0)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 0 ? 'active border-b-2 border-green-600' : ''}`}>Home</li>
-              </NavHashLink>
-              <NavHashLink to='/#whyUs' smooth onClick={() => handleTabClick(1)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 1 ? 'active border-b-2 border-green-500' : ''}`}>Why Us</li>
-              </NavHashLink>
-              <NavHashLink to='/#household' smooth onClick={() => handleTabClick(2)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 2 ? 'active border-b-2 border-green-500' : ''}`}>Services</li>
-              </NavHashLink>
-              <NavHashLink to='/#customerReviews' smooth onClick={() => handleTabClick(3)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 3 ? 'active border-b-2 border-green-500' : ''}`}>Reviews</li>
-              </NavHashLink>
-              <NavHashLink to='/#ourstory' onClick={() => handleTabClick(4)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 4 ? 'active border-b-2 border-green-500' : ''}`}>Our Story</li>
-              </NavHashLink>
-              <NavLink to='/scraprates' onClick={() => handleTabClick(5)}>
-                <li className={`m-2 text-xl pl-4 items-center ${activeTab === 5 ? 'active border-b-2 border-green-500' : ''}`}>Scrap Rates</li>
-              </NavLink>
+              {navigationItems.map((item, index) => (
+                <div key={index} className={`m-2 text-xl pl-4 items-center ${activeTab === index ? 'active border-b-2 border-green-500' : ''}`}>
+                  <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
+                    <li className=''>{item.label}</li>
+                  </NavHashLink>
+                </div>
+              ))}
+              <div className='flex items-center'>
+                {authToken ? (
+                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 text-red-500 hover:text-white hover:bg-red-500 flex items-center' onClick={handleLogout}>
+                    <BiUserCircle className='mr-2' size={24} />
+                    Logout
+                  </button>
+                ) : (
+                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 text-green-500 hover:text-white hover:bg-green-500 flex items-center' onClick={handleLogin}>
+                    <BiUserCircle className='mr-2' size={24} />
+                    Login
+                  </button>
+                )}
+              </div>
             </ul>
             {/* Hamburger menu start */}
             <div className='md:hidden flex justify-end'>

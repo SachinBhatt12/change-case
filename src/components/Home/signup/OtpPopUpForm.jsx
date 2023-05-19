@@ -46,6 +46,7 @@ function OtpPopUpForm(props) {
       if (response?.status === 200) {
         props.setShowPopup(false);
         toast.success('You are Successfully Registered');
+        localStorage.setItem('AuthToken', response.data.token);
         handleRedirect();
       } else if (response.status === 400) {
         toast.warning('Please Enter a Valid Otp');
@@ -59,9 +60,10 @@ function OtpPopUpForm(props) {
     if (count > 0) {
       setCount(count - 1);
       const response = await regenerateOtp({ id });
-      toast(`${response.data}`);
+      console.log(response);
+      toast.success(`${response.data.message}`);
     } else if (count === 0) {
-      toast('Please try after some time');
+      toast.error('Please try after some time');
     }
   };
   useEffect(() => {
