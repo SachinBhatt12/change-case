@@ -7,7 +7,7 @@ function HowWeWork() {
   return (
     <div className='bg-gray-600 text-white my-3 py-10 md:py-16 lg:py-20'>
       <h1 className='text-center text-3xl pt-4'>How we work</h1>
-      <h3 className='text-center py-2 pb-4'>Kabadi Jee wil help to know true worth of your scrap</h3>
+      <h3 className='text-center py-2 pb-4'>We will collect your scrap and will help you to know the worth of your scrap</h3>
 
       <div className='flex flex-col md:flex-row justify-center md:space-x-8 p-4 lg:p-16 '>
         <div className='bg-white rounded-xl flex-1 mb-8 md:mb-0'>

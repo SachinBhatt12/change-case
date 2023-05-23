@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import household from '../../assets/household.svg';
 import HouseholdElement from '../../assets/household_element.svg';
@@ -18,7 +19,11 @@ function ServiceForHouseHold() {
             </div>
             <div className='subcontent pt-20 '>
               <h2 className='text-end text-4xl'>HouseHolds</h2>
-              <p className='text-end w-96'>Why step out to get rid of your scrap, when you can book scrap pickup service from the comfort and convenience of your home</p>
+              <p className='text-end w-96'>
+                Any item that is left over or wasted after doing routine domestic tasks is referred to as household scrap. This can include outdated clothing, damaged furniture, discarded electronics,
+                and other non-essential household items. It's crucial to properly dispose of household scrap in order to protect the environment and maintain public safety and health. We " Kabadi Jee
+                ” will help you in minimizing your household scrap.
+              </p>
             </div>
           </div>
         </div>
