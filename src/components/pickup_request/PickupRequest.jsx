@@ -6,30 +6,61 @@ import QuantityTable from './QuantityTable';
 import DateOfPickup from './DateOfPickup';
 import TimeSlots from './TimeSlots';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
+import { initialPickupState } from '../../redux/features/pickupSlice';
 
 function PickupRequest() {
   // const userProfile = localStorage.getItem('profile');
+  const [formData, setFormData] = useState(initialPickupState);
+
+  const handleformChange = (updateFormData) => {
+    setFormData(updateFormData);
+  };
+
   const dispatch = useDispatch();
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
-  const checkboxData = scrapData.data;
+  const checkboxData = scrapData?.data;
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const handleCheckClick = (event, item) => {
     const { checked } = event.target;
     if (checked) {
       setSelectedCheckboxes([...selectedCheckboxes, item]);
     } else {
-      setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item.id));
+      setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
+  };
+  const handleFormChange = (form) => {
+    formData.flat_number = form.flat_number;
+    formData.area = form.area;
+    formData.landmark = form.landmark;
+    formData.city = form.city;
+    formData.state = form.state;
+  };
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    formData.pickup_date = date;
+  };
+  const onTimeChange = (time) => {
+    formData.pickup_time = time;
+  };
+  const handleQuantityChange = (itemId, quantity) => {
+    const updatedFormData = {
+      ...formData,
+      pickup_request_items: {
+        ...formData.pickup_request_items,
+        [itemId]: quantity,
+      },
+    };
+    handleFormChange(updatedFormData);
   };
 
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
   }, [dispatch]);
-
-  // const [formData, setFormData] = useState('');
-
+  const handleSubmit = (data) => {};
   return (
-    <div className='py-20'>
+    <div className='py-20 scroll-smooth'>
       <div className='heading'>
         <h1 className='text-center text-3xl font-bold'>Pickup Request</h1>
       </div>
@@ -52,20 +83,21 @@ function PickupRequest() {
         <br />
         <hr />
         <br />
-        <form action=''>
+        <form onSubmit={handleSubmit(formData)}>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <div className=''>
-              <DateOfPickup />
+              <DateOfPickup handleDateChange={handleDateChange} />
             </div>
             <div className=''>
-              <TimeSlots />
+              <TimeSlots onTimeChange={onTimeChange} />
             </div>
           </div>
 
           <br />
           <hr />
           <br />
-          <Location />
+          <Location handleformChange={handleformChange} />
+
           <br />
           <hr />
           <br />
@@ -81,7 +113,7 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <QuantityTable selectedCheckboxes={selectedCheckboxes} />
+          <QuantityTable selectedCheckboxes={selectedCheckboxes} onFormChange={handleQuantityChange} />
           <div className='button justify-center items-center '>
             <button type='submit' className=' primaryButton '>
               {' '}

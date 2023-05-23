@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import React from 'react';
 
-import React, { useState } from 'react';
-import { initialPickupState } from '../../redux/features/pickupSlice';
-
-function Location() {
-  const [formData, setFormData] = useState(initialPickupState);
+function Location({ formData = {}, handleformChange }) {
   const onhandleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...FormData, [name]: value });
-    console.log(name, value);
+    handleformChange((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
   return (
     <>
@@ -17,7 +16,7 @@ function Location() {
         <div className='py-2'>
           <label htmlFor='flat'>Flat/House no./Apartment</label>
           <br />
-          <input className='inputCommonCss w-full' type='text' name='flat' onChange={onhandleChange} value={formData.flat_number} id='flat' />
+          <input className='inputCommonCss w-full' type='text' name='flat_number' onChange={onhandleChange} value={formData.flat_number} id='flat' />
         </div>
 
         <div className='py-2'>
