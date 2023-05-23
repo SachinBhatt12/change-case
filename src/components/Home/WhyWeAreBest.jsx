@@ -29,9 +29,12 @@ function WhyWeAreBest() {
           </div>
           <h1 className='text-center md:text-left text-4xl font-semibold'>Why we are the best</h1>
           <p className='py-5 text-md'>
-            Suppose end get boy warrant general natural. Delightful met sufficient projection ask. Decisively everything principles if preference do impression of. Preserved oh so difficult repulsive
-            on in household. In what do miss time be. Valley as be appear cannot so by. Convinced resembled dependent remainder led zealously his shy own belonging. Always length letter adieus add
-            number moment she. Promise few compass six several old offices removal parties fat. Concluded rapturous it intention perfectly daughters is as.
+            Kabadi Jee removes
+            {' '}
+            junk
+            {' '}
+            from your home without any difficulty. We add a technological example to get rid of scrap in exchange for valuable money. The Kabadi Jee offers its customers an
+            environmental report detailing their ecological impact in numbers once the discarded materials are dropped off at the appropriate recycling facilities.
           </p>
           <div className='checkboxes w-full md:w-80'>
             {checkboxes.map((checkbox, index) => (
@@ -43,11 +46,7 @@ function WhyWeAreBest() {
           </div>
           <div className='button pt-8'>
             <NavLink to='/scraprates'>
-              <button
-                type='submit'
-                onClick={handleNavlink}
-                className='getstarted'
-              >
+              <button type='submit' onClick={handleNavlink} className='getstarted'>
                 Get Started
               </button>
             </NavLink>
