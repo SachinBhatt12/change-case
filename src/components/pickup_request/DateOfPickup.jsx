@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function DateOfPickup() {
+function DateOfPickup({ handleDateChange }) {
   const [dates, setDates] = useState([]);
 
   useEffect(() => {
@@ -25,12 +25,30 @@ function DateOfPickup() {
     setDates(formattedDates);
   }, []);
 
+  const handleDateClick = (date) => {
+    const formattedDate = `${date.dateValue}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`;
+    handleDateChange(formattedDate);
+  };
+
+  const handleDateKeyDown = (event, date) => {
+    if (event.key === 'Enter') {
+      handleDateChange(date);
+    }
+  };
+
   return (
     <>
       <h1 className='pickupformheading'>Date Of Pickup</h1>
       <div className='grid grid-cols-3 gap-4 md:flex md:gap-1 lg:flex lg:gap-1'>
         {dates.map((date, index) => (
-          <div key={index} className='w-20 border-2 bg-gradient-to-b from-green-300 rounded-lg my-3 mx-2 p-4'>
+          <div
+            key={index}
+            className='w-20 border-2 bg-gradient-to-b from-green-300 rounded-lg my-3 mx-2 p-4'
+            tabIndex={0}
+            onClick={() => handleDateClick(date)}
+            onKeyDown={(event) => handleDateKeyDown(event, date)}
+            role='button'
+          >
             <h4 className='text-center font-semibold'>{date.weekday}</h4>
             <h4 className='text-center'>{date.dateValue}</h4>
           </div>
