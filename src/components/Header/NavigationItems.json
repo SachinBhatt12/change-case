@@ -1,0 +1,27 @@
+[
+    {
+      "label": "Home",
+      "path": "/#herobar"
+    },
+    {
+      "label": "Why Us",
+      "path": "/#whyUs"
+    },
+    {
+      "label": "Services",
+      "path": "/#household"
+    },
+    {
+      "label": "Reviews",
+      "path": "/#customerReviews"
+    },
+    {
+      "label": "Our Story",
+      "path": "/#ourstory"
+    },
+    {
+      "label": "Scrap Rates",
+      "path": "/scraprates"
+    }
+  ]
+  

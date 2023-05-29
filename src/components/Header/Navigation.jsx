@@ -1,42 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import { NavLink } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiUserCircle } from 'react-icons/bi';
 import recyclerLogo from '../../assets/logo.png';
-
-const navigationItems = [
-  {
-    label: 'Home',
-    path: '/#herobar',
-  },
-  {
-    label: 'Why Us',
-    path: '/#whyUs',
-  },
-  {
-    label: 'Services',
-    path: '/#household',
-  },
-  {
-    label: 'Reviews',
-    path: '/#customerReviews',
-  },
-  {
-    label: 'Our Story',
-    path: '/#ourstory',
-  },
-  {
-    label: 'Scrap Rates',
-    path: '/scraprates',
-  },
-];
+import navigationItems from './NavigationItems.json';
 
 function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const authToken = localStorage.getItem('AuthToken');
+  const [authToken, setAuthToken] = useState(localStorage.getItem('AuthToken'));
+
+  useEffect(() => {
+    setAuthToken(localStorage.getItem('AuthToken'));
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,14 +23,18 @@ function Navigation() {
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
+
   const handleLogin = () => {
     window.location.href = '/';
   };
+
   const handleLogout = () => {
     localStorage.removeItem('AuthToken');
     localStorage.removeItem('profile');
+    setAuthToken(null);
     // Additional logout logic
   };
+
   return (
     <div>
       <header className='px-14 fixed drop-shadow-xl w-full mainBgCard'>
@@ -65,7 +47,7 @@ function Navigation() {
           <div className='flex justify between'>
             <ul className={`md:flex md:items-center sm:transform origin-top transition-all duration-2000 ease-linear md:w-auto w-full ${isMenuOpen ? '' : 'hidden'}`}>
               {navigationItems.map((item, index) => (
-                <div key={index} className={`m-2 text-xl pl-4 items-center ${activeTab === index ? 'active border-b-2 border-green-500' : ''}`}>
+                <div key={index} className={`m-2 text-xl md:text-lg sm:text-sm pl-4 items-center ${activeTab === index ? 'active border-b-2 border-green-500' : ''}`}>
                   <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
                     <li className=''>{item.label}</li>
                   </NavHashLink>
