@@ -4,7 +4,7 @@ import SignupForm from './signup/SignupForm';
 import SignInForm from './login/SignInForm';
 
 function HeroBar() {
-  const [loginForm, setLoginForm] = useState(false);
+  const [loginForm, setLoginForm] = useState(true);
   const handleNewUser = () => {
     setLoginForm(!loginForm);
   };

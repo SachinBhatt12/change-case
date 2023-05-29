@@ -73,7 +73,7 @@ function PickupRequest() {
       <div className='heading'>
         <h1 className='text-center text-3xl font-bold'>Pickup Request</h1>
       </div>
-      <div className='m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg '>
+      <div className='m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg` '>
         <UserInfo />
         <br />
         <hr />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HowWeWork from './HowWeWork';
 import WhyWeAreBest from './WhyWeAreBest';
 import ServiceForHouseHold from './ServiceForHouseHold';
@@ -8,9 +8,11 @@ import OurStory from './OurStory';
 import CustomerReview from './CustomerReview';
 
 function Home() {
+  const [loginForm, setLoginForm] = useState(false);
+
   return (
     <div>
-      <HeroBar />
+      <HeroBar loginForm={loginForm} setLoginForm={setLoginForm} />
       <div>
         <HowWeWork />
         <WhyWeAreBest />
