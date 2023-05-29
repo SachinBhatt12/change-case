@@ -43,6 +43,7 @@ function OtpPopUpForm(props) {
   const handleSubmit = async (id, newOtp = otp.join('')) => {
     try {
       const response = await verifyOtp(props.id, newOtp);
+      console.log(response);
       if (response?.status === 200) {
         props.setShowPopup(false);
         toast.success('You are Successfully Registered');

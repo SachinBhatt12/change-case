@@ -20,7 +20,9 @@ export const scrapSlice = createSlice({
     },
     [fetchScrap.fulfilled]: (state, action) => {
       state.loading = false;
-      state.data = action.payload; // Update property name to 'data'
+      // Exclude the non-serializable headers and config properties
+      const { headers, config, ...serializableData } = action.payload;
+      state.data = serializableData;
     },
     [fetchScrap.error]: (state, action) => {
       state.loading = false;

@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import DateOfPickup from './DateOfPickup';
 import TimeSlots from './TimeSlots';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
-import { initialPickupState } from '../../redux/features/pickupSlice';
+import { initialPickupState, orderPickup } from '../../redux/features/pickupSlice';
+import UserInfo from './UserInfo';
 
 function PickupRequest() {
-  // const userProfile = localStorage.getItem('profile');
   const [formData, setFormData] = useState(initialPickupState);
 
   const handleformChange = (updateFormData) => {
@@ -47,39 +48,33 @@ function PickupRequest() {
   const handleQuantityChange = (itemId, quantity) => {
     const updatedFormData = {
       ...formData,
-      pickup_request_items: {
-        ...formData.pickup_request_items,
-        [itemId]: quantity,
-      },
+      pickup_request_items: formData.pickup_request_items.map((item) => {
+        if (item.item_id === itemId) {
+          return { ...item, weight: quantity };
+        }
+        return item;
+      }),
     };
-    handleFormChange(updatedFormData);
+    setFormData(updatedFormData);
+    handleFormChange(updatedFormData); // Updated function call
+  };
+  console.log(formData);
+
+  const handleSubmit = (Data) => {
+    console.log(Data);
+    dispatch(orderPickup(Data));
   };
 
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
   }, [dispatch]);
-  const handleSubmit = (data) => {};
   return (
     <div className='py-20 scroll-smooth'>
       <div className='heading'>
         <h1 className='text-center text-3xl font-bold'>Pickup Request</h1>
       </div>
       <div className='m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg '>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-          <label htmlFor='name' className='font-semibold text-xl'>
-            Name:
-            <span>johny richard</span>
-          </label>
-          <label htmlFor='email' className='font-semibold text-xl'>
-            Email-Id:
-            <span>johny.richard@gmail.com</span>
-          </label>
-          <label htmlFor='mobile' className='font-semibold text-xl'>
-            Mobile Number:
-            <span>+91 9876543210</span>
-          </label>
-        </div>
-
+        <UserInfo />
         <br />
         <hr />
         <br />
@@ -113,13 +108,16 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <QuantityTable selectedCheckboxes={selectedCheckboxes} onFormChange={handleQuantityChange} />
+          <QuantityTable selectedCheckboxes={selectedCheckboxes} handleFormChange={handleQuantityChange} />
+
           <div className='button justify-center items-center '>
-            <button type='submit' className=' primaryButton '>
-              {' '}
-              Confirm Pickup
-              {' '}
-            </button>
+            <NavLink to='/confirmpickup'>
+              <button type='submit' className=' primaryButton '>
+                {' '}
+                Confirm Pickup
+                {' '}
+              </button>
+            </NavLink>
           </div>
         </form>
       </div>
