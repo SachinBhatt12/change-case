@@ -8,16 +8,9 @@ function QuantityTable({ selectedCheckboxes }) {
   });
 
   const handleQuantityChange = (itemId, quantity) => {
-    const updatedFormData = formData.pickup_request_items.map((item) => {
-      if (item.item_id === itemId) {
-        return { ...item, weight: quantity };
-      }
-      return item;
-    });
-
+    formData.pickup_request_items.push({ item_id: itemId, weight: quantity });
     setFormData((prevState) => ({
       ...prevState,
-      pickup_request_items: updatedFormData,
     }));
   };
 

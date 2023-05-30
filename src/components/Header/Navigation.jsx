@@ -60,10 +60,12 @@ function Navigation() {
                     Logout
                   </button>
                 ) : (
-                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 text-green-500 hover:text-white hover:bg-green-500 flex items-center' onClick={handleLogin}>
-                    <BiUserCircle className='mr-2' size={24} />
-                    Login
-                  </button>
+                  <NavLink to='/'>
+                    <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 text-green-500 hover:text-white hover:bg-green-500 flex items-center' onClick={handleLogin}>
+                      <BiUserCircle className='mr-2' size={24} />
+                      Login
+                    </button>
+                  </NavLink>
                 )}
               </div>
             </ul>

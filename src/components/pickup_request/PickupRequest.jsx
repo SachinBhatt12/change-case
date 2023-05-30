@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import DateOfPickup from './DateOfPickup';
@@ -48,26 +49,20 @@ function PickupRequest() {
   const handleQuantityChange = (itemId, quantity) => {
     const updatedFormData = {
       ...formData,
-      pickup_request_items: formData.pickup_request_items.map((item) => {
-        if (item.item_id === itemId) {
-          return { ...item, weight: quantity };
-        }
-        return item;
-      }),
+      pickup_request_items: formData.pickup_request_items,
     };
     setFormData(updatedFormData);
     handleFormChange(updatedFormData); // Updated function call
   };
   console.log(formData);
 
-  const handleSubmit = (Data) => {
-    console.log(Data);
-    dispatch(orderPickup(Data));
-  };
-
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
   }, [dispatch]);
+  const handleSubmit = (Data) => {
+    toast.success('Pickup Request Generated');
+    dispatch(orderPickup(Data));
+  };
   return (
     <div className='py-20 scroll-smooth'>
       <div className='heading'>
@@ -108,7 +103,8 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <QuantityTable selectedCheckboxes={selectedCheckboxes} handleFormChange={handleQuantityChange} />
+
+          <QuantityTable selectedCheckboxes={selectedCheckboxes} handleQuantityChange={handleQuantityChange} />
 
           <div className='button justify-center items-center '>
             <NavLink to='/confirmpickup'>
