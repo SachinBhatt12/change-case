@@ -54,7 +54,6 @@ function PickupRequest() {
     setFormData(updatedFormData);
     handleFormChange(updatedFormData); // Updated function call
   };
-  console.log(formData);
 
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
