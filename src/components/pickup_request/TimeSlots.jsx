@@ -1,18 +1,65 @@
-import React from 'react';
-
-const timeSlotArray = ['10:00 AM ', '01:00 AM', '12:00 PM', '01:00 PM', '02:00 PM ', '03:00 PM', '04:00 PM', '05:00 PM', ' 06:00 PM'];
+import React, { useState } from 'react';
 
 function TimeSlots({ onTimeChange }) {
+  const [selectedTime, setSelectedTime] = useState(null);
+
+  const getTimeSlots = () => {
+    const timeSlots = [];
+    const currentDate = new Date();
+
+    // Set the starting hour
+    const startHour = 10;
+
+    // Set the ending hour
+    const endHour = 18;
+
+    // Set the time slot duration in minutes
+    const timeSlotDuration = 60;
+
+    let currentHour = currentDate.getHours();
+    let currentMinute = currentDate.getMinutes();
+
+    // Adjust the current hour and minute if the current time is after the last available time slot
+    if (currentHour > endHour || (currentHour === endHour && currentMinute >= 0)) {
+      currentHour = startHour;
+      currentMinute = 0;
+    }
+
+    // Calculate the total number of time slots
+    const totalSlots = ((endHour - startHour) * 60) / timeSlotDuration;
+
+    // Loop to generate time slots
+    for (let i = 0; i < totalSlots; i += 1) {
+      const hour = startHour + Math.floor((i * timeSlotDuration) / 60);
+      const minute = (i * timeSlotDuration) % 60;
+
+      // Format the hour and minute with leading zeros
+      const formattedHour = hour.toString().padStart(2, '0');
+      const formattedMinute = minute.toString().padStart(2, '0');
+
+      // Create the time slot string in the desired format
+      const timeSlot = `${formattedHour}:${formattedMinute}`;
+
+      // Add the time slot to the array
+      timeSlots.push(timeSlot);
+    }
+
+    return timeSlots;
+  };
+
   const handleTimeChange = (timeSlot) => {
+    setSelectedTime(timeSlot);
     onTimeChange(timeSlot);
   };
+
+  const timeSlotArray = getTimeSlots();
 
   return (
     <>
       <h1 className='pickupformheading pb-5'>Pickup Time</h1>
       <div className='grid grid-cols-1 gap-x-4 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 lg:gap-x-6'>
         {timeSlotArray.map((slot, index) => (
-          <div className=' cursor-pointer bg-gradient-to-b from-green-300 w-20 px-1 rounded-2xl flex' key={index}>
+          <div className={`my-2 cursor-pointer rounded-2xl flex ${selectedTime === slot ? 'bg-gradient-to-b from-green-500' : 'bg-slate-200'}`} key={index}>
             <div>
               <button type='button' className='p-1' onClick={() => handleTimeChange(slot)}>
                 {slot}

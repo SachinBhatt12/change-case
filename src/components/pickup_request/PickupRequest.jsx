@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
+import 'react-toastify/dist/ReactToastify.css';
 import DateOfPickup from './DateOfPickup';
 import TimeSlots from './TimeSlots';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
@@ -46,7 +46,11 @@ function PickupRequest() {
   const onTimeChange = (time) => {
     formData.pickup_time = time;
   };
-  const handleQuantityChange = (itemId, quantity) => {
+  const handleSubmit = (event, Data) => {
+    event.preventDefault();
+    dispatch(orderPickup(Data));
+  };
+  const handleQuantityChange = () => {
     const updatedFormData = {
       ...formData,
       pickup_request_items: formData.pickup_request_items,
@@ -58,10 +62,7 @@ function PickupRequest() {
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
   }, [dispatch]);
-  const handleSubmit = (Data) => {
-    toast.success('Pickup Request Generated');
-    dispatch(orderPickup(Data));
-  };
+
   return (
     <div className='py-20 scroll-smooth'>
       <div className='heading'>
@@ -72,7 +73,7 @@ function PickupRequest() {
         <br />
         <hr />
         <br />
-        <form onSubmit={handleSubmit(formData)}>
+        <form onSubmit={handleSubmit}>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <div className=''>
               <DateOfPickup handleDateChange={handleDateChange} />
@@ -95,6 +96,7 @@ function PickupRequest() {
             {checkboxData?.map((item) => (
               <label key={item?.id} htmlFor={item?.item_name} className='mx-4'>
                 <input type='checkbox' onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} />
+                {' '}
                 {item?.item_name}
               </label>
             ))}

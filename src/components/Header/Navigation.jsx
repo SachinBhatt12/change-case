@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiUserCircle } from 'react-icons/bi';
 import recyclerLogo from '../../assets/logo.png';
 import navigationItems from './NavigationItems.json';
 
-function Navigation() {
+export default function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [authToken, setAuthToken] = useState(localStorage.getItem('AuthToken'));
-
-  useEffect(() => {
-    setAuthToken(localStorage.getItem('AuthToken'));
-  }, []);
+  const [authToken, setAuthToken] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,15 +22,21 @@ function Navigation() {
   };
 
   const handleLogin = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   const handleLogout = () => {
     localStorage.removeItem('AuthToken');
     localStorage.removeItem('profile');
-    setAuthToken(null);
+    localStorage.removeItem('userId');
+    setAuthToken('');
+    navigate('/');
     // Additional logout logic
   };
+
+  useEffect(() => {
+    setAuthToken(localStorage.getItem('AuthToken'));
+  }, [authToken]);
 
   return (
     <div>
@@ -82,5 +85,3 @@ function Navigation() {
     </div>
   );
 }
-
-export default Navigation;

@@ -19,9 +19,6 @@ function SignInForm({ handleNewUser }) {
     const { name, value } = event.target;
     setSignInData({ ...FormData, [name]: value });
   };
-  const handlePopup = () => {
-    setShowPopup(true);
-  };
   // eslint-disable-next-line no-shadow
   const handleSubmit = async (event, signInData) => {
     event.preventDefault();
@@ -29,9 +26,13 @@ function SignInForm({ handleNewUser }) {
       // eslint-disable-next-line camelcase
       if (phone_number) {
         const { payload: response } = await dispatch(loginUser({ signInData }));
-        setId(response.data.id);
-        toast.success('OTP Sent Successfully');
-        setShowPopup(true);
+        if (response?.data?.status !== 200) {
+          toast.error(`${response.data.phone_number}`);
+        } else {
+          toast.success('OTP Sent Successfully');
+          setId(response?.data?.id);
+          setShowPopup(true);
+        }
       }
     } catch (e) {
       toast.warn('Check Credientials Mobile  Number is not registered');
@@ -52,7 +53,7 @@ function SignInForm({ handleNewUser }) {
             <input type='number' className='inputCommonCss px-2 w-full' name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
           </div>
           <div className='signIn'>
-            <button className={isFormValid ? 'primaryButton' : 'disabledButton'} type='submit' disabled={!isFormValid} onClick={handlePopup}>
+            <button className={isFormValid ? 'primaryButton' : 'disabledButton'} type='submit' disabled={!isFormValid}>
               Get OTP
             </button>
           </div>
