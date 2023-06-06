@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function DateOfPickup({ handleDateChange }) {
   const [dates, setDates] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const today = new Date();
@@ -34,11 +35,13 @@ function DateOfPickup({ handleDateChange }) {
   }, []);
 
   const handleDateClick = (date) => {
+    setSelectedDate(date);
     handleDateChange(date);
   };
 
   const handleKeyDown = (event, date) => {
     if (event.key === 'Enter' || event.key === ' ') {
+      setSelectedDate(date);
       handleDateChange(date);
     }
   };
@@ -51,7 +54,7 @@ function DateOfPickup({ handleDateChange }) {
           onClick={() => handleDateClick(date.completeDate)}
           onKeyDown={(event) => handleKeyDown(event, date.completeDate)}
           tabIndex={0} // Make the element focusable
-          className='w-20 border-2 cursor-pointer bg-gradient-to-b from-green-300 rounded-lg my-3 mx-2 p-4'
+          className={`w-20 border-2 cursor-pointer rounded-lg my-3 mx-2 p-4 ${selectedDate === date.completeDate ? 'bg-gradient-to-b from-green-500' : 'bg-slate-200'}`}
           role='button' // Indicate the element as a button
         >
           <h4 className='text-center font-semibold'>{date.weekday}</h4>

@@ -3,11 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { regenerateOtp, verifyOtp } from '../../../redux/api';
 
 function OtpPopUpForm(props) {
-  const location = useLocation();
   const navigate = useNavigate();
   let currentOtpIndex = 0;
   const [otp, setOtp] = useState(new Array(4).fill(''));

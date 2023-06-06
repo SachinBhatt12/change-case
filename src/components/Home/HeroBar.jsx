@@ -18,9 +18,13 @@ function HeroBar() {
             <span className='text-green-500 text-5xl'>Recycle with Us</span>
           </h1>
           <div className='flex justify-center lg:justify-start lg:mt-6 lg:p-3'>
-            <div className='signup border-2 p-10 shadow-xl rounded-lg w-full' id='signup'>
-              {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
-            </div>
+            {localStorage.AuthToken !== '' ? (
+              <div className='signup border-2 p-10 shadow-xl rounded-lg w-full' id='signup'>
+                {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <div className='w-full lg:w-auto'>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiUserCircle } from 'react-icons/bi';
@@ -9,6 +9,7 @@ import navigationItems from './NavigationItems.json';
 
 function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authToken, setAuthToken] = useState(localStorage.getItem('AuthToken'));
 
@@ -25,7 +26,7 @@ function Navigation() {
   };
 
   const handleLogin = () => {
-    window.location.href = '/';
+    navigate('/');
   };
 
   const handleLogout = () => {
