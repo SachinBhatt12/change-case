@@ -1,13 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../Header/Navigation';
+import Navigation from '../Header/Navigation'; // Updated import statement
 import SiteFooter from '../footer/SiteFooter';
 
 export function Layout() {
   return (
     <div>
       <header className='-pt-9 w-full'>
-        <Header />
+        <Navigation />
       </header>
       <main className=' h-full min-h-screen'>
         <div className=''>

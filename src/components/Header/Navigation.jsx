@@ -7,15 +7,11 @@ import { BiUserCircle } from 'react-icons/bi';
 import recyclerLogo from '../../assets/logo.png';
 import navigationItems from './NavigationItems.json';
 
-function Navigation() {
+export default function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [authToken, setAuthToken] = useState(localStorage.getItem('AuthToken'));
-
-  useEffect(() => {
-    setAuthToken(localStorage.getItem('AuthToken'));
-  }, []);
+  const [authToken, setAuthToken] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -32,9 +28,15 @@ function Navigation() {
   const handleLogout = () => {
     localStorage.removeItem('AuthToken');
     localStorage.removeItem('profile');
-    setAuthToken(null);
+    localStorage.removeItem('userId');
+    setAuthToken('');
+    navigate('/');
     // Additional logout logic
   };
+
+  useEffect(() => {
+    setAuthToken(localStorage.getItem('AuthToken'));
+  }, [authToken]);
 
   return (
     <div>
@@ -83,5 +85,3 @@ function Navigation() {
     </div>
   );
 }
-
-export default Navigation;
