@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import element from '../../assets/element.svg';
 import check from '../../assets/check.png';
 import WeAreTheBest from '../../assets/we_are_the_best.svg';
+import Loader from '../Loader';
 
 const checkboxes = [
   { label: 'Best Price' },
@@ -29,11 +30,7 @@ function WhyWeAreBest() {
           </div>
           <h1 className='text-center md:text-left text-4xl font-semibold'>Why we are the best</h1>
           <p className='py-5 text-md'>
-            Kabadi Jee removes
-            {' '}
-            junk
-            {' '}
-            from your home without any difficulty. We add a technological example to get rid of scrap in exchange for valuable money. The Kabadi Jee offers its customers an
+            Kabadi Jee removes junk from your home without any difficulty. We add a technological example to get rid of scrap in exchange for valuable money. The Kabadi Jee offers its customers an
             environmental report detailing their ecological impact in numbers once the discarded materials are dropped off at the appropriate recycling facilities.
           </p>
           <div className='checkboxes w-full md:w-80'>
