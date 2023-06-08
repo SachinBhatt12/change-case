@@ -50,7 +50,7 @@ function SignInForm({ handleNewUser }) {
       <div className='pt-10 relative' id='login'>
         <form onSubmit={(e) => handleSubmit(e, signInData)}>
           <div className='py-2 '>
-            <input type='number' className='inputCommonCss px-2 w-full' name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
+            <input type='number' className='inputCommonCss px-2 w-full' maxLength={10} name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
           </div>
           <div className='signIn'>
             <button className={isFormValid ? 'primaryButton' : 'disabledButton'} type='submit' disabled={!isFormValid}>

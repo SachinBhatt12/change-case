@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import ScrapRates from './components/scrap_rates/ScrapRates';
 import PickupRequest from './components/pickup_request/PickupRequest';
 import ConfirmPickup from './components/confirmation/ConfirmPickup';
+import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
   return (
@@ -11,8 +12,10 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
-        <Route path='/pickuprequest' element={<PickupRequest />} />
-        <Route path='/confirmpickup' element={<ConfirmPickup />} />
+        <Route path='/' element={<ProtectedRoutes />}>
+          <Route path='/pickuprequest' element={<PickupRequest />} />
+          <Route path='/confirmpickup' element={<ConfirmPickup />} />
+        </Route>
       </Route>
     </Routes>
   );

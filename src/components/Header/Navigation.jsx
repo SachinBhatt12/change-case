@@ -58,16 +58,20 @@ export default function Navigation() {
               ))}
               <div className='flex items-center'>
                 {authToken ? (
-                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={handleLogout}>
-                    <BiUserCircle className='mr-2' size={24} />
-                    Logout
-                  </button>
+                  <NavHashLink to='/#herobar'>
+                    <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={handleLogout}>
+                      <BiUserCircle className='mr-2' size={24} />
+                      Logout
+                    </button>
+                  </NavHashLink>
                 ) : (
                   <NavLink to='/'>
-                    <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 flex items-center' onClick={handleLogin}>
-                      <BiUserCircle className='mr-2' size={24} />
-                      Login
-                    </button>
+                    <NavHashLink to='/#herobar' smooth>
+                      <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 flex items-center' onClick={handleLogin}>
+                        <BiUserCircle className='mr-2' size={24} />
+                        Login
+                      </button>
+                    </NavHashLink>
                   </NavLink>
                 )}
               </div>
