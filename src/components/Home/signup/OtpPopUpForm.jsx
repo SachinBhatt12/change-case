@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { regenerateOtp, verifyOtp } from '../../../redux/api';
+import Loader from '../../Loader';
 
 function OtpPopUpForm(props) {
   const navigate = useNavigate();
@@ -80,7 +81,8 @@ function OtpPopUpForm(props) {
 
   return (
     <>
-      <div className='fixed z-50 inset-0 overflow-y-auto bg-black bg-opacity-50 flex -flex-col justify-center items-center'>
+      <div className='fixed z-50 inset-0 overflow-y-auto bg-gray-300 bg-opacity-50 flex -flex-col justify-center items-center'>
+        
         <div className='bg-white p-10 rounded-xl relative'>
           <MdOutlineCancel className='absolute top-0 right-0 cursor-pointer' size={32} onClick={() => props.setShowPopup(false)} />
           <div className='flex'>
