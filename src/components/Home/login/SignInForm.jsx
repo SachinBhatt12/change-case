@@ -40,7 +40,7 @@ function SignInForm({ handleNewUser }) {
   };
   const isFormValid = signInData.phone_number.length === 10;
   return (
-    <div>
+    <div className='relative'>
       {showPopup && (
         <div className=''>
           <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} />

@@ -4,7 +4,7 @@
 @tailwind utilities;
 @layer components{
   .mainBgCard {
-    @apply bg-[#fdfdfd] ;
+    @apply bg-[#fdfdfd] z-50;
   }
   .headerCommonCss {
     @apply flex flex-col items-center justify-center hover:bg-[#ff7c45] hover:text-white h-16 p-2 px-4 rounded-lg drop-shadow-xl;
