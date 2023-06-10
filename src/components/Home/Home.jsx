@@ -6,7 +6,6 @@ import Cooperate from './Cooperate';
 import HeroBar from './HeroBar';
 import OurStory from './OurStory';
 import CustomerReview from './CustomerReview';
-import Loader from '../loader/Loader';
 
 function Home() {
   const [loginForm, setLoginForm] = useState(false);
@@ -16,7 +15,6 @@ function Home() {
       <HeroBar loginForm={loginForm} setLoginForm={setLoginForm} />
       <div>
         <HowWeWork />
-        <Loader />
         <WhyWeAreBest />
         <ServiceForHouseHold />
         <Cooperate />

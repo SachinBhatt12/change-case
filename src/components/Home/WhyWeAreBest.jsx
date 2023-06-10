@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import element from '../../assets/element.svg';
 import check from '../../assets/check.png';
 import WeAreTheBest from '../../assets/we_are_the_best.svg';
-import Loader from '../Loader';
 
 const checkboxes = [
   { label: 'Best Price' },
