@@ -3,7 +3,8 @@ import { NavHashLink } from 'react-router-hash-link';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BiUserCircle } from 'react-icons/bi';
+import { BiUserCircle, BiChevronDown } from 'react-icons/bi';
+import { BsBoxArrowInRight } from 'react-icons/bs';
 import recyclerLogo from '../../assets/logo.png';
 import navigationItems from './NavigationItems.json';
 
@@ -11,10 +12,15 @@ export default function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openList, setOpenList] = useState(false);
   const [authToken, setAuthToken] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleOptionsToggle = () => {
+    setOpenList(!openList);
   };
 
   const handleTabClick = (index) => {
@@ -58,9 +64,10 @@ export default function Navigation() {
               ))}
               <div className='flex items-center'>
                 {authToken ? (
-                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={handleLogout}>
+                  <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={handleOptionsToggle}>
+                    <BiChevronDown />
+                    Akash
                     <BiUserCircle className='mr-2' size={24} />
-                    Logout
                   </button>
                 ) : (
                   <NavLink to='/'>
@@ -69,6 +76,21 @@ export default function Navigation() {
                       Login
                     </button>
                   </NavLink>
+                )}
+                {openList && (
+                  <div className='relative'>
+                    <ul className='absolute top-4 cursor-pointer right-10 border-2 p-5 shadow-xl ml-2 '>
+                      <NavLink to='user'>
+                        <li className='border-b-2 text-xl'>Profile</li>
+                      </NavLink>
+                      <li className='text-xl flex mt-1'>
+                        <button type='submit' onClick={handleOptionsToggle} className=' text-left px-4 py-1 rounded-lg flex'>
+                          Logout
+                          <BsBoxArrowInRight className='pr-5' />
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 )}
               </div>
             </ul>

@@ -9,7 +9,7 @@ function HeroBar() {
     setLoginForm(!loginForm);
   };
   return (
-    <div className='container' id='herobar'>
+    <div className='container mb-32 ' id='herobar'>
       <div className='flex flex-col py-4 justify-around lg:flex-row lg:space-x-4'>
         <div className='w-full lg:w-4/12 lg:pt-40 lg:ml-32'>
           <h1 className='text-4xl text-center lg:text-left py-2 mb-10'>
