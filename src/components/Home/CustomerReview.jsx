@@ -3,7 +3,7 @@ import Corousel from './Corousel/Corousel';
 
 function CustomerReview() {
   return (
-    <div className='text-center ' id='customerReviews'>
+    <div className='text-center mt-32' id='customerReviews'>
       <h1 className='text-4xl'>What Customers Say About Us</h1>
       <div className='corousel'>
         <Corousel />
