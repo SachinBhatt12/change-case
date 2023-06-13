@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import element from '../../assets/element.svg';
 import check from '../../assets/check.png';
 import WeAreTheBest from '../../assets/we_are_the_best.svg';
-import Loader from '../Loader';
 
 const checkboxes = [
   { label: 'Best Price' },
@@ -19,9 +18,9 @@ function WhyWeAreBest() {
     window.scrollTo(0, 0);
   };
   return (
-    <div className='container' id='whyUs'>
+    <div className='container mb-32 mt-16 text-2xl' id='whyUs'>
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 p-5 sm:p-20'>
-        <div className='w-full h-72 sm:h-auto'>
+        <div className='w-full h-80 sm:h-auto'>
           <img src={WeAreTheBest} className='mx-auto h-full' alt='why we are the best' />
         </div>
         <div className='flex flex-col justify-between relative'>
