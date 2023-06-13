@@ -8,6 +8,8 @@ import PlasticBottle from '../../assets/pastic_bottle.png';
 import iron from '../../assets/iron.png';
 import glass from '../../assets/glass.png';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
+import Error from '../Error';
+import Loader from '../Loader';
 
 const scrapitems = [
   { src: newspaper, item_name: 'Newspaper' },
@@ -22,6 +24,11 @@ function ScrapRates() {
   const authtoken = localStorage.getItem('AuthToken');
   const dispatch = useDispatch();
   const { loading, data: scrapData, error } = useSelector((state) => state.scrapDetails);
+  if (loading) {
+    <Loader />;
+  } else if (error) {
+    <Error />;
+  }
 
   const scrapRateData = scrapData?.data;
   const mergedScrapLists = scrapitems?.map((item) => {
