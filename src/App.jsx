@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import ScrapRates from './components/scrap_rates/ScrapRates';
 import PickupRequest from './components/pickup_request/PickupRequest';
 import ConfirmPickup from './components/confirmation/ConfirmPickup';
+import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 import UserProfile from './components/userprofile/UserProfile';
 
 function App() {
@@ -12,6 +13,10 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
+        <Route path='/' element={<ProtectedRoutes />}>
+          <Route path='/pickuprequest' element={<PickupRequest />} />
+          <Route path='/confirmpickup' element={<ConfirmPickup />} />
+        </Route>
         <Route path='/pickuprequest' element={<PickupRequest />} />
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
