@@ -5,6 +5,9 @@ import ScrapRates from './components/scrap_rates/ScrapRates';
 import PickupRequest from './components/pickup_request/PickupRequest';
 import ConfirmPickup from './components/confirmation/ConfirmPickup';
 import UserProfile from './components/userprofile/UserProfile';
+import Error from './components/Error';
+import Wallet from './components/Wallet/Wallet';
+import TransferToBank from './components/Wallet/TransferToBank';
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path='/pickuprequest' element={<PickupRequest />} />
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
+        <Route path='/wallet' element={<Wallet />} />
+        <Route path='/transfertobank' element={<TransferToBank />} />
+        <Route path='*' element={<Error />} />
       </Route>
     </Routes>
   );

@@ -19,7 +19,7 @@
     @apply w-12 h-12 border-2 rounded bg-transparent outline-none text-center font-semibold text-xl border-gray-400 focus:border-gray-700 focus:text-gray-400 mx-2;
   }
   .disabledButton{
-    @apply w-48  h-8 bg-gray-500 rounded-md block text-white focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 pb-2.5 text-center dark:bg-green-800 dark:hover:bg-gray-400;
+    @apply w-48  bg-gray-500 rounded-md block text-white focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 pb-2.5 text-center dark:bg-green-800 dark:hover:bg-gray-400;
   }
   .pickupformheading{
     @apply text-xl font-sans font-semibold
@@ -42,7 +42,7 @@ input[type="number"] {
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: 'DM Sans, sans-serif', "lato";
+  /* font-family: 'Fira Sans'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
