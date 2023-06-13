@@ -84,7 +84,7 @@ export default function Navigation() {
                     <li className='border-b-2 text-xl'>Profile</li>
                   </NavLink>
                   <li className='text-xl flex mt-1'>
-                    <button type='submit' onClick={handleOptionsToggle} className=' text-left px-4 py-1 rounded-lg flex'>
+                    <button type='submit' onClick={handleLogout} className=' text-left px-4 py-1 rounded-lg flex'>
                       Logout
                       <BsBoxArrowInRight className='pr-5' />
                     </button>
