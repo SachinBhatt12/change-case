@@ -4,6 +4,7 @@ import Home from './components/Home/Home';
 import ScrapRates from './components/scrap_rates/ScrapRates';
 import PickupRequest from './components/pickup_request/PickupRequest';
 import ConfirmPickup from './components/confirmation/ConfirmPickup';
+import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 import UserProfile from './components/userprofile/UserProfile';
 import Error from './components/Error';
 import Wallet from './components/Wallet/Wallet';
@@ -16,6 +17,7 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
+
         <Route
           path='/pickuprequest'
           element={
@@ -24,6 +26,7 @@ function App() {
             // </ProtectedRoutes>
           }
         />
+
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
         <Route path='/wallet' element={<Wallet />} />

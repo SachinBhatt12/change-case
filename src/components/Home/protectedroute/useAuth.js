@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function useAuth() {
   const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuthentication = () => {
@@ -12,12 +13,12 @@ export function useAuth() {
       } else {
         setAuth(false);
         // Redirect the user to the login page
-          <Navigate to='/login' />;
+        navigate('/');
       }
     };
 
     checkAuthentication();
-  }, []);
+  }, [navigate]);
 
   return { auth };
 }
