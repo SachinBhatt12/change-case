@@ -9,6 +9,7 @@ import UserProfile from './components/userprofile/UserProfile';
 import Error from './components/Error';
 import Wallet from './components/Wallet/Wallet';
 import TransferToBank from './components/Wallet/TransferToBank';
+// import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
   return (
@@ -16,11 +17,16 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
-        <Route path='/' element={<ProtectedRoutes />}>
-          <Route path='/pickuprequest' element={<PickupRequest />} />
-          <Route path='/confirmpickup' element={<ConfirmPickup />} />
-        </Route>
-        <Route path='/pickuprequest' element={<PickupRequest />} />
+
+        <Route
+          path='/pickuprequest'
+          element={
+            // <ProtectedRoutes isloggedIn={false}>
+            <PickupRequest />
+            // </ProtectedRoutes>
+          }
+        />
+
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
         <Route path='/wallet' element={<Wallet />} />

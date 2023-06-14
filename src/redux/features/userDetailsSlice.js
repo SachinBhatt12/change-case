@@ -5,7 +5,6 @@ import * as api from '../api';
 
 export const fetchUserDetails = createAsyncThunk('/userdetails', async (id) => {
   const response = await api.userDetails(id);
-  console.log(response, 'response from userdetailsslice');
   return response;
 });
 

@@ -64,7 +64,6 @@ function OtpPopUpForm(props) {
     if (count > 0) {
       setCount(count - 1);
       const response = await regenerateOtp({ id });
-      console.log(response);
       toast.success(`${response.data.message}`);
     } else if (count === 0) {
       toast.error('Please try after some time');
@@ -82,7 +81,6 @@ function OtpPopUpForm(props) {
   return (
     <>
       <div className='fixed z-50 inset-0 overflow-y-auto bg-gray-300 bg-opacity-50 flex -flex-col justify-center items-center'>
-        
         <div className='bg-white p-10 rounded-xl relative'>
           <MdOutlineCancel className='absolute top-0 right-0 cursor-pointer' size={32} onClick={() => props.setShowPopup(false)} />
           <div className='flex'>
