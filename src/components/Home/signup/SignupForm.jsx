@@ -49,7 +49,7 @@ function SignupForm({ handleNewUser }) {
             <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup} />
           </div>
         )}
-        <div className='relative'>
+        <div className='relative h-64'>
           <h1 className='text-2xl hover:text-green-600'>Register User</h1>
           <form className='pt-3' onSubmit={(e) => handleSubmit(e, FormData)}>
             <div className=' pt-4'>
@@ -59,14 +59,14 @@ function SignupForm({ handleNewUser }) {
               <input className='inputCommonCss w-full' type='Number' name='phone_number' value={FormData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
             </div>
 
-            <div className='py-4 align-middle'>
-              <button className={isFormValid ? 'primaryButton' : 'disabledButton'} type='submit' disabled={!isFormValid}>
+            <div className='py-4 flex justify-end'>
+              <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>
                 Sign Up
               </button>
             </div>
           </form>
         </div>
-        <div className='justify-end'>
+        <div className='flex justify-end'>
           <button type='submit' className='text-blue-600' onClick={() => handleNewUser(true)}>
             Already a User
           </button>

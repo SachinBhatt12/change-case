@@ -4,6 +4,7 @@ import { FiEdit3 } from 'react-icons/fi';
 import { BiWalletAlt } from 'react-icons/bi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Backbtn from '../BackBtn';
+import { NavLink } from 'react-router-dom';
 
 function UserProfile() {
   return (
@@ -21,11 +22,13 @@ function UserProfile() {
                 <FiEdit3 />
               </span>
             </h3>
-            <button type='submit' className='flex text-center primaryButton'>
-              Your Wallet
-              {' '}
-              <BiWalletAlt />
-            </button>
+            <NavLink to='/wallet'>
+              <button type='submit' className='flex text-center primaryButton'>
+                Your Wallet
+                {' '}
+                <BiWalletAlt />
+              </button>
+            </NavLink>
           </div>
           <form action='' className='pt-10 text-xl'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>

@@ -6,7 +6,7 @@ import SiteFooter from '../footer/SiteFooter';
 export function Layout() {
   return (
     <div>
-      <header className='-pt-9 w-full'>
+      <header className=' w-full'>
         <Navigation />
       </header>
       <main className=' h-full min-h-screen'>
