@@ -17,6 +17,7 @@ export default function Navigation() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setOpenList(true);
   };
 
   const handleOptionsToggle = () => {
@@ -29,6 +30,7 @@ export default function Navigation() {
 
   const handleLogin = () => {
     navigate('/');
+    setAuthToken('user');
   };
 
   const handleLogout = () => {
@@ -37,12 +39,13 @@ export default function Navigation() {
     localStorage.removeItem('userId');
     setAuthToken('');
     navigate('/');
+    setOpenList(false);
     // Additional logout logic
   };
 
   useEffect(() => {
     setAuthToken(localStorage.getItem('AuthToken'));
-  }, [authToken]);
+  }, []);
 
   return (
     <div>
@@ -79,7 +82,7 @@ export default function Navigation() {
             )}
             {openList && (
               <div className='relative'>
-                <ul className='absolute top-4 cursor-pointer right-10 border-2 p-5 shadow-xl ml-2 '>
+                <ul className='absolute top-20 cursor-pointer right-10 border-2 p-5 shadow-xl ml-2 '>
                   <NavLink to='user'>
                     <li className='border-b-2 text-xl'>Profile</li>
                   </NavLink>

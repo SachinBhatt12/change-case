@@ -7,11 +7,9 @@ function UserInfo() {
   const userid = localStorage.getItem('userid');
   const dispatch = useDispatch();
   const { loading, data: userSlice, error } = useSelector((state) => state.userSlice);
-  console.log(userSlice, 'userslice from userinfo file');
   const userDetailsData = userSlice?.data;
   useEffect(() => {
     dispatch(fetchUserDetails(userid)).then((response) => {
-      console.log(response);
     });
   }, [dispatch, userid]);
   if (loading) {
