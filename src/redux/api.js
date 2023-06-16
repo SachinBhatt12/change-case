@@ -25,3 +25,8 @@ export const pickupRequest = (FormData, authToken) => API.post('orders/api/picku
     Authorization: `Token ${authToken}`,
   },
 });
+export const updateUserApi = (FormData, authToken) => API.put('accounts/update-user/', FormData, {
+  headers: {
+    Authorization: `Token ${authToken}`,
+  },
+});

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
+import Loader from '../Loader';
 
 function UserInfo() {
   const userid = localStorage.getItem('userid');
@@ -13,7 +14,7 @@ function UserInfo() {
     });
   }, [dispatch, userid]);
   if (loading) {
-    // return <div>Loading...</div>;
+    return <div><Loader /></div>;
   }
 
   if (error) {

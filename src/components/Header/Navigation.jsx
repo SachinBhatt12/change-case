@@ -20,6 +20,10 @@ export default function Navigation() {
     setOpenList(true);
   };
 
+  const handleProfileClick = () => {
+    setOpenList(false);
+  };
+
   const handleOptionsToggle = () => {
     setOpenList(!openList);
   };
@@ -34,17 +38,23 @@ export default function Navigation() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('AuthToken');
-    localStorage.removeItem('profile');
-    localStorage.removeItem('userId');
-    setAuthToken('');
-    navigate('/');
-    setOpenList(false);
-    // Additional logout logic
+    if (localStorage.getItem('AuthToken')) {
+      localStorage.removeItem('AuthToken');
+      localStorage.removeItem('profile');
+      localStorage.removeItem('userid');
+      setAuthToken('');
+      navigate('/');
+      setOpenList(false);
+    }
   };
 
   useEffect(() => {
-    setAuthToken(localStorage.getItem('AuthToken'));
+    const storedToken = localStorage.getItem('AuthToken');
+    if (storedToken) {
+      setAuthToken(storedToken);
+    } else {
+      setAuthToken('');
+    }
   }, []);
 
   return (
@@ -74,18 +84,20 @@ export default function Navigation() {
                 <BiUserCircle className='mr-2' size={24} />
               </button>
             ) : (
-              <NavLink to='/'>
-                <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 flex items-center' onClick={handleLogin}>
-                  <BiUserCircle className='mr-2' size={24} />
-                  Login
-                </button>
-              </NavLink>
+              <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 flex items-center' onClick={handleLogin}>
+                <BiUserCircle className='mr-2' size={24} />
+                Login
+              </button>
             )}
             {openList && (
               <div className='relative'>
                 <ul className='absolute top-20 cursor-pointer right-10 border-2 p-5 shadow-xl ml-2 '>
                   <NavLink to='user'>
-                    <li className='border-b-2 text-xl'>Profile</li>
+                    <li className='border-b-2 text-xl'>
+                      <button type='submit' onClick={handleProfileClick}>
+                        Profile
+                      </button>
+                    </li>
                   </NavLink>
                   <li className='text-xl flex mt-1'>
                     <button type='submit' onClick={handleLogout} className=' text-left px-4 py-1 rounded-lg flex'>
