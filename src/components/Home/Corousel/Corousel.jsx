@@ -14,13 +14,13 @@ const customerReviews = [
   },
   {
     src: profile,
-    name: 'Poornima barola',
+    name: 'Priya Chaudhary',
     userType: 'Visit user',
     text: 'Very useful app. Doctor responded so many times without charging any fee. She patiently answerd Thank so much Dr Renu. Wonderful app',
   },
   {
     src: profile,
-    name: 'Poornima barola',
+    name: 'Shrey Kumar',
     userType: 'Visit user',
     text: 'Very useful app. Doctor responded so many times without charging any fee. She patiently answerd Thank so much Dr Renu. Wonderful app',
   },
