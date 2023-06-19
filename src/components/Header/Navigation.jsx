@@ -57,6 +57,8 @@ export default function Navigation() {
     }
   }, []);
 
+  useEffect(() => {}, [authToken]);
+
   return (
     <div>
       <header className='px-14 fixed drop-shadow-xl w-full mainBgCard'>

@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,10 +20,12 @@ function PickupRequest() {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
   const checkboxData = scrapData?.data;
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
+
   const handleCheckClick = (event, item) => {
     const { checked } = event.target;
     if (checked) {
@@ -46,17 +49,23 @@ function PickupRequest() {
   const onTimeChange = (time) => {
     formData.pickup_time = time;
   };
-  const handleSubmit = (event, Data) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(orderPickup(Data));
+    dispatch(orderPickup(formData)).then((response) => {
+      const pickupResponseData = response?.payload;
+      if (pickupResponseData?.status === 201) {
+        toast.success('Pickup Request Added Successfully');
+        navigate('/confirmpickup', { state: { pickupData: pickupResponseData?.data } });
+      } else {
+        toast.error('Something went wrong');
+      }
+    });
   };
-  const handleQuantityChange = () => {
-    const updatedFormData = {
-      ...formData,
-      pickup_request_items: formData.pickup_request_items,
-    };
-    setFormData(updatedFormData);
-    handleFormChange(updatedFormData); // Updated function call
+  const handleQuantityChange = (updatedItems) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      pickup_request_items: updatedItems,
+    }));
   };
 
   useEffect(() => {
@@ -105,19 +114,20 @@ function PickupRequest() {
           <hr />
           <br />
 
-          <QuantityTable selectedCheckboxes={selectedCheckboxes} handleQuantityChange={handleQuantityChange} />
+          <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
           <div className='button justify-center items-center '>
-            <NavLink to='/confirmpickup'>
-              <button type='submit' className=' primaryButton '>
-                {' '}
-                Confirm Pickup
-                {' '}
-              </button>
-            </NavLink>
+            {/* <NavLink to='/confirmpickup'> */}
+            <button type='submit' className=' primaryButton '>
+              {' '}
+              Confirm Pickup
+              {' '}
+            </button>
+            {/* </NavLink> */}
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

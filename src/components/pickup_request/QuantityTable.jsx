@@ -1,26 +1,40 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function QuantityTable({ selectedCheckboxes }) {
+function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
   const selectedItems = selectedCheckboxes;
   const [formData, setFormData] = useState({
     pickup_request_items: [],
   });
 
+  // const handleQuantityChange = (itemId, quantity) => {
+  //   formData.pickup_request_items.push({ item_id: itemId, weight: quantity });
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //   }));
+  // };
   const handleQuantityChange = (itemId, quantity) => {
-    formData.pickup_request_items.push({ item_id: itemId, weight: quantity });
-    setFormData((prevState) => ({
-      ...prevState,
-    }));
-  };
+    const updatedItems = [...formData.pickup_request_items];
+    const selectedItemIndex = updatedItems.findIndex((item) => item.item_id === itemId);
 
+    if (selectedItemIndex !== -1) {
+      updatedItems[selectedItemIndex].weight = quantity;
+    } else {
+      updatedItems.push({ item_id: itemId, weight: quantity });
+    }
+
+    onQuantityChange(updatedItems);
+  };
+  useEffect(() => {
+    onQuantityChange(formData.pickup_request_items);
+  }, [formData.pickup_request_items]);
   return (
     <table className='w-full'>
       <thead className='border-2'>
         <tr className='px-10'>
           <th>Categories</th>
           <th>Price</th>
-          <th>Quantity</th>
+          <th>Quantity (in kgs)</th>
         </tr>
       </thead>
       <tbody className='w-full'>
@@ -40,9 +54,9 @@ function QuantityTable({ selectedCheckboxes }) {
                   onChange={(e) => handleQuantityChange(checkedValue.id, e.target.value)}
                 >
                   <option value=''>Select Quantity</option>
-                  <option value='<500g'>less than 500g</option>
-                  <option value='500g-5kg'>500g-5kg</option>
-                  <option value='>5kg'>greater than 5kg</option>
+                  <option value='10'>10</option>
+                  <option value='20'>20</option>
+                  <option value='30'>30</option>
                 </select>
               </td>
             </tr>
