@@ -20,8 +20,6 @@ function ConfirmPickup() {
   }
   const filteredData = scrapDetails?.filter((item) => pickupSuccessItemId?.includes(item.id));
 
-  console.log(filteredData);
-
   return (
     <div className='pt-14 scroll-smooth'>
       <div className='bg-teal-100   '>
