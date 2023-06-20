@@ -17,11 +17,12 @@ export const initialPickupState = {
 
 export const orderPickup = createAsyncThunk('pickup/orderPickup', async (formData, { rejectWithValue }) => {
   try {
-    const authToken = localStorage.getItem('AuthToken'); // Retrieve the auth token from localStorage
-    const response = await api.pickupRequest(formData, authToken); // Pass the authToken to the API request
-    return response?.data; // Assuming the response contains the desired data
+    const authToken = localStorage.getItem('AuthToken');
+    const response = await api.pickupRequest(formData, authToken);
+    // console.log(response, 'response from orderpickupslice');
+    return response;
   } catch (e) {
-    return rejectWithValue(e?.response?.data); // Assuming the error response contains the desired error message
+    return rejectWithValue(e?.response?.data);
   }
 });
 
