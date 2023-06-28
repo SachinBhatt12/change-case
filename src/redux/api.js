@@ -3,7 +3,7 @@ import axios from 'axios';
 const API = axios.create({
   // baseURL: 'http://208.109.33.187:8000/',
   baseURL: 'https://api.kabadijee.com/',
-  // baseURL: 'http://127.0.0.1:9000/',
+  // baseURL: 'http://127.0.0.1:8080/',
   // baseURL: 'http://192.168.1.19:8000',
 });
 
