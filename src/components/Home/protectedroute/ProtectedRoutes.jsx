@@ -2,9 +2,15 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from './useAuth';
 
-function ProtectedRoutes() {
+function ProtectedRoutes({ children }) {
   const auth = useAuth;
-  return auth ? <Outlet /> : <Navigate to='/' />;
+  const AuthToken = localStorage.getItem('AuthToken');
+  console.log(AuthToken, 'authtoken');
+  if (AuthToken === null) {
+    <Navigate to='/' />;  
+  }
+  // return auth ? <Outlet /> : <Navigate to='/' />;
+  return children;
 }
 
 export default ProtectedRoutes;

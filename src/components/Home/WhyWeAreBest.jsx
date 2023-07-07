@@ -18,17 +18,17 @@ function WhyWeAreBest() {
     window.scrollTo(0, 0);
   };
   return (
-    <div className='container mb-32 mt-16 text-2xl' id='whyUs'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 p-5 sm:p-20'>
-        <div className='w-full h-80 sm:h-auto'>
-          <img src={WeAreTheBest} className='mx-auto h-full' alt='why we are the best' />
+    <div className='w-full container mb-32 grid sm:w-full md:w-full lg:w-full' id='whyUs'>
+      <div className='grid md:grid-cols-2'>
+        <div className='w-10/12 m-auto md:m-auto'>
+          <img src={WeAreTheBest} className='mx-auto w-full' alt='why we are the best' />
         </div>
-        <div className='flex flex-col justify-between relative'>
-          <div className='self-end md:self-auto absolute right-2 -top-5'>
+        <div className='w-4/6 m-6 grid justify-between relative sm:w-11/12 md:w-2/5 md:m-5'>
+          <div className='self-end md:self-auto absolute right-2 -top-5 -z-10'>
             <img src={element} alt='star design' />
           </div>
-          <h1 className='text-center md:text-left text-4xl font-semibold'>Why we are the best</h1>
-          <p className='py-5 text-md'>
+          <h1 className='text-center text-4xl font-semibold'>Why we are the best</h1>
+          <p className='w-full py-5 text-xl md:w-full'>
             Kabadi Jee removes junk from your home without any difficulty. We add a technological example to get rid of scrap in exchange for valuable money. The Kabadi Jee offers its customers an
             environmental report detailing their ecological impact in numbers once the discarded materials are dropped off at the appropriate recycling facilities.
           </p>
@@ -42,7 +42,7 @@ function WhyWeAreBest() {
           </div>
           <div className='button pt-8'>
             <NavLink to='/scraprates'>
-              <button type='submit' onClick={handleNavlink} className='getstarted'>
+              <button type='submit' onClick={handleNavlink} className='getstarted rounded-xl pl-14 pr-14 w-[300px] sm:w-11/12'>
                 Get Started
               </button>
             </NavLink>

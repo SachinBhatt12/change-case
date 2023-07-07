@@ -4,7 +4,7 @@ import cooperate from '../../assets/cooprate.svg';
 
 function Cooperate() {
   return (
-    <div className='bg-teal-50'>
+    <div className='w-full bg-teal-50'>
       <div className='container p-10 flex relative flex-col md:flex-row items-center justify-center'>
         <div className='image md:px-10 absolute left-10 top-10'>
           <img src={CooprateElement} alt='' className='w-[100%]' />
