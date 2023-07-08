@@ -5,8 +5,8 @@ import {
 
 function SocialHandle() {
   return (
-    <div className='flex text-white'>
-      <div className='px-2 text-lg'>
+    <div className='flex justify-center items-center text-white'>
+      <div className='w-[85px] text-sm lg:w-[110px] lg:text-lg'>
         <h1> Follow us on : </h1>
       </div>
       <div className='px-2'>

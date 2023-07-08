@@ -41,7 +41,8 @@ input[type="number"] {
 }
 body {
   margin: 0;
-  box-sizing: border-box;
+  width: 100%;
+  /* box-sizing: border-box; */
   /* font-family: 'Fira Sans'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -63,9 +64,9 @@ body {
   .mainBgCard {
     height: 50px;
   }
-  body {
+  /* body {
     height: 50px;
-  }
+  } */
 }
 /* header {
   display: flex;

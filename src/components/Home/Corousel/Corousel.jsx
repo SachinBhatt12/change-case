@@ -27,7 +27,7 @@ const customerReviews = [
 ];
 function Corousel() {
   return (
-    <div className=''>
+    <div className='min-w-fit flex justify-center'>
       <CorouselItem customerReviews={customerReviews} />
     </div>
   );

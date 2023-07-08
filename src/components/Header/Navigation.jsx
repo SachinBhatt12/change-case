@@ -14,6 +14,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openList, setOpenList] = useState(false);
   const [authToken, setAuthToken] = useState('');
+  const authtoken = localStorage.getItem('AuthToken');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,24 +51,50 @@ export default function Navigation() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('AuthToken');
+    console.log(storedToken, 'storedtoken')
     if (storedToken) {
       setAuthToken(storedToken);
     } else {
-      setAuthToken('');
+      setAuthToken(null);
     }
   }, []);
 
-  useEffect(() => {}, [authToken]);
+  console.log(authToken, 'authtokenconsole');
+
+  // useEffect(() => {}, [authToken]);
+
+  const protectUserProfile = () => {
+    if (authtoken === null) {
+      return (
+        <NavLink to='/'>
+          <li className='border-b-2 text-xl text-center'>
+            <button type='submit' onClick={handleProfileClick}>
+              Profile
+            </button>
+          </li>
+        </NavLink>
+      );
+    }
+    return (
+      <NavLink to='user'>
+        <li className='border-b-2 text-xl text-center'>
+          <button type='submit' onClick={handleProfileClick}>
+            Profile
+          </button>
+        </li>
+      </NavLink>
+    );
+  };
 
   return (
     <div>
       <header className='px-14 fixed drop-shadow-xl w-full mainBgCard'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between relative'>
           <NavLink to='/'>
-            <img src={recyclerLogo} alt='companyLogo' className='w-44 py-2 h-auto' />
+            <img src={recyclerLogo} alt='companyLogo' className='w-44 py-2 sm:py-1 h-auto' />
           </NavLink>
           <div className='justify-between'>
-            <ul className={`md:flex md:items-center sm:transform origin-top transition-all duration-2000 ease-linear md:w-auto w-full ${isMenuOpen ? '' : 'hidden'}`}>
+            <ul className={`absolute top-14 -right-[490px] rounded-md sm:bg-[#D9E2E9] sm:transform origin-top transition-all duration-2000 ease-linear md:top-0 md:right-0 md:normal-case md:bg-inherit md:flex md:items-center md:w-auto lg:top-0 lg:right-56 lg:normal-case w-full ${isMenuOpen ? '' : 'hidden'}`}>
               {navigationItems.map((item, index) => (
                 <div key={index} className={`text-2xl md:text-lg sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
                   <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
@@ -78,9 +105,9 @@ export default function Navigation() {
               <div className='flex items-center' />
             </ul>
           </div>
-          <div className='flex justify-end'>
-            {authToken ? (
-              <button type='submit' className='border-1 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={handleOptionsToggle}>
+          <div className='h-16 flex justify-end'>
+            {authtoken ? (
+              <button type='submit' className='border-1 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={() => handleOptionsToggle()}>
                 <BiChevronDown />
                 Akash
                 <BiUserCircle className='mr-2' size={24} />
@@ -93,14 +120,8 @@ export default function Navigation() {
             )}
             {openList && (
               <div className='relative'>
-                <ul className='absolute top-20 cursor-pointer right-10 border-2 p-5 shadow-xl ml-2 '>
-                  <NavLink to='user'>
-                    <li className='border-b-2 text-xl'>
-                      <button type='submit' onClick={handleProfileClick}>
-                        Profile
-                      </button>
-                    </li>
-                  </NavLink>
+                <ul className='absolute top-14 cursor-pointer bg-slate-300 right-10 border-2 p-5 shadow-xl ml-2 '>
+                  {protectUserProfile()}
                   <li className='text-xl flex mt-1'>
                     <button type='submit' onClick={handleLogout} className=' text-left px-4 py-1 rounded-lg flex'>
                       Logout
@@ -112,7 +133,7 @@ export default function Navigation() {
             )}
           </div>
           {/* Hamburger menu start */}
-          <div className='md:hidden flex justify-end'>
+          <div className='h-14 md:hidden flex justify-end'>
             <button type='submit' onClick={toggleMenu}>
               {isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}
             </button>

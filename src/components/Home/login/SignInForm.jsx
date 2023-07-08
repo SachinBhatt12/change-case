@@ -35,12 +35,12 @@ function SignInForm({ handleNewUser }) {
         }
       }
     } catch (e) {
-      toast.warn('Check Credientials Mobile  Number is not registered');
+      toast.warn('Check Credientials Mobile Number is not registered');
     }
   };
   const isFormValid = signInData.phone_number.length === 10;
   return (
-    <div className='relative h-72'>
+    <div className='relative h-72 w-full'>
       {showPopup && (
         <div className=''>
           <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} />

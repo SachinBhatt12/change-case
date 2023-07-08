@@ -4,16 +4,16 @@ import { FaPhone } from 'react-icons/fa';
 
 function ContactUs() {
   return (
-    <div className='text-white'>
-      <h1>Contact Us</h1>
-      <h3 className='flex '>
+    <div className='text-white text-sm md:text-lg'>
+      <h1 className='text-center mb-5'>Contact Us</h1>
+      <h3 className='flex mb-5'>
         <GrMail style={{ display: 'inline-block' }} />
         {' '}
         <span style={{ display: 'inline-block' }} className='px-2'>
           info@kabadijee.com
         </span>
       </h3>
-      <h3 className='flex '>
+      <h3 className='flex mb-5'>
         <FaPhone />
         {' '}
         <span style={{ display: 'inline-block' }} className='px-2'>

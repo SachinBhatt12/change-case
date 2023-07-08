@@ -41,7 +41,7 @@ function ScrapRates() {
   }, [dispatch]);
 
   const renderPickupButton = () => {
-    if (authtoken === '') {
+    if (authtoken === null) {
       return (
         <NavLink to='/'>
           <button type='submit' className='w-full border-2 text-green-500 hover:text-white hover:bg-green-600 bg-white p-1 focus:bg-green-600'>
@@ -50,7 +50,6 @@ function ScrapRates() {
         </NavLink>
       );
     }
-
     return (
       <NavLink to='/pickuprequest'>
         <button type='submit' className='w-full border-2 text-green-500 hover:text-white hover:bg-green-600 bg-white p-1 focus:bg-green-600'>

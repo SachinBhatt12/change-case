@@ -2,7 +2,7 @@ import React from 'react';
 
 function CarouselItem({ customerReviews }) {
   return (
-    <div className='grid justify-around m-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1'>
+    <div className='max-w-fit grid grid-cols-1 place-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-6 gap-4'>
       {customerReviews.map((review, index) => (
         <div key={index} className=''>
           <div className='border-2 py-10 w-80 px-10 shadow-lg text-left rounded-2xl p-4 h-full'>
