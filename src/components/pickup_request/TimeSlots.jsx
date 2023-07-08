@@ -57,7 +57,7 @@ function TimeSlots({ onTimeChange }) {
   return (
     <>
       <h1 className='pickupformheading pb-5'>Pickup Time</h1>
-      <div className='grid grid-cols-1 gap-x-4 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 lg:gap-x-6'>
+      <div className='grid grid-cols-3 gap-x-4 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4 lg:gap-x-6'>
         {timeSlotArray.map((slot, index) => (
           <div className={`my-2 cursor-pointer rounded-2xl flex ${selectedTime === slot ? 'bg-gradient-to-b from-green-500' : 'bg-slate-200'}`} key={index}>
             <div>

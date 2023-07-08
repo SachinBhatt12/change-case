@@ -83,7 +83,7 @@ function PickupRequest() {
         <hr />
         <br />
         <form onSubmit={handleSubmit}>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-1 2xl:grid-cols-2'>
             <div className=''>
               <DateOfPickup handleDateChange={handleDateChange} />
             </div>

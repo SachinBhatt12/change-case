@@ -13,7 +13,7 @@ function Home() {
   return (
     <div className='w-full grid-cols-1 md:grid-cols-2 md:w-screen'>
       <HeroBar loginForm={loginForm} setLoginForm={setLoginForm} />
-      <div>
+      <div className='w-full'>
         <HowWeWork />
         <WhyWeAreBest />
         <ServiceForHouseHold />

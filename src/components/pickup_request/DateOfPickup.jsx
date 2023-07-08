@@ -47,7 +47,7 @@ function DateOfPickup({ handleDateChange }) {
   };
 
   return (
-    <div className='flex'>
+    <div className='flex flex-wrap sm:flex-wrap'>
       {dates.map((date, index) => (
         <div
           key={index}

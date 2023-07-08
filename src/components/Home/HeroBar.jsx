@@ -12,10 +12,10 @@ function HeroBar() {
     <div className='w-full mb-32' id='herobar'>
       <div className='w-full flex flex-col py-4 justify-around lg:flex-row'>
         <div className='w-full lg:w-4/12 lg:pt-40 lg:ml-32'>
-          <h1 className='text-4xl text-center lg:text-left py-2 mb-10'>
+          <h1 className='text-2xl mt-16 sm:mt-16 text-center md:text-4xl lg:text-left py-2 mb-10'>
             Small Actions, Big Impact:
             <br />
-            <span className='text-green-500 text-5xl'>Recycle with Us</span>
+            <span className='text-green-500 text-3xl md:text-5xl'>Recycle with Us</span>
           </h1>
           <div className='flex justify-center lg:justify-start lg:mt-6 lg:p-3'>
             {localStorage.AuthToken !== null ? (
