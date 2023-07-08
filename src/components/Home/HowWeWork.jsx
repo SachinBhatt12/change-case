@@ -9,7 +9,7 @@ function HowWeWork() {
       <h1 className='text-center text-3xl pt-4'>How we work</h1>
       <h3 className='text-center py-2 pb-4'>We will collect your scrap and will help you to know the worth of your scrap</h3>
 
-      <div className='flex-col sm:flex-col md:flex-col md:gap-3 lg:flex-row justify-center p-4 lg:p-16 '>
+      <div className='flex-col justify-center items-center md:flex-col md:gap-3 lg:flex-row p-4 lg:p-16 '>
         <div className='w-1/2 m-auto bg-white rounded-xl flex-1 mb-8 sm:ml-48 md:mb-0 md:m-auto'>
           <div className='mx-auto w-52 md:w-80'>
             <div className='rounded-full w-7 text-white m-4 bg-green-500 border-green-400 border-3'>

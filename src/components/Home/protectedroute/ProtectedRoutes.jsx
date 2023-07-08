@@ -7,7 +7,7 @@ function ProtectedRoutes({ children }) {
   const AuthToken = localStorage.getItem('AuthToken');
   console.log(AuthToken, 'authtoken');
   if (AuthToken === null) {
-    <Navigate to='/' />;  
+    <Navigate to='/' />;
   }
   // return auth ? <Outlet /> : <Navigate to='/' />;
   return children;
