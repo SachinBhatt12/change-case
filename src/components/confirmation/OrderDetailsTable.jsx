@@ -41,8 +41,13 @@ function OrderDetailsTable({ pickupSuccessData }) {
             <th className='text-left'>Time</th>
             <td>{pickupSuccessData.pickup_time}</td>
           </tr>
+          <tr className='py-2'>
+            <th className='text-left'>OTP</th>
+            <td>{pickupSuccessData.confirm_otp}</td>
+          </tr>
         </tbody>
       </table>
+      <h5 className='text-2xl font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5>
     </div>
   );
 }
