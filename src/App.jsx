@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import { Layout } from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import ScrapRates from './components/scrap_rates/ScrapRates';

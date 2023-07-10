@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
@@ -11,6 +11,7 @@ import navigationItems from './NavigationItems.json';
 export default function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
+  const profRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openList, setOpenList] = useState(false);
   const [authToken, setAuthToken] = useState('');
@@ -18,7 +19,6 @@ export default function Navigation() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setOpenList(true);
   };
 
   const handleProfileClick = () => {
@@ -35,7 +35,7 @@ export default function Navigation() {
 
   const handleLogin = () => {
     navigate('/');
-    setAuthToken('user');
+    // setAuthToken('user');
   };
 
   const handleLogout = () => {
@@ -51,23 +51,40 @@ export default function Navigation() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('AuthToken');
-    console.log(storedToken, 'storedtoken')
     if (storedToken) {
       setAuthToken(storedToken);
     } else {
       setAuthToken(null);
     }
+
+    const handleClickOutside = (event) => {
+      if (
+        profRef.current && !profRef.current.contains(event.target) && event.target.id !== 'prof'
+      ) {
+        setOpenList(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
-  console.log(authToken, 'authtokenconsole');
-
-  // useEffect(() => {}, [authToken]);
+  // const scrollToDiv = () => {
+  //   const scrollOptions = {
+  //     top: scrollRef.current.offsetTop - 40,
+  //     behavior: 'smooth',
+  //   };
+  //   window.scrollTo(scrollOptions);
+  // };
 
   const protectUserProfile = () => {
     if (authtoken === null) {
       return (
         <NavLink to='/'>
-          <li className='border-b-2 text-xl text-center'>
+          <li className='border-b-2 text-lg text-center'>
             <button type='submit' onClick={handleProfileClick}>
               Profile
             </button>
@@ -76,8 +93,8 @@ export default function Navigation() {
       );
     }
     return (
-      <NavLink to='user'>
-        <li className='border-b-2 text-xl text-center'>
+      <NavLink to='/user'>
+        <li className='border-b-2 text-lg normal-case text-center'>
           <button type='submit' onClick={handleProfileClick}>
             Profile
           </button>
@@ -88,15 +105,15 @@ export default function Navigation() {
 
   return (
     <div>
-      <header className='px-14 fixed drop-shadow-xl w-full mainBgCard'>
-        <div className='flex justify-between relative'>
+      <header className='px-14 fixed drop-shadow-xl w-full mainBgCard h-16'>
+        <div className='flex justify-between items-center relative'>
           <NavLink to='/'>
-            <img src={recyclerLogo} alt='companyLogo' className='w-44 py-2 sm:py-1 h-auto' />
+            <img src={recyclerLogo} alt='companyLogo' className='ml-0 w-44 py-2 sm:py-1 sm:ml-2 md:ml-10 h-auto' />
           </NavLink>
           <div className='justify-between'>
-            <ul className={`absolute top-14 -right-[490px] rounded-md sm:bg-[#D9E2E9] sm:transform origin-top transition-all duration-2000 ease-linear md:top-0 md:right-0 md:normal-case md:bg-inherit md:flex md:items-center md:w-auto lg:top-0 lg:right-56 lg:normal-case w-full ${isMenuOpen ? '' : 'hidden'}`}>
+            <ul className={`absolute top-14 -right-[30px] w-[150px] rounded-md bg-[#fff] transform origin-top transition-all duration-2000 ease-linear lg:top-0 lg:right-[120px] lg:normal-case lg:bg-inherit lg:flex lg:items-center lg:w-auto ${isMenuOpen ? '' : 'hidden'}`}>
               {navigationItems.map((item, index) => (
-                <div key={index} className={`text-2xl md:text-lg sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
+                <div key={index} className={`text-sm md:text-lg sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
                   <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
                     <li className=''>{item.label}</li>
                   </NavHashLink>
@@ -105,26 +122,26 @@ export default function Navigation() {
               <div className='flex items-center' />
             </ul>
           </div>
-          <div className='h-16 flex justify-end'>
+          <div className='hidden h-10 sm:flex sm:justify-end '>
             {authtoken ? (
-              <button type='submit' className='border-1 px-4 py-2 rounded-lg mb-2  flex items-center' onClick={() => handleOptionsToggle()}>
+              <button type='submit' className='border-1 px-4 py-1 rounded-lg flex items-center' onClick={() => handleOptionsToggle()}>
                 <BiChevronDown />
                 <BiUserCircle className='mr-2' size={24} />
               </button>
             ) : (
-              <button type='submit' className='border-2 px-4 py-2 rounded-lg mb-2 flex items-center' onClick={handleLogin}>
+              <button type='submit' className='border-2 px-4 py-1 rounded-lg flex items-center' onClick={handleLogin}>
                 <BiUserCircle className='mr-2' size={24} />
                 Login
               </button>
             )}
             {openList && (
-              <div className='relative'>
-                <ul className='absolute top-14 cursor-pointer bg-slate-300 right-10 border-2 p-5 shadow-xl ml-2 '>
+              <div className='relative' ref={profRef}>
+                <ul className='absolute top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2 '>
                   {protectUserProfile()}
-                  <li className='text-xl flex mt-1'>
+                  <li className='text-lg flex mt-1'>
                     <button type='submit' onClick={handleLogout} className=' text-left px-4 py-1 rounded-lg flex'>
                       Logout
-                      <BsBoxArrowInRight className='pr-5' />
+                      {/* <BsBoxArrowInRight className='pr-5' /> */}
                     </button>
                   </li>
                 </ul>
@@ -132,7 +149,7 @@ export default function Navigation() {
             )}
           </div>
           {/* Hamburger menu start */}
-          <div className='h-14 md:hidden flex justify-end'>
+          <div className='h-14 lg:hidden flex justify-end'>
             <button type='submit' onClick={toggleMenu}>
               {isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}
             </button>

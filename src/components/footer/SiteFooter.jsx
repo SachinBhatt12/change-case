@@ -7,7 +7,7 @@ import ContactUs from './ContactUs';
 
 function SiteFooter() {
   return (
-    <div className='bg-gray-500 w-full'>
+    <div className='bg-[#606060] w-full'>
       <div className='container mx-auto py-20 grid grid-cols-2 text-center sm:grid-cols-2 lg:grid-cols-3 '>
         <div className='w-[130px] m-auto mb-10 sm:w-auto sm:mb-5 md:mb-9 md:ml-9 lg:ml-5 flex flex-col justify-center'>
           <img src={recyclerLogo} alt='companyLogo' className='m-auto text-white w-40 h-12 mb-5 sm:mb-0 sm:ml-[20px] xl:ml-' />
