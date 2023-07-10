@@ -18,7 +18,7 @@ function Home() {
         <WhyWeAreBest />
         <ServiceForHouseHold />
         <Cooperate />
-        <CustomerReview />
+        {/* <CustomerReview /> */}
         <OurStory />
       </div>
     </div>

@@ -42,14 +42,14 @@ input[type="number"] {
 body {
   margin: 0;
   width: 100%;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   /* font-family: 'Fira Sans'; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 @media (max-width: 640px) {
   .mainBgCard {
-    height: 50px;
+    height: 55px;
   }
   .logo {
     font-size: 1.2rem;
@@ -62,7 +62,7 @@ body {
 
 @media (min-width: 400px) {
   .mainBgCard {
-    height: 50px;
+    height: 55px;
   }
   /* body {
     height: 50px;

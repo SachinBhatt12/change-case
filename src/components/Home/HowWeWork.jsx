@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import schedulepickup from '../../assets/schedule_a_pick_up.svg';
 import addresspickup from '../../assets/pickup_at_address.svg';
 import receivePayment from '../../assets/recieve_payment.svg';
 
 function HowWeWork() {
+  const whyRef = useRef(null);
   return (
-    <div className='min-w-full bg-gray-600 text-white my-3 py-10 md:py-16 lg:py-20'>
+    <div className='min-w-full bg-[#606060] text-white my-3 py-10 md:py-16 lg:py-20' ref={whyRef}>
       <h1 className='text-center text-3xl pt-4'>How we work</h1>
       <h3 className='text-center py-2 pb-4'>We will collect your scrap and will help you to know the worth of your scrap</h3>
 
-      <div className='flex-col justify-center items-center md:flex-col md:gap-3 lg:flex-row p-4 lg:p-16 '>
-        <div className='w-1/2 m-auto bg-white rounded-xl flex-1 mb-8 sm:ml-48 md:mb-0 md:m-auto'>
+      <div className='afcxs'>
+        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
           <div className='mx-auto w-52 md:w-80'>
             <div className='rounded-full w-7 text-white m-4 bg-green-500 border-green-400 border-3'>
               <p className='text-center text-xl'>1</p>
@@ -19,7 +20,7 @@ function HowWeWork() {
             <h3 className='text-center text-black'>Schedule Pickup</h3>
           </div>
         </div>
-        <div className='w-1/2 m-auto bg-white rounded-xl flex-1 mb-8 sm:ml-48 md:mb-0 md:m-auto'>
+        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
           <div className='mx-auto w-52 md:w-80'>
             <div className='rounded-full w-7 text-white m-4 bg-green-500 border-3'>
               <p className='text-center text-xl'>2</p>
@@ -28,7 +29,7 @@ function HowWeWork() {
             <h3 className='text-center text-black'>Pickup at your address</h3>
           </div>
         </div>
-        <div className='w-1/2 m-auto bg-white rounded-xl flex-1 mb-8 sm:ml-48 md:mb-0 md:m-auto'>
+        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
           <div className='mx-auto w-52 md:w-80'>
             <div className='rounded-full w-7 text-white m-4 bg-green-500 border-green-400 border-3'>
               <p className='text-center text-xl'>3</p>
