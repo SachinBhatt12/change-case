@@ -26,8 +26,8 @@ function ConfirmPickup() {
         <div className='container flex justify-around'>
           <div className='py-10 px-20 justify-center'>
             <Backbtn />
-            <h1 className='font-semibold px-20 text-4xl'>Yehh ! Pickup is confirmed</h1>
-            <p className='px-20 py-5 text-xl'>Thankyou, for Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
+            <h1 className='font-semibold px-20 text-4xl'>Yehh ! Pickup is Requested</h1>
+            <p className='px-20 py-5 text-xl'>Thankyou, for Choosing Kabadijee </p>
             <NavLink to='/'>
               <button type='submit' className=' p-2  px-10 mt-10 mx-20 hover:bg-green-500 hover:text-white hover:border-white self-center border-green-600 border-2'>
                 Go to Home page

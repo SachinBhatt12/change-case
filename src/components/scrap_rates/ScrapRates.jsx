@@ -1,24 +1,9 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import newspaper from '../../assets/newspaper.png';
-import books from '../../assets/books.png';
-import cardboard from '../../assets/cardboard.png';
-import PlasticBottle from '../../assets/pastic_bottle.png';
-import iron from '../../assets/iron.png';
-import glass from '../../assets/glass.png';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
 import Error from '../Error';
 import Loader from '../Loader';
-
-const scrapitems = [
-  { src: newspaper, item_name: 'Newspaper' },
-  { src: books, item_name: 'Books' },
-  { src: glass, item_name: 'Glass' },
-  { src: cardboard, item_name: 'CardBoard' },
-  { src: iron, item_name: 'Iron' },
-  { src: PlasticBottle, item_name: 'Plastic and Bottles' },
-];
 
 function ScrapRates() {
   const authtoken = localStorage.getItem('AuthToken');
@@ -31,12 +16,9 @@ function ScrapRates() {
   }
 
   const scrapRateData = scrapData?.data;
-  const mergedScrapLists = scrapitems?.map((item) => {
-    const scrapItem = scrapRateData?.find((response) => response.item_name === item.item_name) || {};
-    return { ...item, ...scrapItem };
-  });
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     dispatch(fetchScrap())?.then((response) => {});
   }, [dispatch]);
 
