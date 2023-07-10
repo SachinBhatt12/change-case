@@ -5,7 +5,7 @@ import ServiceForHouseHold from './ServiceForHouseHold';
 import Cooperate from './Cooperate';
 import HeroBar from './HeroBar';
 import OurStory from './OurStory';
-import CustomerReview from './CustomerReview';
+// import CustomerReview from './CustomerReview';
 
 function Home() {
   const [loginForm, setLoginForm] = useState(false);
@@ -18,7 +18,7 @@ function Home() {
         <WhyWeAreBest />
         <ServiceForHouseHold />
         <Cooperate />
-        <CustomerReview />
+        {/* <CustomerReview /> */}
         <OurStory />
       </div>
     </div>

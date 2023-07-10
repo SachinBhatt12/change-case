@@ -59,9 +59,9 @@ function UserProfile() {
         <div className='bg-white m-10 z-10 w-screen  p-20'>
           <div className='flex justify-between '>
             <h3 className='flex name text-2xl'>
-              Akash Singh
               {' '}
               <span>
+                Enter Your Name
                 <FiEdit3 />
               </span>
             </h3>
