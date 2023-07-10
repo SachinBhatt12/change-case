@@ -1,6 +1,7 @@
 import React from 'react';
 
 function OrderDetailsTable({ pickupSuccessData }) {
+  const username = localStorage.getItem('username');
   return (
     <div className='grid grid-cols-2'>
       <table>
@@ -14,7 +15,7 @@ function OrderDetailsTable({ pickupSuccessData }) {
           </tr>
           <tr className='py-2'>
             <th className='text-left'>Name</th>
-            {/* <td>{pickupSuccessData?.name}</td> */}
+            <td>{username}</td>
           </tr>
           <tr className='py-2'>
             <th className='text-left pr-32'>Pickup address</th>

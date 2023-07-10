@@ -6,14 +6,15 @@ export const initialUserState = {
   email: '',
   mobile_number: '',
   name: '',
+  upiId: '',
 };
 
 export const updateUser = createAsyncThunk('user/update', async (FormData, { rejectWithValue }) => {
   try {
-    const authToken = localStorage.getItem('Authtoken');
-    console.log(FormData, 'formdata from userinfo update user');
-    const response = await api.updateUserApi(FormData, authToken);
-    return response?.data;
+    const authToken = localStorage.getItem('AuthToken');
+    const response = await api.updateUserApi(authToken, FormData);
+    console.log(FormData);
+    return response;
   } catch (e) {
     return rejectWithValue(e?.response?.data);
   }

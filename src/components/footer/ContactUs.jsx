@@ -18,7 +18,7 @@ function ContactUs() {
         {' '}
         <span style={{ display: 'inline-block' }} className='px-2'>
           {' '}
-          +91 9802837182
+          +911203132615
         </span>
       </h3>
     </div>

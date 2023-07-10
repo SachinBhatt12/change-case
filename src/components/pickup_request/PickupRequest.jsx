@@ -117,13 +117,11 @@ function PickupRequest() {
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
           <div className='button justify-center items-center '>
-            
             <button type='submit' className=' primaryButton '>
               {' '}
               Confirm Pickup
               {' '}
             </button>
-            
           </div>
         </form>
       </div>
