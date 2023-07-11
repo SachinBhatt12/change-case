@@ -116,7 +116,9 @@ function PickupRequest() {
 
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
-          <div className='button flex justify-center items-center mt-8'>
+
+          <div className='button justify-center items-center '>
+
             <button type='submit' className=' primaryButton '>
               {' '}
               Confirm Pickup

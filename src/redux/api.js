@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API = axios.create({
   // baseURL: 'http://208.109.33.187:8000/',
-  baseURL: 'https://api.kabadijee.com/',
-  // baseURL: 'http://127.0.0.1:8080/',
+  // baseURL: 'https://api.kabadijee.com/',
+  baseURL: 'http://127.0.0.1:8000/',
   // baseURL: 'http://192.168.1.19:8000',
 });
 
@@ -26,7 +26,7 @@ export const pickupRequest = (FormData, authToken) => API.post('orders/api/picku
     Authorization: `Token ${authToken}`,
   },
 });
-export const updateUserApi = (FormData, authToken) => API.put('accounts/update-user/', FormData, {
+export const updateUserApi = (authToken, FormData) => API.put('accounts/update-user/', FormData, {
   headers: {
     Authorization: `Token ${authToken}`,
   },

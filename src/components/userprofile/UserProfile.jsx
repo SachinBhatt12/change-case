@@ -1,34 +1,40 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
 import { BiWalletAlt } from 'react-icons/bi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import Backbtn from '../BackBtn';
 import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import Loader from '../Loader';
 import { initialUserState, updateUser } from '../../redux/features/UpdateUser';
 
 function UserProfile() {
+  const navigate = useNavigate();
   const userid = localStorage.getItem('userid');
   const dispatch = useDispatch();
   const { loading, data: userSlice, error } = useSelector((state) => state.userSlice);
   const userDetailsData = userSlice?.data;
-  const [userForm, setUserForm] = useState(userDetailsData || initialUserState);
+  const [userForm, setUserForm] = useState(userDetailsData);
   const handleInputChange = (e) => {
     setUserForm((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
-  const handleSubmit = async (event, FormData) => {
+  const handleRedirect = () => {
+    navigate('/scraprates');
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const authToken = localStorage.getItem('AuthToken');
-    const { payload: response } = await dispatch(updateUser(authToken, userForm));
-    if (response.status === 201) {
+    const { payload: response } = await dispatch(updateUser(userForm));
+    if (response.status === 200) {
       toast.success('User Details updated successfully');
+      localStorage.setItem('username', response?.data?.name);
+      handleRedirect();
     }
   };
   useEffect(() => {
@@ -50,6 +56,7 @@ function UserProfile() {
       </div>
     );
   }
+
   return (
     <div className='bg-gray-100 h-screen'>
       <div className='flex pt-20'>
@@ -61,7 +68,7 @@ function UserProfile() {
             <h3 className='flex name text-2xl'>
               {' '}
               <span>
-                Enter Your Name
+                {userDetailsData?.name}
                 <FiEdit3 />
               </span>
             </h3>
@@ -78,7 +85,7 @@ function UserProfile() {
               <div>
                 <label htmlFor='Name'>Name</label>
                 <br />
-                <input type='text' className='inputCommonCss w-full' id='Name' name='Name' onChange={handleInputChange} placeholder='Enter your name' />
+                <input type='text' className='inputCommonCss w-full' id='Name' name='name' value={userForm?.name} onChange={handleInputChange} placeholder='Enter your name' />
               </div>
               <div>
                 <label htmlFor='phone'>Phone</label>
@@ -92,6 +99,20 @@ function UserProfile() {
                 <br />
                 <input type='email' className='inputCommonCss w-full' id='email' name='email' onChange={handleInputChange} value={userForm?.email} placeholder='Enter your email' />
               </div>
+
+              <div>
+                <label htmlFor='phone'>Phone</label>
+                <br />
+                <input type='text' className='inputCommonCss w-full' id='phone_number' name='phone_number' value={userForm?.phone_number} placeholder='Enter your phone number' disabled />
+              </div>
+              <div>
+                <label htmlFor='email' className=''>
+                  upiId
+                </label>
+                <br />
+                <input type='email' className='inputCommonCss w-full' id='upiId' name='upiId' onChange={handleInputChange} value={userForm?.upiId} placeholder='Enter your UPIID' />
+              </div>
+
             </div>
             <button type='submit' className='primaryButton justify-end mt-10'>
               Submit
@@ -129,6 +150,7 @@ function UserProfile() {
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </div>
   );
 }

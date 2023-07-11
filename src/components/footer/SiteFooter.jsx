@@ -12,10 +12,8 @@ function SiteFooter() {
         <div className='w-[130px] m-auto mb-10 sm:w-auto sm:mb-5 md:mb-9 md:ml-9 lg:ml-5 flex flex-col justify-center'>
           <img src={recyclerLogo} alt='companyLogo' className='m-auto text-white w-40 h-12 mb-5 sm:mb-0 sm:ml-[20px] xl:ml-' />
           <address className='py-5 text-white text-sm md:text-lg'>
-            57/B-block, tower town,
+            Noida Sector-62, Pin-201301
             <br />
-            {' '}
-            Vishvaas nagar, Delhi 110045
           </address>
           <img src={footerimg} alt='footerimg' className='h-32 sm:h-48' />
         </div>
@@ -37,9 +35,7 @@ function SiteFooter() {
           {' '}
           2023, All Rights are Reserved
           {' '}
-          <span className='hidden md:inline'>
-            with Pando Indian Software Consultant
-          </span>
+          <span className='hidden md:inline'>with Pando Indian Software Consultant</span>
         </p>
         <div className='p-5 w-auto'>
           <SocialHandle />

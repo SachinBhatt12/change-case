@@ -42,6 +42,7 @@ export default function Navigation() {
     if (localStorage.getItem('AuthToken')) {
       localStorage.removeItem('AuthToken');
       localStorage.removeItem('profile');
+      localStorage.removeItem('username');
       localStorage.removeItem('userid');
       setAuthToken('');
       navigate('/');

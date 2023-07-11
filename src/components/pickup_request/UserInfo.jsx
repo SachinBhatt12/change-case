@@ -10,11 +10,14 @@ function UserInfo() {
   const { loading, data: userSlice, error } = useSelector((state) => state.userSlice);
   const userDetailsData = userSlice?.data;
   useEffect(() => {
-    dispatch(fetchUserDetails(userid)).then((response) => {
-    });
+    dispatch(fetchUserDetails(userid)).then((response) => {});
   }, [dispatch, userid]);
   if (loading) {
-    return <div><Loader /></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {
@@ -27,14 +30,15 @@ function UserInfo() {
   }
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-      {/* <label htmlFor='name' className='font-semibold text-xl'>
+      <label htmlFor='name' className='font-semibold text-xl'>
         Name:
-        <span>johny richard</span>
-      </label> */}
+        {' '}
+        <span>{userDetailsData?.name}</span>
+      </label>
       <label htmlFor='email' className='font-semibold text-xl'>
         Email-Id:
         {' '}
-        <span>{userDetailsData?.email}</span>
+        <span className=''>{userDetailsData?.email}</span>
       </label>
       <label htmlFor='mobile' className='font-semibold text-xl'>
         Mobile Number:
