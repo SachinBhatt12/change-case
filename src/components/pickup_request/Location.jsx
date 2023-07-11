@@ -12,7 +12,7 @@ function Location({ formData = {}, handleformChange }) {
   return (
     <>
       <h5 className='pickupformheading'>Location</h5>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 text-left'>
         <div className='py-2'>
           <label htmlFor='flat'>Flat/House no./Apartment</label>
           <br />
