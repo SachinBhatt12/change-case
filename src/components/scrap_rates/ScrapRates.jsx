@@ -60,11 +60,11 @@ function ScrapRates() {
   };
 
   return (
-    <div className=' ml-28 pt-28 px-4 rounded'>
+    <div className='m-auto sm:ml-24 pt-28 px-4 rounded '>
       <h1 className='text-center text-3xl'>Scrap Rates</h1>
-      <div className='flex flex-wrap justify-items-startp'>
+      <div className='flex flex-wrap justify-items-startp gap-2'>
         {scrapRateData?.map((item, index) => (
-          <div key={index} className='card justify-center w-52 p-4 bg-white m-10 rounded-md border-2 shadow-xl bg-center sm:w-52'>
+          <div key={index} className='card justify-center w-48 p-4 bg-white m-1 rounded-md border-2 shadow-xl bg-center sm:w-56 sm:m-5'>
             <div className='p-4'>
               <img src={item.image_url} className='w-25 h-25' alt={item?.item_name} />
             </div>
