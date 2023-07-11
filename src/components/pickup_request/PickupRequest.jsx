@@ -103,7 +103,7 @@ function PickupRequest() {
           <h4 className=' font-bold py-5'>Categories</h4>
           <div className='checkboxes grid grid-cols-2'>
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className='mx-4'>
+              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3'>
                 <input type='checkbox' onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} />
                 {' '}
                 {item?.item_name}
@@ -116,7 +116,9 @@ function PickupRequest() {
 
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
+
           <div className='button justify-center items-center '>
+
             <button type='submit' className=' primaryButton '>
               {' '}
               Confirm Pickup

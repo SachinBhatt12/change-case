@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiUserCircle, BiChevronDown } from 'react-icons/bi';
-import { BsBoxArrowInRight } from 'react-icons/bs';
+// import { BsBoxArrowInRight } from 'react-icons/bs';
 import recyclerLogo from '../../assets/logo.png';
 import navigationItems from './NavigationItems.json';
 
@@ -73,14 +73,6 @@ export default function Navigation() {
     };
   }, []);
 
-  // const scrollToDiv = () => {
-  //   const scrollOptions = {
-  //     top: scrollRef.current.offsetTop - 40,
-  //     behavior: 'smooth',
-  //   };
-  //   window.scrollTo(scrollOptions);
-  // };
-
   const protectUserProfile = () => {
     if (authtoken === null) {
       return (
@@ -137,10 +129,10 @@ export default function Navigation() {
             )}
             {openList && (
               <div className='relative' ref={profRef}>
-                <ul className='absolute top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2 '>
+                <ul className='absolute top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2'>
                   {protectUserProfile()}
                   <li className='text-lg flex mt-1'>
-                    <button type='submit' onClick={handleLogout} className=' text-left px-4 py-1 rounded-lg flex'>
+                    <button type='submit' onClick={handleLogout} className='px-4 rounded-lg flex'>
                       Logout
                       {/* <BsBoxArrowInRight className='pr-5' /> */}
                     </button>
