@@ -20,7 +20,7 @@ export const userDetails = (id) => API.get(`/user/${id}/`);
 export const pricelist = () => API.get('/orders/item-rates/');
 export const pickupRequest = (FormData, authToken) => API.post('orders/api/pickup-requests/', FormData, {
   headers: {
-    Authorization: `Token ${authToken}`,
+    Authorization: `Bearer ${authToken}`,
   },
 });
 export const updateUserApi = (authToken, FormData) => API.put('accounts/update-user/', FormData, {
