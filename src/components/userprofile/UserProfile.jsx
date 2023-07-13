@@ -38,7 +38,12 @@ function UserProfile() {
     }
   };
   useEffect(() => {
-    dispatch(fetchUserDetails(userid))?.then((response) => {});
+    dispatch(fetchUserDetails(userid))?.then((response) => {
+      if(response.payload) {
+        setUserForm(response.payload.data);
+      }
+      // console.log(">>>>>>>>>>>>>",response);
+    });
   }, [dispatch, userid]);
   if (loading) {
     return (
