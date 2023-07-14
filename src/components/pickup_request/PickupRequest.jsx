@@ -88,7 +88,7 @@ function PickupRequest() {
               <DateOfPickup handleDateChange={handleDateChange} />
             </div>
             <div className=''>
-              <TimeSlots onTimeChange={onTimeChange} />
+              <TimeSlots onTimeChange={onTimeChange} selectedDate={selectedDate} />
             </div>
           </div>
 
