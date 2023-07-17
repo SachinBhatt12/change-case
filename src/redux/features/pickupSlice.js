@@ -4,6 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../api';
 
 export const initialPickupState = {
+  user: localStorage.getItem('userid'),
   pickup_date: '',
   pickup_time: '',
   flat_number: '',
@@ -16,10 +17,11 @@ export const initialPickupState = {
 };
 
 export const orderPickup = createAsyncThunk('pickup/orderPickup', async (formData, { rejectWithValue }) => {
+  const id = localStorage.getItem('userid');
+  console.log(formData);
   try {
-    const authToken = localStorage.getItem('AuthToken');
-    const response = await api.pickupRequest(formData, authToken);
-    // console.log(response, 'response from orderpickupslice');
+    const response = await api.pickupRequest(id, formData);
+
     return response;
   } catch (e) {
     return rejectWithValue(e?.response?.data);

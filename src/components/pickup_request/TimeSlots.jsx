@@ -13,7 +13,7 @@ function TimeSlots({ onTimeChange, selectedDate }) {
       const startHour = 10;
 
       // Set the ending hour
-      const endHour = 18;
+      const endHour = 19;
 
       // Set the time slot duration in minutes
       const timeSlotDuration = 60;
