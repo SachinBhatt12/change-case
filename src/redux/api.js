@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API = axios.create({
   baseURL: 'https://api.kabadijee.com/',
+  // baseURL: 'http://localhost:8000/',
 });
 
 API.interceptors.request.use((req) => {
@@ -18,11 +19,7 @@ export const login = (signInData) => API.post('/accounts/login/', signInData);
 export const logout = (authToken) => API.post('user/logout/', authToken);
 export const userDetails = (id) => API.get(`/user/${id}/`);
 export const pricelist = () => API.get('/orders/item-rates/');
-export const pickupRequest = (FormData, authToken) => API.post('orders/api/pickup-requests/', FormData, {
-  headers: {
-    Authorization: `Bearer ${authToken}`,
-  },
-});
+export const pickupRequest = (id, FormData) => API.post('orders/api/pickup-requests/', FormData);
 export const updateUserApi = (authToken, FormData) => API.put('accounts/update-user/', FormData, {
   headers: {
     Authorization: `Token ${authToken}`,

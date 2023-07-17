@@ -34,13 +34,14 @@ function PickupRequest() {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
   };
-  const handleFormChange = (form) => {
-    formData.flat_number = form.flat_number;
-    formData.area = form.area;
-    formData.landmark = form.landmark;
-    formData.city = form.city;
-    formData.state = form.state;
-  };
+
+  // const handleFormChange = (form) => {
+  //   formData.flat_number = form.flat_number;
+  //   formData.area = form.area;
+  //   formData.landmark = form.landmark;
+  //   formData.city = form.city;
+  //   formData.state = form.state;
+  // };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -51,6 +52,7 @@ function PickupRequest() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    formData.user = localStorage.getItem('userid');
     dispatch(orderPickup(formData)).then((response) => {
       const pickupResponseData = response?.payload;
       if (pickupResponseData?.status === 201) {
@@ -73,21 +75,21 @@ function PickupRequest() {
   }, [dispatch]);
 
   return (
-    <div className='py-20 scroll-smooth'>
-      <div className='heading'>
-        <h1 className='text-center text-3xl font-bold'>Pickup Request</h1>
+    <div className="py-20 scroll-smooth">
+      <div className="heading">
+        <h1 className="text-center text-3xl font-bold">Pickup Request</h1>
       </div>
-      <div className='m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg` '>
+      <div className="m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg` ">
         <UserInfo />
         <br />
         <hr />
         <br />
         <form onSubmit={handleSubmit}>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-1 2xl:grid-cols-2'>
-            <div className=''>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-1 2xl:grid-cols-2">
+            <div className="">
               <DateOfPickup handleDateChange={handleDateChange} />
             </div>
-            <div className=''>
+            <div className="">
               <TimeSlots onTimeChange={onTimeChange} selectedDate={selectedDate} />
             </div>
           </div>
@@ -100,13 +102,11 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <h4 className=' font-bold py-5'>Categories</h4>
-          <div className='checkboxes grid grid-cols-2'>
+          <h4 className=" font-bold py-5">Categories</h4>
+          <div className="checkboxes grid grid-cols-2">
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3'>
-                <input type='checkbox' onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} />
-                {' '}
-                {item?.item_name}
+              <label key={item?.id} htmlFor={item?.item_name} className="mx-5 flex gap-3">
+                <input type="checkbox" onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} /> {item?.item_name}
               </label>
             ))}
           </div>
@@ -116,13 +116,10 @@ function PickupRequest() {
 
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
-
-          <div className='button justify-center items-center '>
-
-            <button type='submit' className=' primaryButton '>
+          <div className="button justify-center items-center ">
+            <button type="submit" className=" primaryButton ">
               {' '}
-              Confirm Pickup
-              {' '}
+              Confirm Pickup{' '}
             </button>
           </div>
         </form>
