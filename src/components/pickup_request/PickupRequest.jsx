@@ -29,7 +29,9 @@ function PickupRequest() {
   const handleCheckClick = (event, item) => {
     const { checked } = event.target;
     if (checked) {
+  
       setSelectedCheckboxes([...selectedCheckboxes, item]);
+        console.log("oiuy",selectedCheckboxes);
     } else {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
@@ -66,7 +68,7 @@ function PickupRequest() {
   const handleQuantityChange = (updatedItems) => {
     setFormData((prevState) => ({
       ...prevState,
-      pickup_request_items: updatedItems,
+      pickup_request_items:[...prevState.pickup_request_items, ...updatedItems],
     }));
   };
 
