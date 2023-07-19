@@ -40,7 +40,12 @@ function OtpPopUpForm(props) {
     }
   };
   const handleRedirect = () => {
-    navigate('/user');
+    if(props.state === "login") {
+      navigate('/scraprates')
+    }
+    else {
+      navigate('/user')
+    }
   };
   const handleSubmit = async (id, newOtp = otp.join('')) => {
     try {

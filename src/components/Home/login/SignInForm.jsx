@@ -42,8 +42,10 @@ function SignInForm({ handleNewUser }) {
   return (
     <div className="relative w-full">
       {showPopup && (
-        <div className="">
-          <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} />
+
+        <div className=''>
+          <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} state="login" />
+
         </div>
       )}
       <h3 className="text-2xl">Login</h3>
