@@ -40,26 +40,28 @@ function SignInForm({ handleNewUser }) {
   };
   const isFormValid = signInData.phone_number.length === 10;
   return (
-    <div className='relative w-full'>
+    <div className="relative w-full">
       {showPopup && (
+
         <div className=''>
           <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} state="login" />
+
         </div>
       )}
-      <h3 className='text-2xl'>Login</h3>
-      <div className='pt-10 relative' id='login'>
+      <h3 className="text-2xl">Login</h3>
+      <div className="pt-10 relative" id="login">
         <form onSubmit={(e) => handleSubmit(e, signInData)}>
-          <div className='py-2 '>
-            <input type='number' className='inputCommonCss px-2 w-full' maxLength={10} name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
+          <div className="py-2 ">
+            <input type="number" className="inputCommonCss px-2 w-full" maxLength={10} name="phone_number" value={signInData.phone_number} onChange={handleInputChange} placeholder="Mobile Number" />
           </div>
-          <div className='py-5 justify-end flex'>
-            <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>
+          <div className="py-5 justify-end flex">
+            <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type="submit" disabled={!isFormValid}>
               Get OTP
             </button>
           </div>
         </form>
-        <div className='flex justify-end'>
-          <button type='submit' onClick={() => handleNewUser(false)} className='text-blue-600 py-5'>
+        <div className="flex justify-end">
+          <button type="submit" onClick={() => handleNewUser(false)} className="text-blue-600 py-5">
             Sign Up
           </button>
         </div>
