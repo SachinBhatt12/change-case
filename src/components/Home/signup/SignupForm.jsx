@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { register } from '../../../redux/features/authSlice';
 import OtpPopUpForm from './OtpPopUpForm';
@@ -72,7 +72,6 @@ function SignupForm({ handleNewUser }) {
           </button>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

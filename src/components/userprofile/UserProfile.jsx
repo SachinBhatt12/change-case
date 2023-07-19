@@ -6,7 +6,7 @@ import { BiWalletAlt } from 'react-icons/bi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Backbtn from '../BackBtn';
 import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import Loader from '../Loader';
@@ -150,7 +150,6 @@ function UserProfile() {
           </tbody>
         </table>
       </div>
-      <ToastContainer />
     </div>
   );
 }

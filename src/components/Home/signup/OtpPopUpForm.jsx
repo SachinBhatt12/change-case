@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { regenerateOtp, verifyOtp } from '../../../redux/api';
@@ -118,7 +118,6 @@ function OtpPopUpForm(props) {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

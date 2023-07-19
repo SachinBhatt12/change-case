@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
@@ -124,7 +124,6 @@ function PickupRequest() {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </div>
   );
 }
