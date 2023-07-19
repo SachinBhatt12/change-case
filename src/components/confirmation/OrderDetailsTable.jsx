@@ -3,6 +3,7 @@ import React from 'react';
 function OrderDetailsTable({ pickupSuccessData }) {
   const username = localStorage.getItem('username');
   return (
+    <div>
     <div className='grid grid-cols-2'>
       <table>
         <tbody>
@@ -47,8 +48,9 @@ function OrderDetailsTable({ pickupSuccessData }) {
           </tr>
         </tbody>
       </table>
-      <h5 className='text-2xl font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5>
     </div>
+      <h5 className='text-xl text-start mt-5 font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5>
+      </div>
   );
 }
 
