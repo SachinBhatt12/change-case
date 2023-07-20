@@ -16,8 +16,8 @@ function MyOrders() {
   }
 
   const myorders = customerOrderdata?.data;
-  const groupedData = myorders.reduce((result, item) => {
-    const pickup_date = item.pickuprequest__pickup_date;
+  const groupedData = myorders?.reduce((result, item) => {
+    const pickup_date = item?.pickuprequest__pickup_date;
     if (!result[pickup_date]) {
       result[pickup_date] = [];
     }
@@ -28,7 +28,9 @@ function MyOrders() {
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
-    dispatch(customerOrderDetails(userid))?.then((response) => {});
+    dispatch(customerOrderDetails(userid))?.then((response) => {
+
+    });
   }, [dispatch]);
 
   return (
@@ -49,6 +51,26 @@ function MyOrders() {
                 <th className='p-12'>Status</th>
               </tr>
             </thead>
+            <tbody>
+            {myorders &&
+              myorders.map((item, index) => {
+                const paidAmount =
+                  item['pickuprequest__pickuprequestitem__weight'] *
+                  item['pickuprequest__pickuprequestitem__item_id__rate'];
+                return (
+                  <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{item['pickuprequest__pickup_date']}</td>
+                    <td>{item['pickuprequest__pickup_time']}</td>
+                    <td>{item['pickuprequest__pickuprequestitem__item_id__item_name']}</td>
+                    <td>{item['pickuprequest__pickuprequestitem__weight']}</td>
+                    <td>{paidAmount}</td>
+                    <td>{"UPI"}</td>
+                    <td>{item['pickuprequest__confirm_otp']}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
         <div className=''>
@@ -62,21 +84,29 @@ function MyOrders() {
                 <th className='p-12'>Pickup Category</th>
                 <th className='p-12'>Pickup Quantity</th>
                 <th className='p-12'>Paid Amount</th>
-                <th className='p-12'>Payment Method</th>
+                <th className='p-12'>Payment Method</th>                
+                <th className='p-12'>Pickup OTP</th>
               </tr>
             </thead>
             <tbody>
-                {groupedData.map((item,index)=>{
-                    return (
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                        <td>{item.}</td>
-                    )
-                })}
+            {myorders &&
+              myorders.map((item, index) => {
+                const paidAmount =
+                  item['pickuprequest__pickuprequestitem__weight'] *
+                  item['pickuprequest__pickuprequestitem__item_id__rate'];
+                return (
+                  <tr key={index}>
+                    <td>{index+1}</td>
+                    <td>{item['pickuprequest__pickup_date']}</td>
+                    <td>{item['pickuprequest__pickup_time']}</td>
+                    <td>{item['pickuprequest__pickuprequestitem__item_id__item_name']}</td>
+                    <td>{item['pickuprequest__pickuprequestitem__weight']}</td>
+                    <td>{paidAmount}</td>
+                    <td>{"UPI"}</td>
+                    <td>{item['pickuprequest__confirm_otp']}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
