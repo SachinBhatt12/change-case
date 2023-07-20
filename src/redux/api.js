@@ -25,3 +25,4 @@ export const updateUserApi = (authToken, FormData) => API.put('accounts/update-u
     Authorization: `Token ${authToken}`,
   },
 });
+export const customerDetails = (id) => API.get(`accounts/customer-pickup-details/${id}`);

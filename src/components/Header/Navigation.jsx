@@ -49,7 +49,9 @@ export default function Navigation() {
       setOpenList(false);
     }
   };
-
+  const handleOrder = () => {
+    setOpenList(false);
+  };
   useEffect(() => {
     const storedToken = localStorage.getItem('AuthToken');
     if (storedToken) {
@@ -59,9 +61,7 @@ export default function Navigation() {
     }
 
     const handleClickOutside = (event) => {
-      if (
-        profRef.current && !profRef.current.contains(event.target) && event.target.id !== 'prof'
-      ) {
+      if (profRef.current && !profRef.current.contains(event.target) && event.target.id !== 'prof') {
         setOpenList(false);
       }
     };
@@ -104,7 +104,11 @@ export default function Navigation() {
             <img src={recyclerLogo} alt='companyLogo' className='ml-0 w-44 py-2 sm:py-1 sm:ml-2 md:ml-10 h-auto' />
           </NavLink>
           <div className='justify-between'>
-            <ul className={`absolute top-14 -right-[30px] w-[150px] rounded-md bg-[#fff] transform origin-top transition-all duration-2000 ease-linear lg:top-0 lg:right-[120px] lg:normal-case lg:bg-inherit lg:flex lg:items-center lg:w-auto ${isMenuOpen ? '' : 'hidden'}`}>
+            <ul
+              className={`absolute top-14 -right-[30px] w-[150px] rounded-md bg-[#fff] transform origin-top transition-all duration-2000 ease-linear lg:top-0 lg:right-[120px] lg:normal-case lg:bg-inherit lg:flex lg:items-center lg:w-auto ${
+                isMenuOpen ? '' : 'hidden'
+              }`}
+            >
               {navigationItems.map((item, index) => (
                 <div key={index} className={`text-sm md:text-lg sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
                   <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
@@ -128,14 +132,22 @@ export default function Navigation() {
               </button>
             )}
             {openList && (
-              <div className='relative' ref={profRef}>
-                <ul className='absolute top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2'>
+              <div className='relative ' ref={profRef}>
+                <ul className='absolute w-32 top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2'>
                   {protectUserProfile()}
                   <li className='text-lg flex mt-1'>
-                    <button type='submit' onClick={handleLogout} className='px-4 rounded-lg flex'>
+                    <button type='submit' onClick={handleLogout} className='px-2 rounded-lg flex'>
                       Logout
                       {/* <BsBoxArrowInRight className='pr-5' /> */}
                     </button>
+                  </li>
+                  <li className='text-lg flex mt-1'>
+                    <NavLink to='myorders'>
+                      <button type='submit' onClick={handleOrder} className='px-1 rounded-lg flex'>
+                        My Orders
+                        {/* <BsBoxArrowInRight className='pr-5' /> */}
+                      </button>
+                    </NavLink>
                   </li>
                 </ul>
               </div>

@@ -10,6 +10,7 @@ import UserProfile from './components/userprofile/UserProfile';
 import Error from './components/Error';
 import Wallet from './components/Wallet/Wallet';
 import TransferToBank from './components/Wallet/TransferToBank';
+import MyOrders from './components/userprofile/MyOrders';
 // import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
@@ -19,15 +20,13 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
 
-        <Route
-          path='/pickuprequest'
-          element={<PickupRequest />}
-        />
+        <Route path='/pickuprequest' element={<PickupRequest />} />
 
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
         <Route path='/wallet' element={<Wallet />} />
         <Route path='/transfertobank' element={<TransferToBank />} />
+        <Route path='/myorders' element={<MyOrders />} />
         <Route path='*' element={<Error />} />
       </Route>
     </Routes>
