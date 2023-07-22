@@ -39,7 +39,7 @@ function UserProfile() {
   };
   useEffect(() => {
     dispatch(fetchUserDetails(userid))?.then((response) => {
-      if(response.payload) {
+      if (response.payload) {
         setUserForm(response.payload.data);
       }
       // console.log(">>>>>>>>>>>>>",response);
