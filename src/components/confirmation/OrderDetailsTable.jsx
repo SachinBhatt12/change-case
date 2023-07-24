@@ -30,7 +30,7 @@ function OrderDetailsTable({ pickupSuccessData }) {
                 ,
                 {pickupSuccessData?.city}
                 ,
-                {pickupSuccessData?.state}
+                {pickupSuccessData?.state},{pickupSuccessData?.pincode}
               </div>
             </td>
           </tr>

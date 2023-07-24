@@ -53,7 +53,7 @@ function OtpPopUpForm(props) {
       localStorage.setItem('userid', props.id);
       if (response?.status === 200) {
         props.setShowPopup(false);
-        toast.success('You are Successfully Registered');
+        toast.success('You are Successfully Login');
         localStorage.setItem('AuthToken', response.data.token);
         handleRedirect();
       } else if (response.status === 400) {

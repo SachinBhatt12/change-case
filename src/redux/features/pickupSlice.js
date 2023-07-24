@@ -18,7 +18,6 @@ export const initialPickupState = {
 
 export const orderPickup = createAsyncThunk('pickup/orderPickup', async (formData, { rejectWithValue }) => {
   const id = localStorage.getItem('userid');
-  console.log(formData);
   try {
     const response = await api.pickupRequest(id, formData);
 

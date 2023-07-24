@@ -31,7 +31,7 @@ function PickupRequest() {
     if (checked) {
   
       setSelectedCheckboxes([...selectedCheckboxes, item]);
-        console.log("oiuy",selectedCheckboxes);
+       
     } else {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
