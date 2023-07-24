@@ -39,7 +39,7 @@ function UserProfile() {
   };
   useEffect(() => {
     dispatch(fetchUserDetails(userid))?.then((response) => {
-      if (response.payload) {
+      if(response.payload) {
         setUserForm(response.payload.data);
       }
       // console.log(">>>>>>>>>>>>>",response);
@@ -119,6 +119,36 @@ function UserProfile() {
             </button>
           </form>
         </div>
+      </div>
+      <div className='table my-3 w-full'>
+        <h2 className='text-2xl font-bold my-5 w-full'>Current Order</h2>
+        <table className='w-11/12 m-auto ml-20'>
+          <thead className='text-xl'>
+            <tr className='w-full'>
+              <th className='px-2 text-center'>Order Id</th>
+              <th className='px-2 text-center'>Customer</th>
+              <th className='px-2 text-center'>Category</th>
+              <th className='px-2 text-center'>Quantity</th>
+              <th className='px-2 text-center'>Pickup Date</th>
+              <th className='px-2 text-center'>Time</th>
+              <th className='px-2 text-center'>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* <tr className='bg-white py-10 mt-10 w-full'>
+              <td className='py-5 text-center'>#12345</td>
+              <td className='py-5 text-center'>Akash Singh</td>
+              <td className='py-5 text-center'>NewsPaper</td>
+              <td className='py-5 text-center'>less than 250 gm</td>
+              <td className='py-5 text-center'>09-March-2023</td>
+              <td className='py-5 text-center'>10:30Am</td>
+              <td className='py-5 text-center'>Requested</td>
+              <td className='py-5 text-center'>
+                <BsThreeDotsVertical />
+              </td>
+            </tr> */}
+          </tbody>
+        </table>
       </div>
     </div>
   );
