@@ -12,6 +12,8 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+
+export const orderList = () => { return API.get("orders/")};
 export const signUp = (FormData) => API.post('/user/', FormData);
 export const verifyOtp = (id, newOtp) => API.patch(`user/${id}/verify_otp/`, { otp: newOtp });
 export const regenerateOtp = ({ id }) => API.patch(`/user/${id}/regenerate_otp/`);

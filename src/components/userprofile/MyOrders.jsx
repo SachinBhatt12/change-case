@@ -4,46 +4,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Loader';
 import Error from '../Error';
 import { customerOrderDetails } from '../../redux/features/customerorderslice';
+import { fetchOrderList } from '../../redux/features/fetchOrderSlice';
 
 function MyOrders() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
+    dispatch(fetchOrderList())?.then((response) => {
+      // console.log('red', response);
+    });
+  }, [dispatch]);
   const userid = localStorage.getItem('userid');
 
-  const { loading, data: customerOrderdata, error } = useSelector((state) => state.customerdetails);
+  const { loading, data: orderData, error } = useSelector((state) => state.orderDetails);
   if (loading) {
     <Loader />;
   } else if (error) {
     <Error />;
   }
-  const myorders = customerOrderdata?.data;
-
-  if (myorders) {
+var Id=localStorage.getItem("userid");
+const myItem=orderData?.filter((item)=>{
+  return item.user_id==Id;
+})
+if (myItem) {
     var requestedList = [];
     var completedList = [];
 
-    myorders.forEach((value) => {
-      if (value.pickuprequest__status === 'requested') {
-        requestedList.push(value); // Add to requestedList if the status is 'requested'
-      } else if (value.pickuprequest__status === 'completed') {
-        completedList.push(value); // Add to completedList if the status is 'completed'
+    myItem.forEach((item) => {
+      if (item.order_status === "completed" || item.order_status === "complete") {
+        completedList.push(item);
+      } else {
+        requestedList.push(item);
       }
     });
-
-    var groupedData = requestedList?.reduce((result, item) => {
-      const pickup_date = item?.pickuprequest__pickup_date;
-      if (!result[pickup_date]) {
-        result[pickup_date] = [];
-      }
-      result[pickup_date].push(item);
-      return result;
-    }, {});
   }
-  console.log('->', groupedData);
+  
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(customerOrderDetails(userid))?.then((response) => {});
   }, [dispatch]);
-
   return (
     <div>
       <div className="m-auto sm:ml-24 pt-28 px-4 rounded ">
@@ -63,26 +62,17 @@ function MyOrders() {
               </tr>
             </thead>
             <tbody>
-              {groupedData &&
-                Object.keys(groupedData).map((groupName, index) => (
+              {
+                requestedList?.map((data, index) => (
                   <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{groupedData[groupName][0].name}</td>
-                    <td>
-                      {/* Use another nested map to display the item details */}
-                      {groupedData[groupName].map((item, itemIndex) => (
-                        <div key={itemIndex}>{item.pickuprequest__pickuprequestitem__item_id__item_name}</div>
-                      ))}
-                    </td>
-                    <td>
-                      {groupedData[groupName].map((item, itemIndex) => (
-                        <div key={itemIndex}>{item.pickuprequest__pickuprequestitem__weight}</div>
-                      ))}
-                    </td>
-                    <td>{groupedData[groupName][0].pickuprequest__pickup_date}</td>
-                    <td>{groupedData[groupName][0].pickuprequest__pickup_time}</td>
-                    <td>{groupedData[groupName][0].pickuprequest__confirm_otp}</td>
-                    <td>{groupedData[groupName][0].pickuprequest__status}</td>
+                    <td>{data.user_id}</td>
+                    <td>{data.user__name}</td>
+                    <td>{data.orderitems__item_id__item_name===null?data.pickuprequestitem__item_id__item_name:data.orderitems__item_id__item_name}</td>
+                    <td>{data.orderitems__quantity===null?data.pickuprequestitem__weight:data.orderitems__quantity}</td>
+                    <td>{data.pickup_date}</td>
+                    <td>{data.pickup_time}</td>
+                    <td>{data.confirm_otp}</td>
+                    <td>{data.order_status === null ? "Requested" : data.order_status === "onhold" ? "Allocated" : data.order_status}</td>
                   </tr>
                 ))}
             </tbody>
@@ -104,20 +94,20 @@ function MyOrders() {
               </tr>
             </thead>
             <tbody>
-              {completedList &&
-                completedList.map((item, index) => {
-                  const paidAmount = item['pickuprequest__pickuprequestitem__weight'] * item['pickuprequest__pickuprequestitem__item_id__rate'];
+              {
+                completedList?.map((data, index) => {
                   return (
                     <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{item['pickuprequest__pickup_date']}</td>
-                      <td>{item['pickuprequest__pickup_time']}</td>
-                      <td>{item['pickuprequest__pickuprequestitem__item_id__item_name']}</td>
-                      <td>{item['pickuprequest__pickuprequestitem__weight']}</td>
-                      <td>{paidAmount}</td>
-                      <td>{'UPI'}</td>
-                      <td>{item['pickuprequest__confirm_otp']}</td>
-                    </tr>
+                    <td>{data.user_id}</td>
+                    <td>{data.pickup_date}</td>
+                  
+                    <td>{data.pickup_time}</td>
+                    <td>{data.orderitems__item_id__item_name}</td>
+                    <td>{data.orderitems__quantity}</td>
+                    <td>{data.total_amount}</td>
+                    <td>{"UPI"}</td>
+                    <td>{data.confirm_otp}</td>
+                  </tr>
                   );
                 })}
             </tbody>
