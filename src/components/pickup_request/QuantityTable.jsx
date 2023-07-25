@@ -22,7 +22,7 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
     } else {
       updatedItems.push({ item_id: itemId, weight: quantity });
     }
-    console.log("///",updatedItems)
+
     onQuantityChange(updatedItems);
   };
   useEffect(() => {
@@ -39,7 +39,7 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
       </thead>
       <tbody className='w-full'>
         {selectedItems?.map((checkedValue) => {
-          console.log(checkedValue);
+         
           const selectedItem = formData.pickup_request_items.find((item) => item.id === checkedValue.id);
           const selectedQuantity = selectedItem ? selectedItem.quantity : '';
 

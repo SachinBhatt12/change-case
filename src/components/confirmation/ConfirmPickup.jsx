@@ -19,6 +19,7 @@ function ConfirmPickup() {
     <Error />;
   }
   const filteredData = scrapDetails?.filter((item) => pickupSuccessItemId?.includes(item.id));
+ 
 
   return (
     <div className='pt-14 scroll-smooth'>
@@ -49,6 +50,7 @@ function ConfirmPickup() {
           <div className='mx-10 w-96'>
             <h2 className='text-xl'>Order Summary</h2>
             {filteredData?.map((item, index) => (
+           
               <div className='flex bg-slate-100 mt-4' key={index}>
                 <div className='img'>
                   <img src={item.image_url} className='w-32 h-20' alt='' />
