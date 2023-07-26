@@ -65,7 +65,7 @@ if (myItem) {
               {
                 requestedList?.map((data, index) => (
                   <tr key={index}>
-                    <td>{data.user_id}</td>
+                    <td>{data.order_id}</td>
                     <td>{data.user__name}</td>
                     <td>{data.orderitems__item_id__item_name===null?data.pickuprequestitem__item_id__item_name:data.orderitems__item_id__item_name}</td>
                     <td>{data.orderitems__quantity===null?data.pickuprequestitem__weight:data.orderitems__quantity}</td>
