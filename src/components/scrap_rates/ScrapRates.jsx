@@ -31,7 +31,6 @@ function ScrapRates() {
   const scrapRateData = scrapData?.data;
 
   const handleOnClick = (item) => {
-    console.log("item", item);
     navigate('/pickuprequest', { state: { pickupData: item } });
   }
 
