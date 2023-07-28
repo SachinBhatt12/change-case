@@ -24,12 +24,10 @@ function ConfirmPickup() {
   }
   useEffect(() => {
     dispatch(fetchUserDetails(userid))?.then((response) => {
-      console.log('>>>>>>>>>>>>>', response);
       setUserDetails(response.payload.data);
     });
   }, []);
 
-  console.log('-->', UserDetails);
   const filteredData = scrapDetails?.filter((item) => pickupSuccessItemId?.includes(item.id));
 
   return (
