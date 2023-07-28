@@ -7,12 +7,6 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
     pickup_request_items: [],
   });
 
-  // const handleQuantityChange = (itemId, quantity) => {
-  //   formData.pickup_request_items.push({ item_id: itemId, weight: quantity });
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //   }));
-  // };
   const handleQuantityChange = (itemId, quantity) => {
     const updatedItems = [...formData.pickup_request_items];
     const selectedItemIndex = updatedItems.findIndex((item) => item.item_id === itemId);

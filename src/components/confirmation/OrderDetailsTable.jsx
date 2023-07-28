@@ -1,6 +1,6 @@
 import React from 'react';
 
-function OrderDetailsTable({ pickupSuccessData }) {
+function OrderDetailsTable({ pickupSuccessData , UserDetails}) {
   const username = localStorage.getItem('username');
   return (
     <div>
@@ -16,7 +16,7 @@ function OrderDetailsTable({ pickupSuccessData }) {
           </tr>
           <tr className='py-2'>
             <th className='text-left'>Name</th>
-            <td>{username}</td>
+            <td>{UserDetails.name}</td>
           </tr>
           <tr className='py-2'>
             <th className='text-left pr-32'>Pickup address</th>
@@ -42,14 +42,15 @@ function OrderDetailsTable({ pickupSuccessData }) {
             <th className='text-left'>Time</th>
             <td>{pickupSuccessData.pickup_time}</td>
           </tr>
+          <h5 className='text-xl text-start mt-5 font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5>
           <tr className='py-2'>
-            <th className='text-left'>OTP</th>
-            <td>{pickupSuccessData.confirm_otp}</td>
+            <th className='text-left'>Pickup OTP</th>
+            <td>{UserDetails.pickup_otp}</td>
           </tr>
         </tbody>
       </table>
     </div>
-      <h5 className='text-xl text-start mt-5 font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5>
+      {/* <h5 className='text-xl text-start mt-5 font-semibold'>Provide this OTP to the vendor for confirm Pickup</h5> */}
       </div>
   );
 }
