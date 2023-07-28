@@ -22,12 +22,14 @@ function MyOrders() {
   } else if (error) {
     <Error />;
   }
+
 var Id=localStorage.getItem("userid");
 const myItem=orderData?.filter((item)=>{
   return item.user_id==Id;
 })
 if (myItem) {
     var requestedList = [];
+
     var completedList = [];
 
     myItem.forEach((item) => {
@@ -45,25 +47,27 @@ if (myItem) {
   }, [dispatch]);
   return (
     <div>
-      <div className="m-auto sm:ml-24 pt-28 px-4 rounded ">
-        <div className="table">
-          <h2 className="text-2xl text-left">Live Orders</h2>
+      <div className='m-auto sm:ml-24 pt-28 px-4 rounded '>
+        <div className='table'>
+          <h2 className='text-2xl text-left'>Live Orders</h2>
           <table>
             <thead>
               <tr>
-                <th className="p-12">Order Id</th>
-                <th className="p-12">Customer</th>
-                <th className="p-12">Category</th>
-                <th className="p-12">Quantity</th>
-                <th className="p-12">Pickup Date</th>
-                <th className="p-12">Time</th>
-                <th className="p-12">Pickup OTP</th>
-                <th className="p-12">Status</th>
+                <th className='p-12'>Order Id</th>
+                <th className='p-12'>Customer</th>
+                <th className='p-12'>Category</th>
+                <th className='p-12'>Quantity</th>
+                <th className='p-12'>Pickup Date</th>
+                <th className='p-12'>Time</th>
+                <th className='p-12'>Pickup OTP</th>
+                <th className='p-12'>Status</th>
               </tr>
             </thead>
             <tbody>
+
               {
                 requestedList?.map((data, index) => (
+
                   <tr key={index}>
                     <td>{data.order_id}</td>
                     <td>{data.user__name}</td>
@@ -78,22 +82,23 @@ if (myItem) {
             </tbody>
           </table>
         </div>
-        <div className="">
-          <h2 className="text-2xl text-left ">Order History</h2>
+        <div className=''>
+          <h2 className='text-2xl text-left '>Order History</h2>
           <table>
             <thead>
               <tr>
-                <th className="p-12">Order Id</th>
-                <th className="p-12">Pickup Date</th>
-                <th className="p-12">Time</th>
-                <th className="p-12">Pickup Category</th>
-                <th className="p-12">Pickup Quantity</th>
-                <th className="p-12">Paid Amount</th>
-                <th className="p-12">Payment Method</th>
-                <th className="p-12">Pickup OTP</th>
+                <th className='p-12'>Order Id</th>
+                <th className='p-12'>Pickup Date</th>
+                <th className='p-12'>Time</th>
+                <th className='p-12'>Pickup Category</th>
+                <th className='p-12'>Pickup Quantity</th>
+                <th className='p-12'>Paid Amount</th>
+                <th className='p-12'>Payment Method</th>
+                <th className='p-12'>Pickup OTP</th>
               </tr>
             </thead>
             <tbody>
+
               {
                 completedList?.map((data, index) => {
                   return (
