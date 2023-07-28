@@ -5,7 +5,7 @@ import HouseholdElement from '../../assets/household_element.svg';
 
 function ServiceForHouseHold() {
   return (
-    <div className='mt-48 w-full' id='household'>
+    <div className='mt-48 w-full pt-8' id='household'>
       <h1 className='text-5xl text-center my-10'>Our Services for Household & Cooperates</h1>
       <div className='text-white bg-[#606060] p-10 flex flex-col-reverse justify-center items-center md:flex-row md:gap-12 '>
         <div className='image w-56 m-auto md:m-0 md:w-72'>
