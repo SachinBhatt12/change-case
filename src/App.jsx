@@ -11,14 +11,14 @@ import Error from './components/Error';
 import Wallet from './components/Wallet/Wallet';
 import TransferToBank from './components/Wallet/TransferToBank';
 import MyOrders from './components/userprofile/MyOrders';
-import SignInForm from './components/Home/login/SignInForm';
 // import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
+  
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index  element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
 
         <Route path='/pickuprequest' element={<PickupRequest />} />

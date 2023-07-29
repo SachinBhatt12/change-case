@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,27 +14,43 @@ import UserInfo from './UserInfo';
 
 function PickupRequest() {
   const [formData, setFormData] = useState(initialPickupState);
+  const [chekboxData,setCheckboxData]=useState()
 
   const handleformChange = (updateFormData) => {
     setFormData(updateFormData);
   };
 
   const dispatch = useDispatch();
+  let location = useLocation();
   const navigate = useNavigate();
+  const receivedData = location.state;
+  const [selectedItem, setSelectedItems] = useState(receivedData?.pickupData?.item_name);
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
   const checkboxData = scrapData?.data;
+  console.log('checkbox', checkboxData);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleCheckClick = (event, item) => {
-    const { checked } = event.target;
-    if (checked) {
-  
+  const handleCheck = (item) => {
+    // console.log("event",event.target)
+    // const { checked } = event.target;
+    if (item) {
       setSelectedCheckboxes([...selectedCheckboxes, item]);
-       
     } else {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
+  };
+
+  const handleCheckClick = (event, item) => {
+    console.log('event', event);
+    const { checked } = event.target;
+    console.log('-->', checked);
+    if (checked) {
+      setSelectedCheckboxes([...selectedCheckboxes, item]);
+    } else {
+      setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
+    }
+    setSelectedItems('');
   };
 
   // const handleFormChange = (form) => {
@@ -68,9 +84,37 @@ function PickupRequest() {
   const handleQuantityChange = (updatedItems) => {
     setFormData((prevState) => ({
       ...prevState,
-      pickup_request_items:[...prevState.pickup_request_items, ...updatedItems],
+      pickup_request_items: [...prevState.pickup_request_items, ...updatedItems],
     }));
   };
+
+  // useEffect(() => {
+  //   checkboxData?.forEach((item) => {
+      
+  //     if (item?.item_name === selectedItem)
+  //     {
+  //       console.log('qwertyurtyui', item);
+  //       item.checked=true;
+  //       handleCheck(item);
+  //     } 
+  //   });
+  // }, []);
+
+
+  useEffect(() => {
+    const updatedCheckboxData = checkboxData?.map((item) => {
+    
+      if (item?.item_name === selectedItem) {
+        handleCheck(item);
+        return { ...item, checked: true };
+        
+      }
+      return item;
+    });
+ 
+    setCheckboxData(updatedCheckboxData);
+  }, []);
+
 
   useEffect(() => {
     dispatch(fetchScrap())?.then((response) => response);
@@ -106,9 +150,17 @@ function PickupRequest() {
           <br />
           <h4 className=" font-bold py-5">Categories</h4>
           <div className="checkboxes grid grid-cols-2">
-            {checkboxData?.map((item) => (
+            {chekboxData?.map((item) => (
               <label key={item?.id} htmlFor={item?.item_name} className="mx-5 flex gap-3">
-                <input type="checkbox" onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} /> {item?.item_name}
+                <input
+                  type="checkbox"
+                  name={item?.item_name}
+                  id={item?.item_name}
+                  defaultChecked={item.checked==true?true:false}
+                  onChange={(event) => handleCheckClick(event, item)}
+                  // checked={selectedItem===item?.item_name?true:false}
+                />{' '}
+                {item?.item_name}
               </label>
             ))}
           </div>
