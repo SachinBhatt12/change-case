@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
+  console.log("SElect",selectedCheckboxes)
   const selectedItems = selectedCheckboxes;
   const [formData, setFormData] = useState({
     pickup_request_items: [],
