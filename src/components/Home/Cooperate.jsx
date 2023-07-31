@@ -4,17 +4,23 @@ import cooperate from '../../assets/cooprate.svg';
 
 function Cooperate() {
   return (
-    <div className='w-full bg-[#DCFFF166]'>
-      <div className='container p-10 flex relative flex-col md:flex-row items-center justify-center'>
-        <div className='image md:px-10 absolute left-10 top-10'>
-          <img src={CooprateElement} alt='' className='w-[100%]' />
-        </div>
-        <div className='content text-center md:text-left pt-10 md:pt-0 md:pl-20'>
-          <h1 className='text-5xl'>Cooperates</h1>
-          <p className='text-md pt-4 md:w-80'>Why step out to get rid of your scrap, when you can book scrap pickup service from the comfort and convenience of your home</p>
-        </div>
-        <div className='pl-0 pt-10 md:pt-0'>
-          <img src={cooperate} alt='cooperate' />
+    <div className="w-full text-center bg-[#DCFFF166]">
+      <div className="w-11/12 inline-block mt-10">
+        <img src={CooprateElement} alt="your-image-description" className="absolute" />
+        <div className="flex flex-col md:flex-row items-center font-sans mt-32 lg:mt-10 md:mt-10 sm:mt-10">
+          <div className="w-full">
+            <div className="w-full text-center">
+              <div className="lg:w-7/12 md:w-7/12 sm:w-7/12 inline-block">
+                <h1 className='w-full text-start text-4xl font-semibold'>Cooperates</h1>
+                <p className='py-5 text-xl text-start'>
+                  Why step out to get rid of your scrap, when you can book scrap pickup service from the comfort and convenience of your home
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-10/12 lg:w-10/12">
+            <img src={cooperate} alt="" className="float-right" />
+          </div>
         </div>
       </div>
     </div>

@@ -6,19 +6,19 @@ import {
 function SocialHandle() {
   return (
     <div className='flex justify-center items-center text-white'>
-      <div className='w-[85px] text-sm lg:w-[110px] lg:text-lg'>
+      <div className='text-sm lg:text-lg'>
         <h1> Follow us on : </h1>
       </div>
-      <div className='px-2'>
+      <div className='ml-2'>
         <FaLinkedin />
       </div>
-      <div className='px-2'>
+      <div className='ml-2'>
         <FaFacebook />
       </div>
-      <div className='px-2'>
+      <div className='ml-2'>
         <FaTwitter />
       </div>
-      <div className='px-2'>
+      <div className='ml-2'>
         <FaInstagram />
       </div>
     </div>
