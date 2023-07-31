@@ -66,8 +66,8 @@ function SignupForm({ handleNewUser }) {
             </div>
           </form>
         </div>
-        <div className='flex justify-end'>
-          <button type='submit' className='text-blue-600' onClick={() => handleNewUser(true)}>
+        <div className='flex justify-start'>
+          <button type='submit' className='text-blue-600 font-medium' onClick={() => handleNewUser(true)}>
             Already a User
           </button>
         </div>

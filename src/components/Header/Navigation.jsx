@@ -126,10 +126,12 @@ export default function Navigation() {
                 <BiUserCircle className='mr-2' size={24} />
               </button>
             ) : (
+              <NavHashLink to="#herobar" smooth>
               <button type='submit' className='border-2 px-4 py-1 rounded-lg flex items-center' onClick={handleLogin}>
                 <BiUserCircle className='mr-2' size={24} />
                 Login
               </button>
+              </NavHashLink>
             )}
             {openList && (
               <div className='relative' ref={profRef}>

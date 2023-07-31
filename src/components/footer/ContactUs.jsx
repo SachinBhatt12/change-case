@@ -5,7 +5,7 @@ import { FaPhone } from 'react-icons/fa';
 function ContactUs() {
   return (
     <div className='text-white text-sm md:text-lg'>
-      <h1 className='text-center mb-5'>Contact Us</h1>
+      <h1 className='text-start font-medium mb-5 text-2xl'>Contact Us</h1>
       <h3 className='flex mb-5'>
         <GrMail style={{ display: 'inline-block' }} />
         {' '}
