@@ -14,10 +14,11 @@ import MyOrders from './components/userprofile/MyOrders';
 // import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
+  
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index  element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
 
         <Route path='/pickuprequest' element={<PickupRequest />} />

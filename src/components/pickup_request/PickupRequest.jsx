@@ -1,8 +1,10 @@
+
+
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Location from './Location';
 import QuantityTable from './QuantityTable';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,38 +15,34 @@ import { initialPickupState, orderPickup } from '../../redux/features/pickupSlic
 import UserInfo from './UserInfo';
 
 function PickupRequest() {
-  const [formData, setFormData] = useState(initialPickupState);
-
+  const [formData, setFormData] = useState(initialPickupState); 
   const handleformChange = (updateFormData) => {
     setFormData(updateFormData);
   };
-
   const dispatch = useDispatch();
+  let location = useLocation();
   const navigate = useNavigate();
+  const receivedData = location.state;
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
   const checkboxData = scrapData?.data;
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  useEffect(() => {
+    const initiallySelectedItem = checkboxData.find((item) => item.id === receivedData?.pickupData.id);
+    if (initiallySelectedItem) {
+      setSelectedCheckboxes([initiallySelectedItem]);
+    }
+  }, [checkboxData]);
+
   const handleCheckClick = (event, item) => {
     const { checked } = event.target;
     if (checked) {
-  
       setSelectedCheckboxes([...selectedCheckboxes, item]);
-       
     } else {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
   };
-
-  // const handleFormChange = (form) => {
-  //   formData.flat_number = form.flat_number;
-  //   formData.area = form.area;
-  //   formData.landmark = form.landmark;
-  //   formData.city = form.city;
-  //   formData.state = form.state;
-  // };
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
     formData.pickup_date = date;
@@ -68,7 +66,7 @@ function PickupRequest() {
   const handleQuantityChange = (updatedItems) => {
     setFormData((prevState) => ({
       ...prevState,
-      pickup_request_items:[...prevState.pickup_request_items, ...updatedItems],
+      pickup_request_items: [...prevState.pickup_request_items, ...updatedItems],
     }));
   };
 
@@ -107,8 +105,15 @@ function PickupRequest() {
           <h4 className=" font-bold py-5">Categories</h4>
           <div className="checkboxes grid grid-cols-2">
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className="mx-5 flex gap-3">
-                <input type="checkbox" onChange={(event) => handleCheckClick(event, item)} name={item?.item_name} id={item?.item_name} /> {item?.item_name}
+              <label key={item?.id} htmlFor={item?.item_name} className="mx-5 flex gap-3"  >
+                <input
+                  type="checkbox"
+                  name={item?.item_name}
+                  id={item?.item_name} 
+                  checked={selectedCheckboxes.some((selectedItem) => selectedItem.id === item.id)}
+                  onChange={(event) => handleCheckClick(event, item)}
+                />{' '}
+                {item?.item_name}
               </label>
             ))}
           </div>
@@ -131,3 +136,17 @@ function PickupRequest() {
 }
 
 export default PickupRequest;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

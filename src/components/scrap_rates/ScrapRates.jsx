@@ -1,11 +1,24 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation ,useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchScrap } from '../../redux/features/scraprateSlice';
 import Error from '../Error';
 import Loader from '../Loader';
 
+
+const useScrollToTop = () => {
+  const location = useLocation();
+ 
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [location]);
+};
+
 function ScrapRates() {
+  const navigate=useNavigate();
+  useScrollToTop();
+
+ 
   const authtoken = localStorage.getItem('AuthToken');
   const dispatch = useDispatch();
   const { loading, data: scrapData, error } = useSelector((state) => state.scrapDetails);
@@ -17,12 +30,18 @@ function ScrapRates() {
 
   const scrapRateData = scrapData?.data;
 
+  const handleOnClick = (item) => {
+    navigate('/pickuprequest', { state: { pickupData: item } });
+  }
+
+ 
+
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(fetchScrap())?.then((response) => { });
   }, [dispatch]);
 
-  const renderPickupButton = () => {
+  const renderPickupButton = (item) => {
     if (authtoken === null) {
       return (
         <NavLink to='/'>
@@ -37,7 +56,7 @@ function ScrapRates() {
         <button type='submit' className='w-full border-2 border-green-500 rounded-xl py-2 font-medium text-green-500 hover:text-white hover:bg-green-600 bg-white p-1 focus:bg-green-600'>
           Pickup Request
         </button>
-      </NavLink>
+      </div>
     );
   };
 

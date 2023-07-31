@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState ,useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import sideImage from '../../assets/illutratin.svg';
 import SignupForm from './signup/SignupForm';
 import SignInForm from './login/SignInForm';
 
-function HeroBar() {
+function HeroBar(props) {
+  const location = useLocation();
   const [loginForm, setLoginForm] = useState(true);
-
   const handleNewUser = () => {
     setLoginForm(!loginForm);
   };
