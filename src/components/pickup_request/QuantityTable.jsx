@@ -1,4 +1,4 @@
-// / eslint-disable react/destructuring-assignment /
+// eslint-disable react/destructuring-assignment
 import React, { useEffect, useState } from 'react';
 
 function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
@@ -33,7 +33,6 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
       </thead>
       <tbody className='w-full'>
         {selectedItems?.map((checkedValue) => {
-         
           const selectedItem = formData.pickup_request_items.find((item) => item.id === checkedValue.id);
           const selectedQuantity = selectedItem ? selectedItem.quantity : '';
 
@@ -63,5 +62,3 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
 }
 
 export default QuantityTable;
-
-

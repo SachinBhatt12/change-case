@@ -1,4 +1,4 @@
-// / eslint-disable jsx-a11y/label-has-associated-control /
+// eslint-disable jsx-a11y/label-has-associated-control
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -13,12 +13,12 @@ import { initialPickupState, orderPickup } from '../../redux/features/pickupSlic
 import UserInfo from './UserInfo';
 
 function PickupRequest() {
-  const [formData, setFormData] = useState(initialPickupState); 
+  const [formData, setFormData] = useState(initialPickupState);
   const handleformChange = (updateFormData) => {
     setFormData(updateFormData);
   };
   const dispatch = useDispatch();
-  let location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
   const receivedData = location.state;
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
@@ -45,7 +45,7 @@ function PickupRequest() {
     setSelectedDate(date);
     formData.pickup_date = date;
   };
-  const onTimeChange = (time)=> {
+  const onTimeChange = (time) => {
     formData.pickup_time = time;
   };
   const handleSubmit = (event) => {
@@ -73,21 +73,21 @@ function PickupRequest() {
   }, [dispatch]);
 
   return (
-    <div className="py-20 scroll-smooth">
-      <div className="heading">
-        <h1 className="text-center text-3xl font-bold">Pickup Request</h1>
+    <div className='py-20 scroll-smooth'>
+      <div className='heading'>
+        <h1 className='text-center text-3xl font-bold'>Pickup Request</h1>
       </div>
-      <div className="m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg` ">
+      <div className='m-auto mt-10 w-11/12 text-xl border-2 p-5 shadow-lg` '>
         <UserInfo />
         <br />
         <hr />
         <br />
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-1 2xl:grid-cols-2">
-            <div className="">
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-1 2xl:grid-cols-2'>
+            <div className=''>
               <DateOfPickup handleDateChange={handleDateChange} />
             </div>
-            <div className="">
+            <div className=''>
               <TimeSlots onTimeChange={onTimeChange} selectedDate={selectedDate} />
             </div>
           </div>
@@ -100,17 +100,18 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <h4 className=" font-bold py-5">Categories</h4>
-          <div className="checkboxes grid grid-cols-2">
+          <h4 className=' font-bold py-5'>Categories</h4>
+          <div className='checkboxes grid grid-cols-2'>
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className="mx-5 flex gap-3"  >
+              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3'>
                 <input
-                  type="checkbox"
+                  type='checkbox'
                   name={item?.item_name}
-                  id={item?.item_name} 
+                  id={item?.item_name}
                   checked={selectedCheckboxes.some((selectedItem) => selectedItem.id === item.id)}
                   onChange={(event) => handleCheckClick(event, item)}
-                />{' '}
+                />
+                {' '}
                 {item?.item_name}
               </label>
             ))}
@@ -121,10 +122,11 @@ function PickupRequest() {
 
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
-          <div className="button justify-center items-center ">
-            <button type="submit" className=" primaryButton ">
+          <div className='button justify-center items-center '>
+            <button type='submit' className=' primaryButton '>
               {' '}
-              Confirm Pickup{' '}
+              Confirm Pickup
+              {' '}
             </button>
           </div>
         </form>
