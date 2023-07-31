@@ -1,4 +1,4 @@
-/* eslint-disable react/destructuring-assignment */
+// / eslint-disable react/destructuring-assignment /
 import React, { useEffect, useState } from 'react';
 
 function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
@@ -63,3 +63,5 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
 }
 
 export default QuantityTable;
+
+
