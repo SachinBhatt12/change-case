@@ -98,7 +98,7 @@ export default function Navigation() {
 
   return (
     <div>
-      <header className='px-14 fixed drop-shadow-xl w-full mainBgCard h-16'>
+      <header className='px-4 fixed drop-shadow-xl w-full mainBgCard h-16'>
         <div className='flex justify-between items-center relative'>
           <NavLink to='/'>
             <img src={recyclerLogo} alt='companyLogo' className='ml-0 w-44 py-2 sm:py-1 sm:ml-2 md:ml-10 h-auto' />
@@ -132,22 +132,22 @@ export default function Navigation() {
               </button>
             )}
             {openList && (
-              <div className='relative ' ref={profRef}>
-                <ul className='absolute w-32 top-14 cursor-pointer bg-white rounded-md right-10 border-2 p-5 shadow-xl ml-2'>
-                  {protectUserProfile()}
-                  <li className='text-lg flex mt-1'>
-                    <button type='submit' onClick={handleLogout} className='px-2 rounded-lg flex'>
-                      Logout
-                      {/* <BsBoxArrowInRight className='pr-5' /> */}
-                    </button>
-                  </li>
-                  <li className='text-lg flex mt-1'>
+              <div className='relative' ref={profRef}>
+                <ul className='absolute w-40 top-12 cursor-pointer bg-white rounded-md right-10 border-2 p-3 shadow-xl ml-2 text-center'>
+                  <li className='p-1'>{protectUserProfile()}</li>
+                  <li className='text-lg flex p-1 justify-center border-b-2'>
                     <NavLink to='myorders'>
                       <button type='submit' onClick={handleOrder} className='px-1 rounded-lg flex'>
                         My Orders
                         {/* <BsBoxArrowInRight className='pr-5' /> */}
                       </button>
                     </NavLink>
+                  </li>
+                  <li className='text-lg flex flex justify-center p-1'>
+                    <button type='submit' onClick={handleLogout} className=' '>
+                      Logout
+                      {/* <BsBoxArrowInRight className='pr-5' /> */}
+                    </button>
                   </li>
                 </ul>
               </div>

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi';
+import { MdVerified } from 'react-icons/md';
 import { BiWalletAlt } from 'react-icons/bi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -11,6 +12,7 @@ import Backbtn from '../BackBtn';
 import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import Loader from '../Loader';
 import { initialUserState, updateUser } from '../../redux/features/UpdateUser';
+import verified from '../../assets/verified.png';
 
 function UserProfile() {
   const navigate = useNavigate();
@@ -63,34 +65,35 @@ function UserProfile() {
   }
 
   return (
-    <div className='bg-gray-100 h-screen'>
-      <div className='flex pt-20'>
-        <div className=''>
+    <div className='w-full text-center bg-gray-100'>
+      <div className='text-start pt-20 h-10'>
           <Backbtn />
         </div>
-        <div className='bg-white m-2 mr-7 mt-10 z-10 w-full p-20'>
-          <div className='flex justify-between '>
+      <div className='lg:w-10/12 md:w-10/12 w-full inline-block mt-16'>
+      <div className='flex'>
+        <div className='bg-white mt-10 z-10 w-full lg:p-10 md:p-10 sm:p-5 p-5 rounded-2xl mb-20'>
+          <div className='flex justify-between'>
             <h3 className='flex name text-2xl'>
               {' '}
-              <span>
-                {userDetailsData?.name}
-                <FiEdit3 />
+              <span className='flex'>
+                <span className='mr-4 -mt-1 font-medium'>{userDetailsData?.name}</span>
+                <FiEdit3 className='mr-5'></FiEdit3>
               </span>
             </h3>
             <NavLink to='/wallet'>
-              <button type='submit' className='flex text-center primaryButton'>
-                Your Wallet
+              <button type='submit' className='p-0 m-0 flex py-2 justify-center text-center primaryButton lg:w-40 md:w-40 w-32'>
+                <span className='mr-1'>Your Wallet</span>
                 {' '}
-                <BiWalletAlt />
+                <BiWalletAlt className='ml-2 mt-1'></BiWalletAlt>
               </button>
             </NavLink>
           </div>
           <form action='' className='pt-10 text-xl' onSubmit={(FormData) => handleSubmit(FormData)}>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 text-left'>
               <div>
-                <label htmlFor='Name'>Name</label>
+                <label htmlFor='Name' className=''>Name</label>
                 <br />
-                <input type='text' className='inputCommonCss w-full' id='Name' name='name' value={userForm?.name} onChange={handleInputChange} placeholder='Enter your name' />
+                <input type='text' className='inputCommonCss w-full mt-2' id='Name' name='name' value={userForm?.name} onChange={handleInputChange} placeholder='Enter your name' />
               </div>
 
               <div>
@@ -98,11 +101,14 @@ function UserProfile() {
                   Email Id
                 </label>
                 <br />
-                <input type='email' className='inputCommonCss w-full' id='email' name='email' onChange={handleInputChange} value={userForm?.email} placeholder='Enter your email' />
+                <input type='email' className='inputCommonCss w-full mt-2' id='email' name='email' onChange={handleInputChange} value={userForm?.email} placeholder='Enter your email' />
               </div>
 
               <div>
-                <label htmlFor='phone'>Phone</label>
+                <div className='flex h-2'>
+                <label htmlFor='phone'>Phone</label>   
+              <MdVerified className='mt-1 ml-2 text-green-600'></MdVerified>
+              </div>
                 <br />
                 <input type='text' className='inputCommonCss w-full' id='phone_number' name='phone_number' value={userForm?.phone_number} placeholder='Enter your phone number' disabled />
               </div>
@@ -111,7 +117,7 @@ function UserProfile() {
                   upiId
                 </label>
                 <br />
-                <input type='email' className='inputCommonCss w-full' id='upiId' name='upiId' onChange={handleInputChange} value={userForm?.upiId} placeholder='Enter your UPIID' />
+                <input type='email' className='inputCommonCss w-full mt-2' id='upiId' name='upiId' onChange={handleInputChange} value={userForm?.upiId} placeholder='Enter your UPIID' />
               </div>
             </div>
             <button type='submit' className='primaryButton justify-end mt-10'>
@@ -120,7 +126,7 @@ function UserProfile() {
           </form>
         </div>
       </div>
-      
+      </div>
     </div>
   );
 }

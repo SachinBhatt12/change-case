@@ -11,37 +11,36 @@ function HeroBar(props) {
     setLoginForm(!loginForm);
   };
   return (
-    <div  className='w-full mb-32' id='herobar'>
-      <div className='w-full flex flex-col py-4 justify-around lg:flex-row'>
-        <div className='w-full lg:w-6/12 lg:pt-24 lg:ml-32'>
-          <h1 className='text-3xl ml-2 mt-16 sm:mt-16 text-center md:text-4xl lg:text-left py-2 mb-10'>
-            Small Actions, Big Impact:
-            <br />
-            <span className='text-green-500 text-4xl md:text-5xl'>Recycle with Us</span>
-          </h1>
-          <div className='w-full lg:hidden'>
-            <img src={sideImage} alt='' className='pt-12 w-11/12 m-auto lg:h-auto' />
-          </div>
-          <div className='mt-8 flex justify-center w-4/5 m-auto sm:m-auto md:w-9/12 md:m-auto lg:justify-start lg:m-0 lg:mt-6 lg:p-3'>
-             { localStorage.getItem("AuthToken") ==null ?
-             (
-              <div className='signup border-2 p-10 shadow-xl rounded-lg w-full' id='signup'>
-              {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
+    <div className='w-full mb-20' id='herobar'>
+      <div className='w-11/12 inline-block justify-center'>
+        <div className=' flex flex-col justify-around lg:flex-row'>
+          <div className='w-full lg:pt-24 md:pt-20 sm:pt-20 pt-16'>
+            <h1 className='text-2xl lg:text-4xl text-start mt-10 text-center mb-10 font-bold'>
+              Small Actions, Big Impact:
+              <br />
+              <span className='text-2xl lg:text-4xl text-green-500 text-4xl'>Recycle with Us</span>
+            </h1>
+            <div className='w-full lg:hidden'>
+              <img src={sideImage} alt='' className='lg:w-11/12 md:w-80 sm:1/2' />
             </div>
-             ):(
-              <div>
-              <p className='text-lg text-left'>We will collect your scrap and will help you to know the worth of your scrap</p>
-              <NavLink to='/scraprates'>
-                <button type='submit' className='primaryButton mt-10'>Sell Scrap</button>
-              </NavLink>
+            <div className='mt-8 flex lg:w-10/12 md:w-2/4'>
+              {localStorage.AuthToken !== null ? (
+                <div className='signup border-2 p-5 shadow-xl rounded-lg w-full' id='signup'>
+                  {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
+                </div>
+              ) : (
+                <div>
+                  <p className='text-lg text-left'>We will collect your scrap and will help you to know the worth of your scrap</p>
+                  <NavLink to='/scraprates'>
+                    <button type='submit' className='primaryButton mt-10'>sell Scrap</button>
+                  </NavLink>
+                </div>
+              )}
             </div>
-             )
-
-             }
           </div>
-        </div>
-        <div className='w-full hidden lg:w-7/12 lg:inline lg:mt-36'>
-          <img src={sideImage} alt='' className='pt-12 w-11/12 m-auto lg:h-auto' />
+          <div className='lg:w-full hidden md:inline lg:mt-20'>
+            <img src={sideImage} alt='' className='lg:w-10/12 md:w-1/2 pt-12' />
+          </div>
         </div>
       </div>
     </div>

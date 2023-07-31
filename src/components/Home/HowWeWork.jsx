@@ -6,36 +6,40 @@ import receivePayment from '../../assets/recieve_payment.svg';
 function HowWeWork() {
   const whyRef = useRef(null);
   return (
-    <div className='min-w-full bg-[#606060] text-white my-3 py-10 md:py-16 lg:py-20' ref={whyRef}>
-      <h1 className='text-center text-3xl pt-4'>How we work</h1>
-      <h3 className='text-center py-2 pb-4'>We will collect your scrap and will help you to know the worth of your scrap</h3>
+    <div className='w-full flex justify-center mt-6 bg-[#606060] text-white my-3 py-10 md:py-16 lg:py-20' ref={whyRef}>
+      <div className='w-11/12 text-center'>
+        <h1 className='text-center text-4xl font-bold'>How we work</h1>
+        <h3 className='text-center pt-4 pb-4 text-xl'>We will collect your scrap and will help you to know the worth of your scrap</h3>
 
-      <div className='afcxs'>
-        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
-          <div className='mx-auto w-52 md:w-80'>
-            <div className='rounded-full w-7 text-white m-4 bg-green-500 border-green-400 border-3'>
-              <p className='text-center text-xl'>1</p>
+        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+          <div class="rounded-3xl overflow-hidden shadow-lg bg-white p-4 h-80">
+            <div class='rounded-full w-7 text-white bg-green-500 border-green-400 border-3'>
+              <p class='text-center text-lg'>1</p>
             </div>
-            <img src={schedulepickup} alt='schedule a pickup' className='w-full h-48 object-contain' />
-            <h3 className='text-center text-black'>Schedule Pickup</h3>
+            <img class="mx-auto mt-4" src={schedulepickup} alt="schedule pickup" />
+            <div class="px-6 mt-16">
+              <div class="font-bold text-lg mb-2 text-black">Schedule a pickup</div>
+            </div>
           </div>
-        </div>
-        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
-          <div className='mx-auto w-52 md:w-80'>
-            <div className='rounded-full w-7 text-white m-4 bg-green-500 border-3'>
-              <p className='text-center text-xl'>2</p>
+
+          <div class="rounded-3xl overflow-hidden shadow-lg bg-white p-4 h-80">
+            <div class='rounded-full w-7 text-white bg-green-500 border-3'>
+              <p class='text-center text-xl'>2</p>
             </div>
-            <img src={addresspickup} alt='schedule a pickup' className='w-full h-48 object-contain' />
-            <h3 className='text-center text-black'>Pickup at your address</h3>
+            <img class="mx-auto" src={addresspickup} alt="pickup address" />
+            <div class="px-6 mt-7">
+              <div class="font-bold text-lg mb-2 text-black">Pickup at your address</div>
+            </div>
           </div>
-        </div>
-        <div className='w-64 bg-white rounded-xl flex-1 mb-8 sm:w-1/2 md:mb-0'>
-          <div className='mx-auto w-52 md:w-80'>
-            <div className='rounded-full w-7 text-white m-4 bg-green-500 border-green-400 border-3'>
-              <p className='text-center text-xl'>3</p>
+
+          <div class="rounded-3xl overflow-hidden shadow-lg bg-white p-4 h-80">
+            <div class='rounded-full w-7 text-white bg-green-500 border-green-400 border-3'>
+              <p class='text-center text-xl'>3</p>
             </div>
-            <img src={receivePayment} alt='schedule a pickup' className='w-full h-48 object-contain' />
-            <h3 className='text-center text-black'>Receive Payment</h3>
+            <img class="mx-auto" src={receivePayment} alt="receive payment" />
+            <div class="px-6 py-4">
+              <div class="font-bold text-lg mb-2 text-black">Receive payment</div>
+            </div>
           </div>
         </div>
       </div>

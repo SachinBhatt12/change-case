@@ -9,7 +9,7 @@ export function Layout() {
       <header className=' w-full'>
         <Navigation />
       </header>
-      <main className=' h-full min-h-screen'>
+      <main className=''>
         <div className=''>
           <Outlet />
         </div>
