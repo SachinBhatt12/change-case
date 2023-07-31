@@ -15,46 +15,34 @@ import { initialPickupState, orderPickup } from '../../redux/features/pickupSlic
 import UserInfo from './UserInfo';
 
 function PickupRequest() {
-  const [formData, setFormData] = useState(initialPickupState);
-
+  const [formData, setFormData] = useState(initialPickupState); 
   const handleformChange = (updateFormData) => {
     setFormData(updateFormData);
   };
-
   const dispatch = useDispatch();
   let location = useLocation();
   const navigate = useNavigate();
   const receivedData = location.state;
-  const [selectedItem,setSelectedItems]=useState(receivedData?.pickupData?.item_name)
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
   const checkboxData = scrapData?.data;
-
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleCheck = (item) => {
-    // console.log("event",event.target)
-    // const { checked } = event.target;
-    if (item) {
-      setSelectedCheckboxes([...selectedCheckboxes, item]);
-    } else {
-      setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
+  useEffect(() => {
+    const initiallySelectedItem = checkboxData.find((item) => item.id === receivedData?.pickupData.id);
+    if (initiallySelectedItem) {
+      setSelectedCheckboxes([initiallySelectedItem]);
     }
-  };
+  }, [checkboxData]);
 
   const handleCheckClick = (event, item) => {
-
     const { checked } = event.target;
- 
     if (checked) {
       setSelectedCheckboxes([...selectedCheckboxes, item]);
     } else {
       setSelectedCheckboxes(selectedCheckboxes.filter((selectedItem) => selectedItem !== item));
     }
-    setSelectedItems("");
   };
-
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
     formData.pickup_date = date;
@@ -122,6 +110,7 @@ function PickupRequest() {
                   type="checkbox"
                   name={item?.item_name}
                   id={item?.item_name} 
+                  checked={selectedCheckboxes.some((selectedItem) => selectedItem.id === item.id)}
                   onChange={(event) => handleCheckClick(event, item)}
                 />{' '}
                 {item?.item_name}
