@@ -1,6 +1,4 @@
-
-
-/* eslint-disable jsx-a11y/label-has-associated-control */
+// / eslint-disable jsx-a11y/label-has-associated-control /
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -47,7 +45,7 @@ function PickupRequest() {
     setSelectedDate(date);
     formData.pickup_date = date;
   };
-  const onTimeChange = (time) => {
+  const onTimeChange = (time)=> {
     formData.pickup_time = time;
   };
   const handleSubmit = (event) => {
@@ -136,17 +134,3 @@ function PickupRequest() {
 }
 
 export default PickupRequest;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
