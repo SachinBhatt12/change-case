@@ -38,42 +38,42 @@ function MyOrders() {
       }
     });
 
- 
+
   }
 
   var newRequestedList = requestedList
     ? Object.values(requestedList).reduce((accumulator, data) => {
-        if (accumulator[data.created_at]) {
-          // If the id already exists in the accumulator, merge the data
-          accumulator[data.created_at] = {
-            ...accumulator[data.created_at],
-            pickuprequestitem__item_id__item_name: [...accumulator[data.created_at].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
-          };
-        } else {
-          // If the id doesn't exist in the accumulator, add a new entry
-          accumulator[data.created_at] = { ...data };
-          accumulator[data.created_at
-          ].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
-        }
-        return accumulator;
-      }, [])
+      if (accumulator[data.created_at]) {
+        // If the id already exists in the accumulator, merge the data
+        accumulator[data.created_at] = {
+          ...accumulator[data.created_at],
+          pickuprequestitem__item_id__item_name: [...accumulator[data.created_at].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
+        };
+      } else {
+        // If the id doesn't exist in the accumulator, add a new entry
+        accumulator[data.created_at] = { ...data };
+        accumulator[data.created_at
+        ].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+      }
+      return accumulator;
+    }, [])
     : [];
 
   var newCompletedList = completedList
     ? Object.values(completedList).reduce((accumulator, data) => {
-        if (accumulator[data.id]) {
-          // If the id already exists in the accumulator, merge the data
-          accumulator[data.id] = {
-            ...accumulator[data.id],
-            pickuprequestitem__item_id__item_name: [...accumulator[data.id].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
-          };
-        } else {
-          // If the id doesn't exist in the accumulator, add a new entry
-          accumulator[data.id] = { ...data };
-          accumulator[data.id].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
-        }
-        return accumulator;
-      }, [])
+      if (accumulator[data.id]) {
+        // If the id already exists in the accumulator, merge the data
+        accumulator[data.id] = {
+          ...accumulator[data.id],
+          pickuprequestitem__item_id__item_name: [...accumulator[data.id].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
+        };
+      } else {
+        // If the id doesn't exist in the accumulator, add a new entry
+        accumulator[data.id] = { ...data };
+        accumulator[data.id].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+      }
+      return accumulator;
+    }, [])
     : [];
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
@@ -82,89 +82,99 @@ function MyOrders() {
   }, [dispatch]);
   return (
     <div>
-      <div className="m-auto sm:ml-24 pt-28 px-4 rounded ">
-        <div className="table">
-          <h2 className="text-2xl text-left">Live Orders</h2>
-          <table>
-            <thead>
-              <tr className=''>
-                <th className="p-12">Order Id</th>
-                <th className="p-12">Customer</th>
-                <th className="p-12">Category</th>
-                <th className="p-12">Quantity</th>
-                <th className="p-12">Pickup Date</th>
-                <th className="p-12 pr-20">Time</th>
-                <th className="p-12">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-               
-                Object.entries(newRequestedList ).map(([index, data]) => (
-                  <tr key={index} className=''>
-                    <td className="p-12">{data.id}</td>
-                    <td className="p-12">{data.user__name}</td>
-                    <td  className="p-5">
+      <div className='w-full text-center'>
+        <div className='w-11/12 inline-block'>
+          <h2 className="text-2xl text-left mt-24 text-center font-bold mb-10">Live Orders</h2>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+              <thead className='text-xs text-gray-700 uppercase bg-gray-50 gray:bg-gray-700 dark:text-gray-400'>
+                <tr className=''>
+                  <th scope="col" className="px-6 py-3 text-black">Order Id</th>
+                  <th scope="col" className="px-6 py-3 text-black">Customer</th>
+                  <th scope="col" className="px-6 py-3 text-black">Category</th>
+                  <th scope="col" className="px-6 py-3 text-black">Quantity</th>
+                  <th scope="col" className="px-6 py-3 text-black">Pickup Date</th>
+                  <th scope="col" className="px-6 py-3 text-black">Time</th>
+                  <th scope="col" className="px-6 py-3 text-black">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+
+                  Object.entries(newRequestedList).map(([index, data]) => (
+                    <tr key={index} className={`${
+                      data.id % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
+                    } border-b dark:bg-gray-900 dark:border-gray-700`}>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.id}</td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.user__name}</td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">
+                        <ul>
+                          {data.pickuprequestitem__item_id__item_name.map((itemName, idx) => (
+                            <li key={idx}>
+                              {itemName}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_date}</td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_time}</td>
+                      <td className={`px-6 py-4 text-[#000000a6] font-medium`}>
+                        {data.order_status === null ? 'Requested' : data.order_status === 'onhold' ? 'Allocated' : data.order_status}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div className='w-full text-center mb-10'>
+        <div className='w-11/12 inline-block'>
+          <h2 className="text-2xl text-left mt-24 text-center font-bold mb-10">Order History</h2>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+          <thead className='text-xs text-gray-700 uppercase bg-gray-50 gray:bg-gray-700 dark:text-gray-400'>
+            <tr>
+              <th scope="col" className="px-6 py-3 text-black">Order Id</th>
+              <th scope="col" className="px-6 py-3 text-black">Pickup Date</th>
+              <th scope="col" className="px-6 py-3 text-black">Time</th>
+              <th scope="col" className="px-6 py-3 text-black">Pickup Category</th>
+              <th scope="col" className="px-6 py-3 text-black">Pickup Quantity</th>
+              <th scope="col" className="px-6 py-3 text-black">Paid Amount</th>
+              <th scope="col" className="px-6 py-3 text-black">Payment Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Object.entries(newCompletedList).map(([index, data]) => (
+                <tr key={index} className={`${
+                  data.id % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
+                } border-b dark:bg-gray-900 dark:border-gray-700`} >
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.id}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.user__name}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">
                     <ul>
                       {data.pickuprequestitem__item_id__item_name.map((itemName, idx) => (
-                        <li  key={idx}>
+                        <li key={idx}>
                           {itemName}
                         </li>
                       ))}
                     </ul>
                   </td>
-                  <td className="p-12">{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
-                  <td className="p-12">{data.pickup_date}</td>
-                  <td className="p-12">{data.pickup_time}</td>
-                  <td className={`p-12`}>
-                    {data.order_status === null ? 'Requested' : data.order_status === 'onhold' ? 'Allocated' : data.order_status}</td>
-                    </tr>
-                ))
-              }
-            </tbody>
-          </table>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_date}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_time}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.order_status === null ? 'Requested' : data.order_status === 'onhold' ? 'Allocated' : data.order_status}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
         </div>
-        <div className="">
-          <h2 className="text-2xl text-left ">Order History</h2>
-          <table>
-            <thead>
-              <tr>
-                <th className="p-12">Order Id</th>
-                <th className="p-12">Pickup Date</th>
-                <th className="p-12">Time</th>
-                <th className="p-12">Pickup Category</th>
-                <th className="p-12">Pickup Quantity</th>
-                <th className="p-12">Paid Amount</th>
-                <th className="p-12">Payment Method</th>
-              </tr>
-            </thead>
-            <tbody>
-            {  
-               Object.entries(newCompletedList).map(([index, data]) => (
-                 <tr key={index} >
-                   <td>{data.id}</td>
-                   <td>{data.user__name}</td>
-                   <td >
-                   <ul>
-                     {data.pickuprequestitem__item_id__item_name.map((itemName, idx) => (
-                       <li  key={idx}>
-                         {itemName}
-                       </li>
-                     ))}
-                   </ul>
-                 </td>
-                 <td>{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
-                 <td>{data.pickup_date}</td>
-                 <td>{data.pickup_time}</td>
-                 <td>{data.order_status === null ? 'Requested' : data.order_status === 'onhold' ? 'Allocated' : data.order_status}</td>
-                   </tr>
-               ))
-             }
-            </tbody>
-          </table>
+        </div>
         </div>
       </div>
-    </div>
   );
 }
 
