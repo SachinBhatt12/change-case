@@ -38,13 +38,13 @@ function ScrapRates() {
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
-    dispatch(fetchScrap())?.then((response) => { });
+    dispatch(fetchScrap())?.then((response) => {});
   }, [dispatch]);
 
   const renderPickupButton = (item) => {
     if (authtoken === null) {
       return (
-        <NavLink to='/'>
+        <NavLink to='/' >
           <button type='submit' className='w-full border-2 border-green-500 text-green-500 hover:text-white hover:bg-green-600 bg-white p-1'>
             Pickup Request
           </button>
@@ -52,7 +52,8 @@ function ScrapRates() {
       );
     }
     return (
-      <NavLink to='/pickuprequest'>
+      <div onClick={()=>handleOnClick(item)}
+        >
         <button type='submit' className='w-full border-2 border-green-500 rounded-xl py-2 font-medium text-green-500 hover:text-white hover:bg-green-600 bg-white p-1 focus:bg-green-600'>
           Pickup Request
         </button>
