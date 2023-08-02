@@ -102,10 +102,10 @@ function MyOrders() {
               <tbody>
                 {
 
-                  Object.entries(newRequestedList).map(([index, data]) => (
+                  Object.entries(newRequestedList).reverse().map(([index, data], idx) => (
                     <tr key={index} className={`${
-                      data.id % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
-                    } border-b dark:bg-gray-900 dark:border-gray-700`}>
+                      idx % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
+                    } border-b`}>
                       <td className="px-6 py-4 text-[#000000a6] font-medium">{data.id}</td>
                       <td className="px-6 py-4 text-[#000000a6] font-medium">{data.user__name}</td>
                       <td className="px-6 py-4 text-[#000000a6] font-medium">
@@ -148,10 +148,10 @@ function MyOrders() {
           </thead>
           <tbody>
             {
-              Object.entries(newCompletedList).map(([index, data]) => (
+              Object.entries(newCompletedList).reverse().map(([index, data], idx) => (
                 <tr key={index} className={`${
-                  data.id % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
-                } border-b dark:bg-gray-900 dark:border-gray-700`} >
+                  idx % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
+                } border-b`} >
                   <td className="px-6 py-4 text-[#000000a6] font-medium">{data.id}</td>
                   <td className="px-6 py-4 text-[#000000a6] font-medium">{data.user__name}</td>
                   <td className="px-6 py-4 text-[#000000a6] font-medium">
