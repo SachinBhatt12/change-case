@@ -11,7 +11,7 @@ function Cooperate() {
           <div className="w-full">
             <div className="w-full text-center">
               <div className="lg:w-7/12 md:w-7/12 sm:w-7/12 inline-block">
-                <h1 className='w-full text-start text-4xl font-semibold'>Cooperates</h1>
+                <h1 className='w-full text-start text-4xl font-semibold'>Corporates</h1>
                 <p className='py-5 text-xl text-start'>
                   Why step out to get rid of your scrap, when you can book scrap pickup service from the comfort and convenience of your home
                 </p>
