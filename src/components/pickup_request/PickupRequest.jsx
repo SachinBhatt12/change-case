@@ -13,6 +13,7 @@ import { initialPickupState, orderPickup } from '../../redux/features/pickupSlic
 import UserInfo from './UserInfo';
 
 function PickupRequest() {
+  const [errorState,setErrorState]=useState({})
   const [formData, setFormData] = useState(initialPickupState);
   const handleformChange = (updateFormData) => {
     setFormData(updateFormData);
@@ -27,7 +28,7 @@ function PickupRequest() {
   const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
-    const initiallySelectedItem = checkboxData.find((item) => item.id === receivedData?.pickupData.id);
+    const initiallySelectedItem = checkboxData?.find((item) => item.id === receivedData?.pickupData.id);
     if (initiallySelectedItem) {
       setSelectedCheckboxes([initiallySelectedItem]);
     }
@@ -50,16 +51,25 @@ function PickupRequest() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
     formData.user = localStorage.getItem('userid');
-    dispatch(orderPickup(formData)).then((response) => {
-      const pickupResponseData = response?.payload;
-      if (pickupResponseData?.status === 201) {
-        toast.success('Pickup Request Added Successfully');
-        navigate('/confirmpickup', { state: { pickupData: pickupResponseData?.data } });
-      } else {
-        toast.error('Something went wrong');
-      }
-    });
+     
+   if(formData.pickup_request_items.length===0 || Object.keys(errorState).length>0){
+      // do nothing 
+      
+    }else{
+      dispatch(orderPickup(formData)).then((response) => {
+        const pickupResponseData = response?.payload;
+        if (pickupResponseData?.status === 201) {
+          toast.success('Pickup Request Added Successfully');
+          navigate('/confirmpickup', { state: { pickupData: pickupResponseData?.data } });
+        } else {
+          toast.error('Something went wrong');
+        }
+      });
+    }
+
+    
   };
   const handleQuantityChange = (updatedItems) => {
     setFormData((prevState) => ({
@@ -95,7 +105,7 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
-          <Location handleformChange={handleformChange} />
+          <Location handleformChange={handleformChange} setErrorState={setErrorState}/>
 
           <br />
           <hr />

@@ -26,6 +26,7 @@ function MyOrders() {
   const myItem = orderData?.filter((item) => {
     return item.user_id == Id;
   });
+  console.log("myItem",myItem)
   if (myItem) {
     var requestedList = [];
     var completedList = [];

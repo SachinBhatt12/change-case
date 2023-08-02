@@ -1,9 +1,51 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 
-function Location({ formData = {}, handleformChange }) {
+function Location({ formData = {}, handleformChange ,setErrorState}) {
+  const [validationErrors, setValidationErrors] = useState({});
+
   const onhandleChange = (event) => {
     const { name, value } = event.target;
+
+    let errors = { ...validationErrors };
+    switch (name) {
+      case 'city':
+        if (!/^[A-Za-z]+$/.test(value)) {
+          errors[name] = 'Please enter characters only.';
+        } else {
+          delete errors[name];
+        }
+        break;
+
+      case 'pincode':
+        if (!/^\d{6}$/.test(value)) {
+          if (value !== '' && isNaN(value)) {
+            errors[name] = 'Please enter numbers only.';
+          } else {
+            errors[name] = 'Pincode should be a 6-digit number.';
+          }
+        } else {
+          delete errors[name];
+        }
+        break;
+      case 'state':
+        if (!/^[A-Za-z]+$/.test(value)) {
+          errors[name] = 'Please enter characters only.';
+        } else {
+          delete errors[name];
+        }
+        break;
+      default:
+        break;
+    }
+
+    if (value === '') {
+      delete errors[name];
+    }
+      
+    setValidationErrors(errors);
+    setErrorState(errors);
+
     handleformChange((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -11,38 +53,42 @@ function Location({ formData = {}, handleformChange }) {
   };
   return (
     <>
-      <h5 className='pickupformheading'>Location</h5>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 text-left'>
-        <div className='py-2'>
-          <label htmlFor='flat'>Flat/House no./Apartment</label>
+      <h5 className="pickupformheading">Location</h5>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+        <div className="py-2">
+          <label htmlFor="flat">Flat/House no./Apartment</label>
           <br />
-          <input className='inputCommonCss w-full' type='text' name='flat_number' onChange={onhandleChange} value={formData.flat_number} id='flat' />
+          <input className="inputCommonCss w-full" type="text" name="flat_number" onChange={onhandleChange} value={formData.flat_number} id="flat" required />
         </div>
 
-        <div className='py-2'>
-          <label htmlFor='area'>Area/Street/Sector/Village</label>
+        <div className="py-2">
+          <label htmlFor="area">Area/Street/Sector/Village</label>
           <br />
-          <input className='inputCommonCss w-full' type='text' name='area' onChange={onhandleChange} value={formData.area} id='area' />
+          <input className="inputCommonCss w-full" type="text" name="area" onChange={onhandleChange} value={formData.area} id="area" required />
         </div>
-        <div className='py-2'>
-          <label htmlFor='landmark'>Landmark</label>
+        <div className="py-2">
+          <label htmlFor="landmark">Landmark</label>
           <br />
-          <input className='inputCommonCss w-full' type='text' name='landmark' onChange={onhandleChange} value={formData.landmark} id='landmark' />
+          <input className="inputCommonCss w-full" type="text" name="landmark" onChange={onhandleChange} value={formData.landmark} id="landmark" required />
+          
+                  </div>
+        <div className="py-2">
+          <label htmlFor="pincode">Pincode</label>
+          <br />
+          <input type="text" className="inputCommonCss w-full" name="pincode" onChange={onhandleChange} value={formData.pincode} id="pincode" required />
+          {validationErrors.pincode && <p className="text-red-600">{validationErrors.pincode}</p>}
         </div>
-        <div className='py-2'>
-          <label htmlFor='pincode'>Pincode</label>
+        <div className="py-2">
+          <label htmlFor="city">Town/City</label>
           <br />
-          <input type='number' className='inputCommonCss w-full' name='pincode' onChange={onhandleChange} value={formData.pincode} id='pincode' />
+          <input className="inputCommonCss w-full" type="text" name="city" onChange={onhandleChange} value={formData.city} id="city" required />
+          {validationErrors.city && <p className="text-red-600">{validationErrors.city}</p>}
         </div>
-        <div className='py-2'>
-          <label htmlFor='city'>Town/City</label>
+        <div className="py-2">
+          <label htmlFor="state">State</label>
           <br />
-          <input className='inputCommonCss w-full' type='text' name='city' onChange={onhandleChange} value={formData.city} id='city' />
-        </div>
-        <div className='py-2'>
-          <label htmlFor='state'>State</label>
-          <br />
-          <input className='inputCommonCss w-full' type='text' name='state' onChange={onhandleChange} value={formData.state} id='state' />
+          <input className="inputCommonCss w-full" type="text" name="state" onChange={onhandleChange} value={formData.state} id="state" required />
+          {validationErrors.state && <p className="text-red-600">{validationErrors.state}</p>}
         </div>
       </div>
     </>
