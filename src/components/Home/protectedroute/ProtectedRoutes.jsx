@@ -5,7 +5,7 @@ import { useAuth } from './useAuth';
 function ProtectedRoutes({ children }) {
   const auth = useAuth;
   const AuthToken = localStorage.getItem('AuthToken');
-  console.log(AuthToken, 'authtoken');
+
   if (AuthToken === null) {
     <Navigate to='/' />;
   }

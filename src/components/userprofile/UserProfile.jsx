@@ -44,7 +44,7 @@ function UserProfile() {
       if(response.payload) {
         setUserForm(response.payload.data);
       }
-      // console.log(">>>>>>>>>>>>>",response);
+     
     });
   }, [dispatch, userid]);
   if (loading) {
