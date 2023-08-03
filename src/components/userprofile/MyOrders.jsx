@@ -1,19 +1,27 @@
 /* eslint-disable camelcase */
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../Loader';
 import Error from '../Error';
 import { customerOrderDetails } from '../../redux/features/customerorderslice';
 import { fetchOrderList } from '../../redux/features/fetchOrderSlice';
+import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 
 function MyOrders() {
+  const [userOtp,setUserOtp]=useState();
+  const userid = localStorage.getItem('userid');
   const dispatch = useDispatch();
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(fetchOrderList())?.then((response) => {
     });
   }, [dispatch]);
-  const userid = localStorage.getItem('userid');
+  useEffect(() => {
+    dispatch(fetchUserDetails(userid))?.then((response) => {
+      setUserOtp(response.payload.data.pickup_otp);
+    });
+  }, []);
+  
 
   const { loading, data: orderData, error } = useSelector((state) => state.orderDetails);
   if (loading) {
@@ -85,8 +93,13 @@ function MyOrders() {
     <div>
       <div className='w-full text-center'>
         <div className='w-11/12 inline-block'>
-          <h2 className="text-2xl text-left mt-24 text-center font-bold mb-10">Live Orders</h2>
+          <div className='flex justify-between'>
+          <h2 className="text-2xl text-left mt-24  font-bold mb-10">Live Orders</h2>
+          <p className='text-2xl text-left mt-24'>Otp for All the Order <span  className="text-2xl text-left mt-24  font-bold mb-10">{userOtp}</span></p>
+          </div>
+         
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          
             <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
               <thead className='text-xs text-gray-700 uppercase bg-gray-50 gray:bg-gray-700 dark:text-gray-400'>
                 <tr className=''>

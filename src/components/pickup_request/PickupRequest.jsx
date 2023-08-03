@@ -51,13 +51,8 @@ function PickupRequest() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    formData.user = localStorage.getItem('userid');
-     
-   if(formData.pickup_request_items.length===0 || Object.keys(errorState).length>0){
-      // do nothing 
-      
-    }else{
+    formData.user = localStorage.getItem('userid');  
+   if(formData.pickup_request_items.length!=0 && Object.keys(errorState).length===0){
       dispatch(orderPickup(formData)).then((response) => {
         const pickupResponseData = response?.payload;
         if (pickupResponseData?.status === 201) {
