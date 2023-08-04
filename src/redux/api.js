@@ -27,3 +27,6 @@ export const updateUserApi = (authToken, FormData) => API.put('accounts/update-u
   },
 });
 export const customerDetails = (id) => API.get(`accounts/customer-pickup-details/${id}`);
+export const walletDetails = (data) => API.post('transactions/wallet/', data);
+export const getWalletDetails = () => API.get(`transactions/wallet/`);
+export const bankDetails = (FormData) => API.post('transactions/bank-details/', FormData);

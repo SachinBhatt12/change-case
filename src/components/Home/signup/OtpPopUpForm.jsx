@@ -4,7 +4,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { regenerateOtp, verifyOtp } from '../../../redux/api';
+import { regenerateOtp, verifyOtp, walletDetails } from '../../../redux/api';
 
 function OtpPopUpForm(props) {
   const navigate = useNavigate();
@@ -39,14 +39,22 @@ function OtpPopUpForm(props) {
       }
     }
   };
-  const handleRedirect = () => {
-    if(props.state === "login") {
-      navigate('/scraprates')
-    }
-    else {
-      navigate('/user')
+  const handleRedirect = async () => {
+    if (props.state === "login") {
+      navigate('/scraprates');
+    } else {
+      try {
+        localStorage.setItem('userid', props.id);
+        const data = { user: props.id };
+        const walletResponse = await walletDetails(data);
+        
+        navigate('/user');
+      } catch (error) {
+        // Handle the error if needed
+      }
     }
   };
+  
   const handleSubmit = async (id, newOtp = otp.join('')) => {
     try {
       const response = await verifyOtp(props.id, newOtp);
