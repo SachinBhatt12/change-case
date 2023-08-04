@@ -105,11 +105,13 @@ function PickupRequest() {
           <br />
           <hr />
           <br />
+          { (Object.values(selectedCheckboxes).length)===0? <p className='text-red-600'>** Please Select Categories </p>:''}
           <h4 className=' font-bold py-5'>Categories</h4>
-          <div className='checkboxes grid grid-cols-2'>
+          <div className='checkboxes grid grid-cols-1 md:grid-cols-2 '>
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3'>
-                <input
+              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3 max-w-max'>
+                <input 
+               className='h-6 w-6   '
                   type='checkbox'
                   name={item?.item_name}
                   id={item?.item_name}
@@ -122,16 +124,16 @@ function PickupRequest() {
             ))}
           </div>
           <br />
-          <hr />
+         
           <br />
 
           <QuantityTable selectedCheckboxes={selectedCheckboxes} onQuantityChange={handleQuantityChange} />
 
-          <div className='button justify-center items-center '>
-            <button type='submit' className=' primaryButton '>
-              {' '}
+          <div className='pt-4 button flex justify-center items-center md:flex-none '>
+            <button type='submit' className=' w-26 flex h-12 p-2 justify-center pt-3  md:flex-none  primaryButton '>
+              
               Confirm Pickup
-              {' '}
+              
             </button>
           </div>
         </form>

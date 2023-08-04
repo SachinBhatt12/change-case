@@ -24,25 +24,25 @@ function QuantityTable({ selectedCheckboxes, onQuantityChange }) {
   }, [formData.pickup_request_items]);
   return (
     <table className='w-full'>
-      <thead className='border-2'>
+      <thead className=' text-sm border-2'>
         <tr className='px-10'>
           <th>Categories</th>
           <th>Price</th>
           <th>Quantity (in kgs)</th>
         </tr>
       </thead>
-      <tbody className='w-full'>
+      <tbody className='w-full text-sm md:text-lg'>
         {selectedItems?.map((checkedValue) => {
           const selectedItem = formData.pickup_request_items.find((item) => item.id === checkedValue.id);
           const selectedQuantity = selectedItem ? selectedItem.quantity : '';
 
           return (
-            <tr key={checkedValue.id}>
+            <tr key={checkedValue.id} className='w-full'>
               <td className='text-center'>{checkedValue.item_name}</td>
               <td className='text-center'>{checkedValue.rate}</td>
               <td>
                 <select required
-                  className='block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500'
+                  className='block w-24 md:w-full py-2 ml-auto md:ml-0 md:px-2 md:py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500'
                   name='quantity'
                   defaultValue={selectedQuantity} // Use defaultValue instead of value
                   onChange={(e) => handleQuantityChange(checkedValue.id, e.target.value)}
