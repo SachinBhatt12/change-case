@@ -4,21 +4,14 @@ import React, { useState } from 'react';
 function Location({ formData = {}, handleformChange ,setErrorState}) {
   const [validationErrors, setValidationErrors] = useState({});
   const onhandleChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
     let errors = { ...validationErrors };
     switch (name) {
       case 'city':
+        value= value.trim().replace(/\s{2,}/g, ' ');
         if (!/^[A-Za-z]+(\s[A-Za-z]+)*$/.test(value)) {
-          if (/^\s/.test(value)) {
-            errors[name] = 'City Name should not start with a space.';
-          } else if (/\s$/.test(value)) {
-            errors[name] = 'City Name should not end with a space.';
-          } else if (/\s\s/.test(value)) {
-            errors[name] = 'Only one space is allowed between words.';
-          } else {
-            errors[name] = 'Please enter characters only.!';
-          }
-        } else {
+          errors[name] = 'Please enter characters only!';
+        }else {
           delete errors[name];
         }
         break;
@@ -35,24 +28,16 @@ function Location({ formData = {}, handleformChange ,setErrorState}) {
         }
         break;
       case 'state':
+        value= value.trim().replace(/\s{2,}/g, ' ');
         if (!/^[A-Za-z]+(\s[A-Za-z]+)*$/.test(value)) {
-          if (/^\s/.test(value)) {
-            errors[name] = 'State Name should not start with a space.';
-          } else if (/\s$/.test(value)) {
-            errors[name] = 'State Name should not end with a space.';
-          } else if (/\s\s/.test(value)) {
-            errors[name] = 'Only one space is allowed between words.';
-          } else {
-            errors[name] = 'Please enter characters only.!';
-          }
-        } else {
+          errors[name] = 'Please enter characters only!';
+        }else {
           delete errors[name];
         }
         break;
       default:
         break;
     }
-
     if (value === '') {
       delete errors[name];
     }
@@ -64,6 +49,7 @@ function Location({ formData = {}, handleformChange ,setErrorState}) {
       ...prevFormData,
       [name]: value,
     }));
+
   };
   return (
     <>
