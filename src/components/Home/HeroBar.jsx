@@ -13,8 +13,8 @@ function HeroBar(props) {
   return (
     <div  className='w-full mb-32' id='herobar'>
       <div className='w-full flex flex-col lg:flex-row md:flex-row lg:mb-32'>
-        <div className='flex flex-col w-full lg:w-6/12 md:w-1/2 lg:pt-24 lg:ml-16'>
-          <h1 className='text-3xl ml-2 mt-16 sm:mt-16 text-center md:text-4xl lg:text-left font-medium text-start'>
+        <div className='flex flex-col w-full lg:w-6/12 md:w-1/2  md:pt-24 lg:pt-40 lg:ml-20 md:ml-10 '>
+          <h1 className='text-3xl ml-6 mt-20  lg:ml-2 md:mt-16 sm:mt-16  md:text-4xl md:text-left font-medium text-start'>
             Small Actions, Big Impact:
             <br />
             <span className='text-green-500 text-4xl md:text-5xl font-medium'>Recycle with Us</span>
@@ -26,7 +26,7 @@ function HeroBar(props) {
               {loginForm ? <SignInForm handleNewUser={handleNewUser} /> : <SignupForm handleNewUser={handleNewUser} />}
             </div>
              ):(
-              <div className='text-start ml-2 text-start'>
+              <div className='text-start ml-2 '>
             <p className='text-lg'>We will collect your scrap and will help you to know the worth of your scrap</p>
             <NavLink to='/scraprates'>
               <button type='submit' className='primaryButton mt-10'>Sell Scrap</button>
