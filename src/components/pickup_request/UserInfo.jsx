@@ -29,7 +29,7 @@ function UserInfo() {
     );
   }
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+    <div className='flx grid grid-cols-1 md:grid-cols-2 gap-4'>
       <label htmlFor='name' className='font-semibold text-xl'>
         Name:
         {' '}
