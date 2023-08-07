@@ -50,7 +50,7 @@ function OtpPopUpForm(props) {
         
         navigate('/user');
       } catch (error) {
-        // Handle the error if needed
+        return error;
       }
     }
   };

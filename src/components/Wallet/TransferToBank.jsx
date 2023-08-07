@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Backbtn from '../BackBtn';
 import { bankData } from '../../redux/features/bankSlice';
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
 function TransferToBank() {
   const [formErrors, setFormErrors] = useState({});
@@ -29,8 +30,9 @@ function TransferToBank() {
       try {
         await dispatch(bankData(bankForm));
         resetForm();
+        toast.success('Bank Details submitted successfully!');
       } catch (error) {
-        console.log("Error:", error.message);
+        toast.error('Something went wrong..')
       }
     }
     else {
@@ -40,7 +42,6 @@ function TransferToBank() {
 
   const validateForm = (data) => {
     const errors = {};
-    // Add your validation logic here for each field
     if (!data.account_number) {
       errors.account_number = 'Account Number is required';
     }
@@ -87,7 +88,7 @@ function TransferToBank() {
         <div className="w-full text-center">
           <div className='w-10/12 mx-auto'>
             <form onSubmit={handleSubmit} action="" className="pt-10 text-xl">
-              <h1 className='mt-10 text-start text-4xl font-medium text-[#263238]'>Transfer to your bank account</h1>
+              <h1 className='lg:mt-10 md:mt-10 sm:mt-10 mt-20 text-start lg:text-4xl md:test-4xl sm:text-4xl text-2xl font-medium text-[#263238]'>Transfer to your bank account</h1>
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10'>
               <div className='text-start'>
                   <label htmlFor="phone" className='text-[#000000bf] font-medium'>Account Holder Name *</label>
