@@ -34,7 +34,7 @@ function MyOrders() {
   const myItem = orderData?.filter((item) => {
     return item.user_id == Id;
   });
-  console.log("myItem",myItem)
+
   if (myItem) {
     var requestedList = [];
     var completedList = [];
@@ -57,33 +57,36 @@ function MyOrders() {
         accumulator[data.created_at] = {
           ...accumulator[data.created_at],
           pickuprequestitem__item_id__item_name: [...accumulator[data.created_at].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
+          pickuprequestitem__weight:[...accumulator[data.created_at].pickuprequestitem__weight,data.pickuprequestitem__weight]
         };
       } else {
         // If the id doesn't exist in the accumulator, add a new entry
         accumulator[data.created_at] = { ...data };
-        accumulator[data.created_at
-        ].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+        accumulator[data.created_at].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+        accumulator[data.created_at].pickuprequestitem__weight = [data.pickuprequestitem__weight];
       }
       return accumulator;
     }, [])
     : [];
-
   var newCompletedList = completedList
     ? Object.values(completedList).reduce((accumulator, data) => {
-      if (accumulator[data.id]) {
+      if (accumulator[data.created_at]) {
         // If the id already exists in the accumulator, merge the data
-        accumulator[data.id] = {
-          ...accumulator[data.id],
-          pickuprequestitem__item_id__item_name: [...accumulator[data.id].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
+        accumulator[data.created_at] = {
+          ...accumulator[data.created_at],
+          pickuprequestitem__item_id__item_name: [...accumulator[data.created_at].pickuprequestitem__item_id__item_name, data.pickuprequestitem__item_id__item_name],
+          pickuprequestitem__weight:[...accumulator[data.created_at].pickuprequestitem__weight,data.pickuprequestitem__weight]
         };
       } else {
         // If the id doesn't exist in the accumulator, add a new entry
-        accumulator[data.id] = { ...data };
-        accumulator[data.id].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+        accumulator[data.created_at] = { ...data };
+        accumulator[data.created_at].pickuprequestitem__item_id__item_name = [data.pickuprequestitem__item_id__item_name];
+        accumulator[data.created_at].pickuprequestitem__weight = [data.pickuprequestitem__weight];
       }
       return accumulator;
     }, [])
     : [];
+    console.log("qwerty",newCompletedList)
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(customerOrderDetails(userid))?.then((response) => {
@@ -130,7 +133,15 @@ function MyOrders() {
                           ))}
                         </ul>
                       </td>
-                      <td className="px-6 py-4 text-[#000000a6] font-medium">{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
+                      <td className="px-6 py-4 text-[#000000a6] font-medium">
+                      <ul>
+                          {data.pickuprequestitem__weight.map((itemWeight, idx) => (
+                            <li key={idx}>
+                              {itemWeight}
+                            </li>
+                          ))}
+                        </ul>
+                        </td>
                       <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_date}</td>
                       <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_time}</td>
                       <td className={`px-6 py-4 text-[#000000a6] font-medium`}>
@@ -166,7 +177,8 @@ function MyOrders() {
                   idx % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
                 } border-b`} >
                   <td className="px-6 py-4 text-[#000000a6] font-medium">{data.id}</td>
-                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.user__name}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_date}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_time}</td>
                   <td className="px-6 py-4 text-[#000000a6] font-medium">
                     <ul>
                       {data.pickuprequestitem__item_id__item_name.map((itemName, idx) => (
@@ -176,10 +188,17 @@ function MyOrders() {
                       ))}
                     </ul>
                   </td>
-                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.orderitems__quantity === null ? data.pickuprequestitem__weight : data.orderitems__quantity}</td>
-                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_date}</td>
-                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.pickup_time}</td>
-                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.order_status === null ? 'Requested' : data.order_status === 'onhold' ? 'Allocated' : data.order_status}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">
+                  <ul>
+                          {data.pickuprequestitem__weight.map((itemWeight, idx) => (
+                            <li key={idx}>
+                              {itemWeight}
+                            </li>
+                          ))}
+                        </ul> 
+                        </td>               
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{data.total_amount}</td>
+                  <td className="px-6 py-4 text-[#000000a6] font-medium">{"UPI"}</td>
                 </tr>
               ))
             }
