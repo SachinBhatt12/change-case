@@ -114,12 +114,12 @@ export default function Navigation() {
           </NavLink>
           <div className='justify-between'>
             <ul
-              className={`absolute top-14 -right-[30px] w-[150px] rounded-md bg-[#fff] transform origin-top transition-all duration-2000 ease-linear lg:top-0 lg:right-[120px] lg:normal-case lg:bg-inherit lg:flex lg:items-center lg:w-auto ${
-                isMenuOpen ? '' : 'hidden'
+              className={` top-14  -right-[30px] w-[150px] rounded-md bg-[#fff] transform origin-top transition-all duration-2000 ease-linear lg:top-0 lg:right-[120px] lg:normal-case lg:bg-inherit lg:flex lg:items-center lg:w-auto ${
+                isMenuOpen ? 'absolute' : 'hidden '
               }`}
             >
               {navigationItems.map((item, index) => (
-                <div key={index} className={`text-sm md:text-lg sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
+                <div key={index} className={`text-sm md:text-lg md:px-10 sm:text-sm py-3 px-4 items-center ${activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''}`}>
                   <NavHashLink key={index} to={item.path} onClick={() => handleTabClick(index)} smooth>
                     <li className=''>{item.label}</li>
                   </NavHashLink>
@@ -132,7 +132,8 @@ export default function Navigation() {
             {authtoken ? (
               <button type='submit' className='border-2 px-4 py-1 rounded-lg flex items-center' onClick={ handleOptionsToggle}>
                 <BiChevronDown />
-                <p className='px-1'>{userData?.data?.name}</p>
+                <p className='px-1 hidden md:block'>{userData?.data?.name?.split(' ')[0]}</p>
+                {/* <p className='px-1 hidden md:block'>{"brijendra..."}</p> */}
                 <BiUserCircle className='mr-2' size={24} />
                 
               </button>
