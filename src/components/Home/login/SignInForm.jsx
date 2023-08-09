@@ -48,7 +48,7 @@ function SignInForm({ handleNewUser }) {
 
         </div>
       )}
-      <h3 className="text-3xl font-bold text-start">Login</h3>
+      <h3 className="text-3xl font-bold text-center text-green-500">Login</h3>
       <div className="pt-10 relative w-full" id="login">
         <form onSubmit={(e) => handleSubmit(e, signInData)}>
           <div className="py-2 ">
@@ -60,7 +60,7 @@ function SignInForm({ handleNewUser }) {
             </button>
           </div>
         </form>
-        <div className="flex justify-start">
+        <div className="flex justify-end">
           <button type="submit" onClick={() => handleNewUser(false)} className="text-blue-600 py-5 font-semibold">
             Sign Up
           </button>

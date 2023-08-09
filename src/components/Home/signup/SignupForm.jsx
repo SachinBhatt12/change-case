@@ -50,7 +50,7 @@ function SignupForm({ handleNewUser }) {
           </div>
         )}
         <div className='relative h-64'>
-          <h1 className='text-2xl hover:text-green-600'>Register User</h1>
+          <h1 className='text-3xl font-bold text-green-500'>Register User</h1>
           <form className='pt-3' onSubmit={(e) => handleSubmit(e, FormData)}>
             <div className=' pt-4'>
               <input className='inputCommonCss w-full' type='email' name='email' value={FormData.email} onChange={handleInputChange} placeholder='Enter your Email Id' />
@@ -66,7 +66,7 @@ function SignupForm({ handleNewUser }) {
             </div>
           </form>
         </div>
-        <div className='flex justify-start'>
+        <div className='flex justify-end'>
           <button type='submit' className='text-blue-600 font-medium' onClick={() => handleNewUser(true)}>
             Already a User
           </button>

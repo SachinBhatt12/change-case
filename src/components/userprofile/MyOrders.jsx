@@ -21,15 +21,12 @@ function MyOrders() {
       setUserOtp(response.payload.data.pickup_otp);
     });
   }, []);
-  
-
   const { loading, data: orderData, error } = useSelector((state) => state.orderDetails);
   if (loading) {
     <Loader />;
   } else if (error) {
     <Error />;
   }
-
   var Id = localStorage.getItem('userid');
   const myItem = orderData?.filter((item) => {
     return item.user_id == Id;
@@ -46,8 +43,6 @@ function MyOrders() {
         requestedList.push(item);
       }
     });
-
-
   }
 
   var newRequestedList = requestedList
@@ -86,7 +81,6 @@ function MyOrders() {
       return accumulator;
     }, [])
     : [];
-    console.log("qwerty",newCompletedList)
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(customerOrderDetails(userid))?.then((response) => {
@@ -210,5 +204,4 @@ function MyOrders() {
       </div>
   );
 }
-
 export default MyOrders;

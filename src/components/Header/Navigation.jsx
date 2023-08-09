@@ -7,16 +7,30 @@ import { BiUserCircle, BiChevronDown } from 'react-icons/bi';
 // import { BsBoxArrowInRight } from 'react-icons/bs';
 import recyclerLogo from '../../assets/logo.png';
 import navigationItems from './NavigationItems.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 
 export default function Navigation() {
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const profRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openList, setOpenList] = useState(false);
   const [authToken, setAuthToken] = useState('');
   const authtoken = localStorage.getItem('AuthToken');
 
+  const userid = localStorage.getItem('userid');
+  
+  const handleClickOutside = (event) => {
+    if (profRef.current && !profRef.current.contains(event.target) && event.target.id !== 'prof') {
+      setOpenList(false);
+    }
+  };
+  useEffect(() => {
+    dispatch(fetchUserDetails(userid))?.then((response) => {});
+  }, []);
+  const { loading, data:userData, error } = useSelector((state) => state.userSlice);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -26,7 +40,7 @@ export default function Navigation() {
   };
 
   const handleOptionsToggle = () => {
-    setOpenList(!openList);
+      setOpenList(!openList);
   };
 
   const handleTabClick = (index) => {
@@ -60,11 +74,6 @@ export default function Navigation() {
       setAuthToken(null);
     }
 
-    const handleClickOutside = (event) => {
-      if (profRef.current && !profRef.current.contains(event.target) && event.target.id !== 'prof') {
-        setOpenList(false);
-      }
-    };
 
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -98,10 +107,10 @@ export default function Navigation() {
 
   return (
     <div>
-      <header className='px-4 fixed drop-shadow-xl w-full mainBgCard h-16'>
+      <header className='pb-2  md:py-1 fixed drop-shadow-xl w-full mainBgCard h-16'>
         <div className='flex justify-between items-center relative'>
           <NavLink to='/'>
-            <img src={recyclerLogo} alt='companyLogo' className='ml-0 w-44 py-2 sm:py-1 sm:ml-2 md:ml-10 h-auto' />
+            <img src={recyclerLogo} alt='companyLogo' className='ml-0 w-44 py-1 md:py-2 sm:py-1 sm:ml-2 md:ml-10 h-auto' />
           </NavLink>
           <div className='justify-between'>
             <ul
@@ -119,15 +128,17 @@ export default function Navigation() {
               <div className='flex items-center' />
             </ul>
           </div>
-          <div className='hidden h-10 sm:flex sm:justify-end '>
+          <div className=' h-10 sm:flex sm:justify-end '>
             {authtoken ? (
-              <button type='submit' className='border-1 px-4 py-1 rounded-lg flex items-center' onClick={() => handleOptionsToggle()}>
+              <button type='submit' className='border-2 px-4 py-1 rounded-lg flex items-center' onClick={ handleOptionsToggle}>
                 <BiChevronDown />
+                <p className='px-1'>{userData?.data?.name}</p>
                 <BiUserCircle className='mr-2' size={24} />
+                
               </button>
             ) : (
               <NavHashLink to="#herobar" smooth>
-              <button type='submit' className='border-2 px-4 py-1 rounded-lg flex items-center' onClick={handleLogin}>
+              <button type='submit' className='border-2 p-1 md:px-4 md:py-1 rounded-lg flex items-center' onClick={handleLogin}>
                 <BiUserCircle className='mr-2' size={24} />
                 Login
               </button>
@@ -135,7 +146,7 @@ export default function Navigation() {
             )}
             {openList && (
               <div className='relative' ref={profRef}>
-                <ul className='absolute w-40 top-12 cursor-pointer bg-white rounded-md right-10 border-2 p-3 shadow-xl ml-2 text-center'>
+                <ul className='absolute w-40  md:top-10 cursor-pointer bg-white rounded-md right-0  border-2 p-3 shadow-xl ml-2 text-center'>
                   <li className='p-1'>{protectUserProfile()}</li>
                   <li className='text-lg flex p-1 justify-center border-b-2'>
                     <NavLink to='myorders'>
@@ -145,7 +156,7 @@ export default function Navigation() {
                       </button>
                     </NavLink>
                   </li>
-                  <li className='text-lg flex flex justify-center p-1'>
+                  <li className='text-lg  flex justify-center p-1'>
                     <button type='submit' onClick={handleLogout} className=' '>
                       Logout
                       {/* <BsBoxArrowInRight className='pr-5' /> */}
@@ -156,7 +167,7 @@ export default function Navigation() {
             )}
           </div>
           {/* Hamburger menu start */}
-          <div className='h-14 lg:hidden flex justify-end'>
+          <div className='h-14 pr-2 lg:hidden flex justify-end'>
             <button type='submit' onClick={toggleMenu}>
               {isMenuOpen ? <FaTimes /> : <GiHamburgerMenu />}
             </button>
