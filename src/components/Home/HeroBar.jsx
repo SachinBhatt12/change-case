@@ -17,8 +17,9 @@ function HeroBar(props) {
           <h1 className='text-3xl ml-6 mt-20  lg:ml-2 md:mt-16 sm:mt-16  md:text-4xl md:text-left font-medium text-start'>
             Small Actions, Big Impact:
             <br />
-            <span className='text-green-500 text-4xl md:text-5xl font-medium'>Recycle with Us</span>
+            
           </h1>
+          <span className='text-green-500 ml-6 lg:ml-2 pt-4 text-left text-4xl md:text-5xl font-medium'>Recycle with Us</span>
           <div className='mt-8 flex justify-center w-full p-4 lg:p-0 md:p-0 lg:w-9/12 md:w-11/12 sm:w-full lg:justify-start lg:m-0 lg:mt-6 md:ml-4'>
              { localStorage.getItem("AuthToken") ==null ?
              (

@@ -59,7 +59,7 @@ function ScrapRates() {
   return (
     <div className='w-full text-center'>
   <div className='w-11/12 mx-auto pt-28 px-4'>
-    <h1 className='text-center text-5xl font-bold'>Scrap Rates</h1>
+    <h1 className='text-center text-5xl text-[#3E3E3E] '>Scrap Rates</h1>
     <div className='pt-20 mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-2 justify-items-center'>
       {scrapRateData?.map((item, index) => (
         <div key={index} className='card justify-center p-4 bg-white rounded-md border-2 shadow-xl bg-center'>
