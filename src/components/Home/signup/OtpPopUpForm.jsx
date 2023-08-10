@@ -40,21 +40,21 @@ function OtpPopUpForm(props) {
     }
   };
   const handleRedirect = async () => {
-    if (props.state === "login") {
+    if (props.state === 'login') {
       navigate('/scraprates');
     } else {
       try {
         localStorage.setItem('userid', props.id);
         const data = { user: props.id };
         const walletResponse = await walletDetails(data);
-        
+
         navigate('/user');
       } catch (error) {
         return error;
       }
     }
   };
-  
+
   const handleSubmit = async (id, newOtp = otp.join('')) => {
     try {
       const response = await verifyOtp(props.id, newOtp);
@@ -91,47 +91,45 @@ function OtpPopUpForm(props) {
   }, [activeOtpIndex]);
 
   return (
-    <>
-      <div className='fixed z-50 inset-0 overflow-y-auto bg-gray-300 bg-opacity-50 flex -flex-col justify-center items-center'>
-        <div className='bg-white p-10 rounded-xl relative'>
-          <MdOutlineCancel className='absolute top-0 right-0 cursor-pointer' size={32} onClick={() => props.setShowPopup(false)} />
-          <div className='flex'>
-            <h1 className='mx-auto text-xl font-bold justify-center'>Otp Verification</h1>
-            <p className='ml-auto'>
-              Attempts Left
-              {count}
-            </p>
+    <div className='fixed z-50 inset-0 overflow-y-auto bg-gray-300 bg-opacity-50 flex -flex-col justify-center items-center'>
+      <div className='bg-white p-10 rounded-xl relative'>
+        <MdOutlineCancel className='absolute top-0 right-0 cursor-pointer' size={32} onClick={() => props.setShowPopup(false)} />
+        <div className='flex'>
+          <h1 className='mx-auto text-xl font-bold justify-center'>Otp Verification</h1>
+          <p className='ml-auto'>
+            Attempts Left
+            {count}
+          </p>
+        </div>
+        <h3 className='py-3 text-lg'>
+          Otp sent to phone number +91
+          {props.mobile}
+        </h3>
+        <form onSubmit={() => handleSubmit(props.id, otp.join(''))}>
+          <div className='flex justify-center pb-10'>
+            {otp.map((value, index) => (
+              <div key={index}>
+                <input
+                  ref={index === activeOtpIndex ? inputRef : null}
+                  type='number'
+                  name='otp1'
+                  className='otpText'
+                  onChange={handleChange}
+                  onKeyDown={({ key }) => handleKeyPress({ key }, index)}
+                  value={otp[index]}
+                />
+              </div>
+            ))}
           </div>
-          <h3 className='py-3 text-lg'>
-            Otp sent to phone number +91
-            {props.mobile}
-          </h3>
-          <form onSubmit={() => handleSubmit(props.id, otp.join(''))}>
-            <div className='flex justify-center pb-10'>
-              {otp.map((value, index) => (
-                <div key={index}>
-                  <input
-                    ref={index === activeOtpIndex ? inputRef : null}
-                    type='number'
-                    name='otp1'
-                    className='otpText'
-                    onChange={handleChange}
-                    onKeyDown={({ key }) => handleKeyPress({ key }, index)}
-                    value={otp[index]}
-                  />
-                </div>
-              ))}
-            </div>
-          </form>
-          <div className='flex justify-between my-3'>
-            <p className='text-gray-500'>The Otp is valid for 15 minutes</p>
-            <button type='submit' className='text-blue-600 border-2 p-0.5' onClick={() => ResendOtp(props.id)}>
-              Resend Otp
-            </button>
-          </div>
+        </form>
+        <div className='flex justify-between my-3'>
+          <p className='text-gray-500'>The Otp is valid for 15 minutes</p>
+          <button type='submit' className='text-blue-600 border-2 p-0.5' onClick={() => ResendOtp(props.id)}>
+            Resend Otp
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default OtpPopUpForm;
