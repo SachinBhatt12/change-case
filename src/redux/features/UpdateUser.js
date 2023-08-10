@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../api';
 
 export const initialUserState = {
+  id: localStorage.getItem('userid'),
   email: '',
   mobile_number: '',
   name: '',
@@ -11,9 +12,8 @@ export const initialUserState = {
 
 export const updateUser = createAsyncThunk('user/update', async (FormData, { rejectWithValue }) => {
   try {
-    const authToken = localStorage.getItem('AuthToken');
-    const response = await api.updateUserApi(authToken, FormData);
-    console.log(FormData);
+    const response = await api.updateUserApi(FormData);
+
     return response;
   } catch (e) {
     return rejectWithValue(e?.response?.data);

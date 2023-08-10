@@ -20,13 +20,9 @@ export const login = (signInData) => API.post('/accounts/login/', signInData);
 export const logout = (authToken) => API.post('user/logout/', authToken);
 export const userDetails = (id) => API.get(`/user/${id}/`);
 export const pricelist = () => API.get('/orders/item-rates/');
-export const pickupRequest = (id, FormData) => API.post('orders/api/pickup-requests/', FormData);
-export const updateUserApi = (authToken, FormData) => API.put('accounts/update-user/', FormData, {
-  headers: {
-    Authorization: `Token ${authToken}`,
-  },
-});
+export const pickupRequest = (FormData) => API.post('orders/api/pickup-requests/', FormData);
+export const updateUserApi = (FormData) => API.put('accounts/update-user/', FormData, {});
 export const customerDetails = (id) => API.get(`accounts/customer-pickup-details/${id}`);
 export const walletDetails = (data) => API.post('transactions/wallet/', data);
-export const getWalletDetails = () => API.get(`transactions/wallet/`);
+export const getWalletDetails = () => API.get('transactions/wallet/');
 export const bankDetails = (FormData) => API.post('transactions/bank-details/', FormData);
