@@ -20,7 +20,7 @@ function Wallet() {
 
     getWalletDetails().then((response) => {
       const userDetail = response.data;
-      const matchingUser = userDetail.find((item) => item.user.id.toString() === userid);
+      const matchingUser = userDetail.find((item) => item.user.toString() === userid);
 
       if (matchingUser) {
         const walletAmount = matchingUser.wallet_amount;
