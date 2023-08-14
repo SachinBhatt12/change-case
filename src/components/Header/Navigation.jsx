@@ -13,7 +13,7 @@ import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import { BiUserCircle } from 'react-icons/bi';
 
 export default function Navigation() {
-  const [bit,setBit]=useState(false);
+  const [hamburgerToggle,setHamburgerToggle]=useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ export default function Navigation() {
     navigate('/');
   };
   function mobileMenu() {
-    setBit(!bit);
+    setHamburgerToggle(!hamburgerToggle);
   }
   const handleLogout = () => {
     if (localStorage.getItem('AuthToken')) {
@@ -117,8 +117,8 @@ export default function Navigation() {
   return (
     <div>
       <div className={ `rounded-lg bg-white fixed right-0 top-16 items-center p-2 z-50  w-56   shadow-lg md:hidden 
-      ${bit?'transform translate-x-0':'translate-x-full transition-transform duration-300 ease-cubic-bezier'}`}>
-         <HamburgerItems  setBit={setBit} setOpenList={setOpenList}/>
+      ${hamburgerToggle?'transform translate-x-0':'translate-x-full transition-transform duration-300 ease-cubic-bezier'}`}>
+         <HamburgerItems  setHamburgerToggle={setHamburgerToggle} setOpenList={setOpenList}/>
       </div>
       <header className=''>
         <nav className='w-full flex fixed justify-between py-2 bg-white shadow-lg'>
@@ -169,7 +169,7 @@ export default function Navigation() {
               </div>
             )}
           <div className="md:hidden" onClick={mobileMenu}>
-           <Hamburger toggled={bit}/>
+           <Hamburger toggled={hamburgerToggle}/>
           </div>
         </nav>      
       </header>

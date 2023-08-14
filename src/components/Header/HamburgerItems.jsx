@@ -12,8 +12,13 @@ import {IoBook} from 'react-icons/io5'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const HamburgerItems = ({setBit,setOpenList}) => {
+const HamburgerItems = ({setHamburgerToggle,setOpenList}) => {
     const [authToken, setAuthToken] = useState('');
+    const routeMappings = {
+      profile: '/user',
+      order: '/myorders',
+      home: '/',
+    };
    useEffect(()=>{
     setAuthToken( localStorage.getItem('AuthToken'));
    })
@@ -25,49 +30,38 @@ const HamburgerItems = ({setBit,setOpenList}) => {
           localStorage.removeItem('username');
           localStorage.removeItem('userid');
           setAuthToken('');
-          setBit(false)
+          setHamburgerToggle(false)
           navigate('/');
           setOpenList(false);
         }
-      };
-      
+      };   
       function handleTabClick ()  {
-        setBit(false)
+        setHamburgerToggle(false)
         }
-    const handleTransfer=(values)=>{
-        switch(values){
-            case'profile':
-            setBit(false)
-            navigate('/user')
-            break;
-            case'order':
-            setBit(false)
-            navigate('/myorders')
-            break;
-            case'story':
-            setBit(false)
-            navigate('')
-            break;
-            case'home':
-            navigate('/');
-            break;     
-        }
+    const handleNavigate=(values)=>{
+      setHamburgerToggle(false);
+      const targetRoute = routeMappings[values];
+      if (targetRoute) {
+        navigate(targetRoute);
+      }
     }
   return (
     
         <div>
-        {authToken && <div onClick={()=>handleTransfer('profile')} className='flex cursor-pointer hover:bg-green-50 py-2 w-full p-4  border-solid border-black text-center text-xl'>
+        {authToken && <div onClick={()=>handleNavigate('profile')} className='flex cursor-pointer hover:bg-green-50 py-2 w-full p-4  border-solid border-black text-center text-xl'>
         <div className='pr-4 px-2'><BiSolidUser/></div>
         <div className='px-2 w-32  flex'><p >My Profile</p></div>
         
         </div>}
-        { authToken &&<div onClick={()=>handleTransfer('order')}className='flex cursor-pointer hover:bg-green-50  w-full p-4  border-solid border-black text-center text-xl'>
+        { authToken &&<div onClick={()=>handleNavigate('order')}className='flex cursor-pointer hover:bg-green-50  w-full p-4  border-solid border-black text-center text-xl'>
         <div className='pr-4 px-2' ><BsBox2Fill/></div>
         <div className='px-2 w-32  flex'> <p >My Order</p></div>
        </div>}
-        {!authToken?<div onClick={()=>handleTransfer('home')}className='flex hover:bg-green-50  w-full p-4   border-solid border-black text-center text-xl'>
-        <div className='pr-4'><BiSolidUser/></div>
-        <p >Login</p></div>:''}
+        {!authToken?<div onClick={()=>handleNavigate('home')}className='flex hover:bg-green-50  w-full p-4   border-solid border-black text-center text-xl'>
+        <div className='pr-4 px-2'><BiSolidUser/></div>
+        <div className='px-2 w-32  flex'><p >Login</p></div>
+        
+        </div>:''}
         {navigationItems.map((item, index) => (
             <NavHashLink key={index} to={item.path} onClick={handleTabClick} smooth>
                 <div key={index} onClick={()=>handleTabClick} className={`flex hover:bg-green-50   p-4 border-solid border-black text-center text-xl `}>                   

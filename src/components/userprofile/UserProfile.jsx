@@ -36,10 +36,8 @@ function UserProfile() {
     navigate('/scraprates');
   };
   const handleSubmit = async (event) => {
-    console.log("00000");
     event.preventDefault();
     const response = await dispatch(updateUser(userForm));
-    console.log("ooppp", response)
     if (response.payload.status === 200) {
       toast.success('User Details updated successfully');
       dispatch(fetchUserDetails(userid))?.then((response) => {});  
