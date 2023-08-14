@@ -50,13 +50,13 @@ function MyOrders() {
   }, [dispatch]);
   return (
     <div>
-      <div className='w-full text-center'>
+      <div className='w-full text-center '>
         <div className='w-11/12 inline-block'>
           <div className='flex justify-between'>
           <h2 className="text-2xl text-left mt-24  font-bold mb-10">Live Orders</h2>
           <p className='text-2xl text-left mt-24'>Otp for All the Order <span  className="text-2xl text-left mt-24  font-bold mb-10">{userOtp}</span></p>
           </div>        
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">         
+          <div className=" -z-10 relative overflow-x-auto shadow-md sm:rounded-lg">         
           <RequestedList requestedList={requestedList}/>
           </div>
         </div>
@@ -64,7 +64,7 @@ function MyOrders() {
       <div className='w-full text-center mb-10'>
         <div className='w-11/12 inline-block'>
           <h2 className="text-2xl  mt-24 text-center font-bold mb-10">Order History</h2>
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <div className="-z-10 relative overflow-x-auto shadow-md sm:rounded-lg">
         <CompletedList completedList={completedList}/>
         </div>
         </div>

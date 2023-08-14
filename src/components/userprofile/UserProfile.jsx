@@ -13,14 +13,19 @@ import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import Loader from '../Loader';
 import { initialUserState, updateUser } from '../../redux/features/UpdateUser';
 import verified from '../../assets/verified.png';
+import { useLocation } from 'react-router-dom';
+
+
 
 function UserProfile() {
+  const location=useLocation();
   const navigate = useNavigate();
   const userid = localStorage.getItem('userid');
   const dispatch = useDispatch();
   const { loading, data: userSlice, error } = useSelector((state) => state.userSlice);
   const userDetailsData = userSlice?.data;
   const [userForm, setUserForm] = useState(userDetailsData);
+ 
   const handleInputChange = (e) => {
     setUserForm((prevState) => ({
       ...prevState,
@@ -32,10 +37,11 @@ function UserProfile() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { payload: response } = await dispatch(updateUser(userForm));
-    if (response.status === 200) {
+    const response = await dispatch(updateUser(userForm));
+    if (response.payload.status === 200) {
       toast.success('User Details updated successfully');
-      handleRedirect();
+      dispatch(fetchUserDetails(userid))?.then((response) => {});  
+      handleRedirect();   
     }
   };
   useEffect(() => {
@@ -63,13 +69,16 @@ function UserProfile() {
   }
 
   return (
-    <div className='w-full text-center bg-gray-100'>
-      <div className='text-start pt-20 h-10'>
+    <div className='w-full text-center pt-10 bg-gray-100'>
+     
+      <div className=' absolute text-start   flex  pt-6 h-10'>
         <Backbtn />
+        
       </div>
       <div className='lg:w-10/12 md:w-10/12 w-full inline-block mt-16'>
-        <div className='flex'>
-          <div className='bg-white mt-10 z-10 w-full lg:p-10 md:p-10 sm:p-5 p-5 rounded-2xl mb-20'>
+        <div className='flex flex-col' >
+        <p className='text-3xl  font-bold'>Edit Your Profile</p>
+          <div className='bg-white mt-10  w-full lg:p-10 md:p-10 sm:p-5 p-5 rounded-2xl mb-20'>
             <div className='flex justify-between'>
               <h3 className='flex name text-2xl'>
                 {' '}
@@ -114,7 +123,7 @@ function UserProfile() {
                 </div>
                 <div>
                   <label htmlFor='email' className=''>
-                    upiId
+                    UPI-Id
                   </label>
                   <br />
                   <input type='email' className='inputCommonCss w-full mt-2' id='upiId' name='upiId' onChange={handleInputChange} value={userForm?.upiId} placeholder='Enter your UPIID' />
