@@ -7,11 +7,11 @@ import Loader from '../Loader';
 
 const useScrollToTop = () => {
   const location = useLocation();
-
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [location]);
 };
+
 
 function ScrapRates() {
   const navigate = useNavigate();

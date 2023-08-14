@@ -7,7 +7,7 @@ export default function Backbtn() {
   return (
     <div>
       <button type='submit' onClick={() => history(-1)} className=''>
-        <RiArrowGoBackFill className='my-10 mx-5 h-10 w-10' />
+        <RiArrowGoBackFill className='my-10 mx-2 h-10 w-9' />
         {' '}
       </button>
     </div>
