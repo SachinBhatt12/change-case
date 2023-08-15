@@ -116,12 +116,12 @@ export default function Navigation() {
   };
   return (
     <div>
-      <div className={ `rounded-lg bg-white fixed right-0 top-16 items-center p-2 z-50  w-56   shadow-lg md:hidden 
+      <div className={ `rounded-lg  bg-white fixed right-0 top-16 items-center p-2 z-50  w-56   shadow-lg md:hidden 
       ${hamburgerToggle?'transform translate-x-0':'translate-x-full transition-transform duration-300 ease-cubic-bezier'}`}>
          <HamburgerItems  setHamburgerToggle={setHamburgerToggle} setOpenList={setOpenList}/>
       </div>
       <header className=''>
-        <nav className='w-full flex fixed justify-between py-2 bg-white shadow-lg'>
+        <nav className='w-full flex fixed z-50 justify-between py-2 bg-white shadow-lg'>
           <img src={recyclerLogo} alt=""  className=' mt-2 w-30 h-10'/>
                <div className='flex'>
           <ul className={`hidden md:flex    justify-between`}>
