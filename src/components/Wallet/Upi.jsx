@@ -29,6 +29,14 @@ function Upi(props) {
             toast.error('Invalid transaction amount.');
             return;
         }
+
+        const transactionAmount = parseFloat(inputAmount);
+        const walletAmount = parseFloat(props.amount);
+
+        if (transactionAmount > walletAmount) {
+            toast.error('Transaction amount exceeds wallet balance.');
+            return;
+        }
         const transactionData = {
             transaction_type: "dr",
             transaction_amount: inputAmount,
@@ -86,6 +94,9 @@ function Upi(props) {
                         />
                         {inputAmount !== '' && inputAmount <= 0 && (
                             <p style={{ color: 'red' }}>Enter a valid transaction amount.</p>
+                        )}
+                        {inputAmount !== '' && parseFloat(inputAmount) > parseFloat(props.amount) && (
+                            <p style={{ color: 'red' }}>Insufficient balance.</p>
                         )}
                         <div className="flex justify-center mt-10">
                             <button
