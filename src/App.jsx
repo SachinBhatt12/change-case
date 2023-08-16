@@ -11,6 +11,7 @@ import Error from './components/Error';
 import Wallet from './components/Wallet/Wallet';
 import TransferToBank from './components/Wallet/TransferToBank';
 import MyOrders from './components/userprofile/MyOrders';
+import { Confirm } from './components/confirmation/Confirm';
 // import ProtectedRoutes from './components/Home/protectedroute/ProtectedRoutes';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/scraprates' element={<ScrapRates />} />
 
         <Route path='/pickuprequest' element={<PickupRequest />} />
+        <Route path='/confirm' element={<Confirm />} />                 //dummy
 
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />

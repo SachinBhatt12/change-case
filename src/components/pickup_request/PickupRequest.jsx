@@ -51,6 +51,7 @@ function PickupRequest() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate('/confirm')
     formData.user = localStorage.getItem('userid');  
    if(formData.pickup_request_items.length!=0 && Object.keys(errorState).length===0){
       dispatch(orderPickup(formData)).then((response) => {
