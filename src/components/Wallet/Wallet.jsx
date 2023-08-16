@@ -6,7 +6,7 @@ import Backbtn from '../BackBtn';
 import TransactionTable from './TransactionTable';
 import { getWalletDetails } from '../../redux/api';
 import Upi from './Upi';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 const redeemHeading = ['Transaction Id', 'Date', 'Time', 'Amount'];
 const creditHeading = ['Pickup Id', 'Date', 'Time', 'Amount'];
@@ -14,7 +14,8 @@ function Wallet() {
 
   const [walletAmount, setWalletAmount] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-
+  const [walletId, setWalletId] = useState(null);
+  const walletHistory = useSelector((state) => state.walletHistoryDetails);
   useEffect(() => {
     const userid = localStorage.getItem('userid');
 
@@ -25,20 +26,23 @@ function Wallet() {
       if (matchingUser) {
         const walletAmount = matchingUser.wallet_amount;
         setWalletAmount(walletAmount);
+
+        const walletId = matchingUser.id;
+        setWalletId(walletId);
       } else {
         console.log("User ID not found in response data.");
       }
     });
   }, []);
 
-  const handlePopupClick = (totalAmount,userId,orderId,upiId) => {
+  const handlePopupClick = () => {
     setShowPopup(true);    
   };
 
   return (<div className="List_container">
     {showPopup && (
       <div className="">
-        <Upi setShowPopup={setShowPopup} amount={walletAmount}
+        <Upi setShowPopup={setShowPopup} amount={walletAmount} walletId={walletId}
         />
       </div>
     )}
@@ -85,8 +89,8 @@ function Wallet() {
         </div>
       </div>
       <div className='w-full mt-10'>
-        <TransactionTable name='Redeem Transactions' heading={redeemHeading} />
-        <TransactionTable name='Credit Transactions' heading={creditHeading} />
+        <TransactionTable name='Redeem Transactions' heading={redeemHeading} walletId={walletId} transactionTypeFilter='dr'/>
+        <TransactionTable name='Credit Transactions' heading={creditHeading} walletId={walletId} transactionTypeFilter='cr'/>
       </div>
     </div>
   </div>
