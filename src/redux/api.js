@@ -26,3 +26,7 @@ export const customerDetails = (id) => API.get(`accounts/customer-pickup-details
 export const walletDetails = (data) => API.post('transactions/wallet/', data);
 export const getWalletDetails = () => API.get('transactions/wallet/');
 export const bankDetails = (FormData) => API.post('transactions/bank-details/', FormData);
+export const walletHistory = (formData) => {
+  return API.post("transactions/wallet-history/", formData);
+};
+export const getWalletHistoryDetails = (id) => API.get(`/transactions/wallet-history/get_history_by_wallet_id/?wallet_id=${id}`);
