@@ -27,6 +27,9 @@
   .getstarted{
     @apply px-44 py-2 border-2 border-blue-500 text-blue-500 hover:text-white hover:border-white hover:bg-blue-500 transition-all duration-700 transform translate-x-0 group-hover:translate-x-full
   }
+  .navigation{
+    @apply font-semibold hidden md:flex lg:flex border-2 cursor-pointer hover:text-green-600 hover:bg-white  duration-500 h-14 w-14 hover:shadow-xl border-green-600 mr-10 bg-green-50 rounded-full justify-center items-center
+  }
 }
 
 input::-webkit-outer-spin-button,
