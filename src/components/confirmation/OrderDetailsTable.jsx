@@ -3,7 +3,6 @@ import { AiFillCaretDown } from 'react-icons/ai';
 
 function OrderDetailsTable({ pickupSuccessData, UserDetails }) {
   const [detailList, setDetailList] = useState(true);
-  // const username = localStorage.getItem('username');
   return (
     <>
       <div className='w-full  mx-4 md:mx-20 lg:mx-40 xl:mx-52 2xl:mx-80 shadow-md mt-6 bg-[#F3F3F3] px-6 py-4 rounded-lg'>
@@ -14,6 +13,7 @@ function OrderDetailsTable({ pickupSuccessData, UserDetails }) {
           </p>
         </div>
         <hr className=' mb-6 bg-[#E8E8E8]' />
+
         {detailList && (
           <div className='md:px-20 md:pb-10 '>
             <div className='flex justify-between py-2'>
