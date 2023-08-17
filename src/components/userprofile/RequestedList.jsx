@@ -36,7 +36,6 @@ const RequestedList = (props) => {
               </thead>
               <tbody>
                 {
-
                   Object.entries(newRequestedList).reverse().map(([index, data], idx) => (
                     <tr key={index} className={`${
                       idx % 2 === 0 ? 'bg-white-100' : 'bg-green-50'
