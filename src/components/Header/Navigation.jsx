@@ -50,12 +50,7 @@ export default function Navigation() {
     }
   };
   useEffect(() => {
-    dispatch(fetchUserDetails(userid))?.then((response) => {
-      // setDisplayName(extractLetters(response.payload.data.name).toUpperCase());
-      const name = response.payload.data.name;
-    const extractedName = extractLetters(name).toUpperCase();
-    setDisplayName(extractedName);
-    });
+    dispatch(fetchUserDetails(userid))?.then((response) => {});
   }, [dispatch, userid]);
   const { loading, data: userData, error } = useSelector((state) => state.userSlice);
   let name;
