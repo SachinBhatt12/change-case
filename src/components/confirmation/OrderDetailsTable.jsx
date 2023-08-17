@@ -4,10 +4,8 @@ import { AiFillCaretDown } from 'react-icons/ai';
 
 function OrderDetailsTable({ pickupSuccessData ,UserDetails}) {
   const [detailList,setDetailList]=useState(true);
-  // const username = localStorage.getItem('username');
   return (
     <>
-
     <div className='w-full  mx-4 md:mx-20 lg:mx-40 xl:mx-52 2xl:mx-80 shadow-md mt-6 bg-[#F3F3F3] px-6 py-4 rounded-lg'>
     <div>
     <p className='text-2xl md:px-4 py-4 md:pb-4 text-left font-bold cursor-pointer' onClick={()=>setDetailList(!detailList)}><AiFillCaretDown className={`${detailList===false?'-rotate-90':''} absolute`}/><span className='ml-8 text-2xl'>Order Details</span></p>
@@ -19,12 +17,10 @@ function OrderDetailsTable({ pickupSuccessData ,UserDetails}) {
       <div><p className=' text-[#474747] text-xl font-medium'>Order Id</p></div>
       <div><p className='text-[#8A8A8A] text-xl'>{pickupSuccessData?.id}</p></div>
     </div>
-
     <div className='flex justify-between py-2'>
       <div><p className='text-[#474747] text-xl font-medium'>Name</p></div>
       <div><p className='text-[#8A8A8A] text-xl'>{UserDetails.name}</p></div>
     </div>
-
     <div className='flex  justify-between items-center py-2'>
       <div className=''><p className='text-left text-xl text-[#474747] font-medium'>Pickup Address</p></div>
       <div className='flex flex-wrap '>
