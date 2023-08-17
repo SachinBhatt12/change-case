@@ -69,14 +69,14 @@ function TimeSlots({ onTimeChange, selectedDate }) {
       <div className='grid grid-cols-2 gap-x-4 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4 lg:gap-x-6'>
         {timeSlotArray.map((slot, index) => (
           <div
-          onClick={() => handleTimeChange(slot)}
+            onClick={() => handleTimeChange(slot)}
             className={`w-30 h-12 md:w-40 md:h-12 my-2 p-1 cursor-pointer rounded-3xl flex justify-center ${
               selectedTime === slot ? ' bg-[#E3FFF4] border border-solid border-[#27AE76]' : 'bg-slate-200'
             }`}
             key={index}
           >
-            <div >
-              <button type='button' className='p-1' >
+            <div>
+              <button type='button' className='p-1'>
                 {slot}
               </button>
             </div>

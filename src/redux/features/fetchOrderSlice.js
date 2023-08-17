@@ -1,16 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { orderList } from "../api";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { orderList } from '../api';
 
 export const fetchOrderList = createAsyncThunk(
-  "fetchOrders/fetch",
+  'fetchOrders/fetch',
   async () => {
     const response = await orderList();
     return response.data;
-  }
+  },
 );
 
 export const orderListSlice = createSlice({
-  name: "orderDetails",
+  name: 'orderDetails',
   initialState: { data: null, loading: false, error: null },
   reducers: {},
   extraReducers: {

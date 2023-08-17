@@ -40,28 +40,26 @@ function SignInForm({ handleNewUser }) {
   };
   const isFormValid = signInData.phone_number.length === 10;
   return (
-    <div className="relative w-full">
+    <div className='relative w-full'>
       {showPopup && (
-
         <div className=''>
-          <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} state="login" />
-
+          <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} state='login' />
         </div>
       )}
-      <h3 className="text-3xl font-bold text-center text-green-500">Login</h3>
-      <div className="pt-10 relative w-full" id="login">
+      <h3 className='text-3xl font-bold text-center text-green-500'>Login</h3>
+      <div className='pt-10 relative w-full' id='login'>
         <form onSubmit={(e) => handleSubmit(e, signInData)}>
-          <div className="py-2 ">
-            <input type="number" className="inputCommonCss px-2 w-full" maxLength={10} name="phone_number" value={signInData.phone_number} onChange={handleInputChange} placeholder="Mobile Number" />
+          <div className='py-2 '>
+            <input type='number' className='inputCommonCss px-2 w-full' maxLength={10} name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
           </div>
-          <div className="py-5 justify-end flex">
-            <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type="submit" disabled={!isFormValid}>
+          <div className='py-5 justify-end flex'>
+            <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>
               Get OTP
             </button>
           </div>
         </form>
-        <div className="flex justify-end">
-          <button type="submit" onClick={() => handleNewUser(false)} className="text-blue-600 py-5 font-semibold">
+        <div className='flex justify-end'>
+          <button type='submit' onClick={() => handleNewUser(false)} className='text-blue-600 py-5 font-semibold'>
             Sign Up
           </button>
         </div>

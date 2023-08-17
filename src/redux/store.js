@@ -3,7 +3,7 @@ import AuthReducer from './features/authSlice';
 import { scrapSlice } from './features/scraprateSlice';
 import { userSlice } from './features/userDetailsSlice';
 import { customerDetailsSlice } from './features/customerorderslice';
-import {orderListSlice} from './features/fetchOrderSlice';
+import { orderListSlice } from './features/fetchOrderSlice';
 import { walletHistorySlice } from './features/walletHistorySlice';
 import { getWalletHistorySlice } from './features/getWalletHistorySlice';
 

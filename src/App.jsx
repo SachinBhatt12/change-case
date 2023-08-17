@@ -21,7 +21,6 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/scraprates' element={<ScrapRates />} />
         <Route path='/pickuprequest' element={<PickupRequest />} />
-        {/* <Route path='/confirm' element={<ConfirmPickup />} />                 //dummy */}
         <Route path='/confirmpickup' element={<ConfirmPickup />} />
         <Route path='/user' element={<UserProfile />} />
         <Route path='/wallet' element={<Wallet />} />

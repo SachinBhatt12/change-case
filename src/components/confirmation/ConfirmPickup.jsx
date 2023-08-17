@@ -65,7 +65,6 @@ export function ConfirmPickup() {
 
           {itemList
             && filteredData?.map((item, index) => (
-              
               <div className=' flex mx-4 md:mx-20 lg:mx-40 xl:mx-52 2xl:mx-80 border-b  bg-[#F3F3F3] px-2 py-2 rounded-md'>
                 <hr className='mb-10 mx-6' />
                 <div className='rounded-sm bg-white px-1 py-1' key={index}>
