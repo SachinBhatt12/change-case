@@ -48,21 +48,21 @@ function DateOfPickup({ handleDateChange }) {
 
   return (
     <div className='flex '>
-    <div className='flex flex-wrap pl-8 md:pl-0 '>
-      {dates.map((date, index) => (
-        <div
-          key={index}
-          onClick={() => handleDateClick(date.completeDate)}
-          onKeyDown={(event) => handleKeyDown(event, date.completeDate)}
-          tabIndex={0} // Make the element focusable
-          className={`w-20 border-1 cursor-pointer rounded-lg my-3 mx-2 p-4 ${selectedDate === date.completeDate ? 'bg-[#E3FFF4] border border-solid border-[#27AE76]' : 'bg-slate-200'}`}
-          role='button' // Indicate the element as a button
-        >
-          <h4 className='text-center font-semibold'>{date.weekday}</h4>
-          <h4 className='text-center'>{date.dateValue}</h4>
-        </div>
-      ))}
-    </div>
+      <div className='flex flex-wrap pl-8 md:pl-0 '>
+        {dates.map((date, index) => (
+          <div
+            key={index}
+            onClick={() => handleDateClick(date.completeDate)}
+            onKeyDown={(event) => handleKeyDown(event, date.completeDate)}
+            tabIndex={0} // Make the element focusable
+            className={`w-20 border-1 cursor-pointer rounded-lg my-3 mx-2 p-4 ${selectedDate === date.completeDate ? 'bg-[#E3FFF4] border border-solid border-[#27AE76]' : 'bg-slate-200'}`}
+            role='button' // Indicate the element as a button
+          >
+            <h4 className='text-center font-semibold'>{date.weekday}</h4>
+            <h4 className='text-center'>{date.dateValue}</h4>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -42,37 +42,35 @@ function SignupForm({ handleNewUser }) {
   };
   const isFormValid = email && phone_number.length === 10;
   return (
-    <>
-      <div>
-        {showPopup && (
-          <div className=''>
-            <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup} state="signup" />
-          </div>
-        )}
-        <div className='relative h-64'>
-          <h1 className='text-3xl font-bold text-green-500'>Register User</h1>
-          <form className='pt-3' onSubmit={(e) => handleSubmit(e, FormData)}>
-            <div className=' pt-4'>
-              <input className='inputCommonCss w-full' type='email' name='email' value={FormData.email} onChange={handleInputChange} placeholder='Enter your Email Id' />
-            </div>
-            <div className='py-4'>
-              <input className='inputCommonCss w-full' type='Number' name='phone_number' value={FormData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
-            </div>
-
-            <div className='py-4 flex justify-end'>
-              <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className='flex justify-end'>
-          <button type='submit' className='text-blue-600 font-medium' onClick={() => handleNewUser(true)}>
-            Already a User
-          </button>
-        </div>
+    <div>
+      {showPopup && (
+      <div className=''>
+        <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup} state='signup' />
       </div>
-    </>
+      )}
+      <div className='relative h-64'>
+        <h1 className='text-3xl font-bold text-green-500'>Register User</h1>
+        <form className='pt-3' onSubmit={(e) => handleSubmit(e, FormData)}>
+          <div className=' pt-4'>
+            <input className='inputCommonCss w-full' type='email' name='email' value={FormData.email} onChange={handleInputChange} placeholder='Enter your Email Id' />
+          </div>
+          <div className='py-4'>
+            <input className='inputCommonCss w-full' type='Number' name='phone_number' value={FormData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
+          </div>
+
+          <div className='py-4 flex justify-end'>
+            <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className='flex justify-end'>
+        <button type='submit' className='text-blue-600 font-medium' onClick={() => handleNewUser(true)}>
+          Already a User
+        </button>
+      </div>
+    </div>
   );
 }
 export default SignupForm;

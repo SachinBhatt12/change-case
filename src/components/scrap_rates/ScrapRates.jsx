@@ -11,11 +11,9 @@ const useScrollToTop = () => {
     window.scrollTo({ top: 0 });
   }, [location]);
 };
-
 function ScrapRates() {
   const navigate = useNavigate();
   useScrollToTop();
-
   const authtoken = localStorage.getItem('AuthToken');
   const dispatch = useDispatch();
   const { loading, data: scrapData, error } = useSelector((state) => state.scrapDetails);
@@ -24,13 +22,10 @@ function ScrapRates() {
   } else if (error) {
     <Error />;
   }
-
   const scrapRateData = scrapData?.data;
-
   const handleOnClick = (item) => {
     navigate('/pickuprequest', { state: { pickupData: item } });
   };
-
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
     dispatch(fetchScrap())?.then((response) => {});
@@ -54,7 +49,6 @@ function ScrapRates() {
       </div>
     );
   };
-
   return (
     <div className='w-full text-center'>
       <div className='w-11/12 mx-auto pt-28 px-4'>

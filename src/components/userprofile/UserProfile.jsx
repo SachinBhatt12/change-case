@@ -5,7 +5,7 @@ import { FiEdit3 } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 import { BiWalletAlt } from 'react-icons/bi';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Backbtn from '../BackBtn';
@@ -13,19 +13,16 @@ import { fetchUserDetails } from '../../redux/features/userDetailsSlice';
 import Loader from '../Loader';
 import { initialUserState, updateUser } from '../../redux/features/UpdateUser';
 import verified from '../../assets/verified.png';
-import { useLocation } from 'react-router-dom';
-
-
 
 function UserProfile() {
-  const location=useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
   const userid = localStorage.getItem('userid');
   const dispatch = useDispatch();
   const { loading, data: userSlice, error } = useSelector((state) => state.userSlice);
   const userDetailsData = userSlice?.data;
   const [userForm, setUserForm] = useState(userDetailsData);
- 
+
   const handleInputChange = (e) => {
     setUserForm((prevState) => ({
       ...prevState,
@@ -40,8 +37,8 @@ function UserProfile() {
     const response = await dispatch(updateUser(userForm));
     if (response.payload.status === 200) {
       toast.success('User Details updated successfully');
-      dispatch(fetchUserDetails(userid))?.then((response) => {});  
-      handleRedirect();   
+      dispatch(fetchUserDetails(userid))?.then((response) => {});
+      handleRedirect();
     }
   };
   useEffect(() => {
@@ -70,14 +67,12 @@ function UserProfile() {
 
   return (
     <div className='w-full text-center pt-10 bg-gray-100'>
-     
       <div className=' absolute text-start   flex  pt-6 h-10'>
         <Backbtn />
-        
       </div>
       <div className='lg:w-10/12 md:w-10/12 w-full inline-block mt-16'>
-        <div className='flex flex-col' >
-        <p className='text-3xl  font-bold'>Edit Your Profile</p>
+        <div className='flex flex-col'>
+          <p className='text-3xl  font-bold'>Edit Your Profile</p>
           <div className='bg-white mt-10  w-full lg:p-10 md:p-10 sm:p-5 p-5 rounded-2xl mb-20'>
             <div className='flex justify-between'>
               <h3 className='flex name text-2xl'>

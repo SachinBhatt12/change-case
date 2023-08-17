@@ -12,7 +12,7 @@ function Home() {
   const [loginForm, setLoginForm] = useState(false);
   return (
     <div className='w-full grid-cols-1 md:grid-cols-2 '>
-       <HeroBar loginForm={loginForm} setLoginForm={setLoginForm} />
+      <HeroBar loginForm={loginForm} setLoginForm={setLoginForm} />
       <div className='w-full'>
         <HowWeWork />
         <WhyWeAreBest />
