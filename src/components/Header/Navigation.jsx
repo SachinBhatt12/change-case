@@ -53,7 +53,7 @@ export default function Navigation() {
   }, [dispatch, userid]);
   const { loading, data: userData, error } = useSelector((state) => state.userSlice);
   let name;
-  if (userData) {
+  if (userData && userData?.data?.name) {
     name = extractLetters(userData?.data?.name).toUpperCase();
   }
   const toggleMenu = () => {
