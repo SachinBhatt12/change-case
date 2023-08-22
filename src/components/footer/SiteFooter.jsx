@@ -1,6 +1,6 @@
 import React from 'react';
 import footerimg from '../../assets/footer illlustration.svg';
-import recyclerLogo from '../../assets/dark_theme_logo.svg';
+import recyclerLogo from '../../assets/KabadiJeeDarkTheme.png';
 import SocialHandle from './SocialHandle';
 import Links from './Links';
 import ContactUs from './ContactUs';
@@ -32,7 +32,6 @@ function SiteFooter() {
           <span className='text-xl'>&copy;</span>
           {' '}
           2023, All Rights are Reserved
-          {' '}
           <span className='hidden md:inline'>with Pando Indian Software Consultant</span>
         </p>
         <div className='p-5 w-auto'>
