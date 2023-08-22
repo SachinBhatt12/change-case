@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiFillCaretDown } from 'react-icons/ai';
 import ConfirmPick from '../../assets/confirm_pickup.png';
@@ -23,6 +23,7 @@ export function ConfirmPickup() {
     });
   }, []);
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     dispatch(fetchScrap())?.then((response) => {});
   }, []);
   const { loading, data: scrapData, error } = useSelector((state) => state.scrapDetails);
@@ -43,9 +44,11 @@ export function ConfirmPickup() {
             <p className=' py-5 text-left text-xl'>Thankyou, for Choosing Kabadijee </p>
           </div>
           <div className='text-left px-2 pb-10'>
-            <NavLink to='/'>
-              <button className='border-2 border-green-600 px-2 py-2 rounded-lg text-green-600'>Go to Home page</button>
-            </NavLink>
+
+            <button type='submit' className='border-2 border-green-600 px-2 py-2 rounded-lg text-green-600'>
+              Go to Home page
+            </button>
+
           </div>
         </div>
         <div className='flex justify-center  '>
