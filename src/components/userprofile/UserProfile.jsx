@@ -101,11 +101,14 @@ function UserProfile() {
                 </div>
 
                 <div>
+                  <div className='flex h-2'>
                   <label htmlFor='email' className=''>
                     Email Id
                   </label>
+                  <MdVerified className='mt-1 ml-2 text-green-600' />
+                </div>
                   <br />
-                  <input type='email' className='inputCommonCss w-full mt-2' id='email' name='email' onChange={handleInputChange} value={userForm?.email} placeholder='Enter your email' />
+                  <input type='email' className='inputCommonCss w-full' id='email' name='email' onChange={handleInputChange} value={userForm?.email} placeholder='Enter your email' disabled />
                 </div>
 
                 <div>
