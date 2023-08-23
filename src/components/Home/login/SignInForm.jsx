@@ -5,7 +5,7 @@ import OtpPopUpForm from '../signup/OtpPopUpForm';
 import { loginUser } from '../../../redux/features/authSlice';
 
 const initialLoginState = {
-  phone_number: '',
+  email: '',
 };
 function SignInForm({ handleNewUser }) {
   const [signInData, setSignInData] = useState(initialLoginState);
@@ -13,7 +13,7 @@ function SignInForm({ handleNewUser }) {
   const [id, setId] = useState('');
 
   // eslint-disable-next-line camelcase
-  const { phone_number } = signInData;
+  const { email } = signInData;
   const dispatch = useDispatch();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -24,10 +24,10 @@ function SignInForm({ handleNewUser }) {
     event.preventDefault();
     try {
       // eslint-disable-next-line camelcase
-      if (phone_number) {
+      if (email) {
         const { payload: response } = await dispatch(loginUser({ signInData }));
         if (response?.data?.status !== 200) {
-          toast.error(`${response.data.phone_number}`);
+          toast.error(`${response.data.email}`);
         } else {
           toast.success('OTP Sent Successfully');
           setId(response?.data?.id);
@@ -35,22 +35,22 @@ function SignInForm({ handleNewUser }) {
         }
       }
     } catch (e) {
-      toast.warn('Check Credientials Mobile Number is not registered');
+      toast.warn('Check Credientials email is not registered');
     }
   };
-  const isFormValid = signInData.phone_number.length === 10;
+  const isFormValid = signInData.email
   return (
     <div className='relative w-full'>
       {showPopup && (
         <div className=''>
-          <OtpPopUpForm mobile={signInData.phone_number} id={id} setShowPopup={setShowPopup} state='login' />
+          <OtpPopUpForm mobile={signInData.email} id={id} setShowPopup={setShowPopup} state='login' />
         </div>
       )}
       <h3 className='text-3xl font-bold text-center text-green-500'>Login</h3>
       <div className='pt-10 relative w-full' id='login'>
         <form onSubmit={(e) => handleSubmit(e, signInData)}>
           <div className='py-2 '>
-            <input type='number' className='inputCommonCss px-2 w-full' maxLength={10} name='phone_number' value={signInData.phone_number} onChange={handleInputChange} placeholder='Mobile Number' />
+            <input type='email' className='inputCommonCss px-2 w-full' name='email' value={signInData.email} onChange={handleInputChange} placeholder='Enter your email' />
           </div>
           <div className='py-5 justify-end flex'>
             <button className={isFormValid ? 'primaryButton w-full' : 'disabledButton w-full'} type='submit' disabled={!isFormValid}>

@@ -102,7 +102,7 @@ function OtpPopUpForm(props) {
           </p>
         </div>
         <h3 className='py-3 text-lg'>
-          Otp sent to phone number +91
+          Otp sent to the
           {props.mobile}
         </h3>
         <form onSubmit={() => handleSubmit(props.id, otp.join(''))}>

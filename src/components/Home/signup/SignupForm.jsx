@@ -45,7 +45,7 @@ function SignupForm({ handleNewUser }) {
     <div>
       {showPopup && (
       <div className=''>
-        <OtpPopUpForm mobile={FormData.phone_number} id={id} setShowPopup={setShowPopup} state='signup' />
+        <OtpPopUpForm mobile={FormData.email} id={id} setShowPopup={setShowPopup} state='signup' />
       </div>
       )}
       <div className='relative h-64'>
