@@ -2,7 +2,7 @@ import React from 'react';
 
 function OurStory() {
   return (
-    <div className='w-full text-center bg-[#DCFFF166] mt-10' id='ourstory'>
+    <div className='w-full text-center bg-[#DCFFF166]' id='ourstory'>
       <div className='w-11/12 inline-block'>
         <h1 className='text-4xl font-medium mt-10'>Our Story</h1>
         <p className='w-11/12 m-auto p-2 text-center mt-5 mb-10'>
