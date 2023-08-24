@@ -10,12 +10,12 @@ function SocialHandle() {
       <div className='text-sm lg:text-lg'>
         <h1> Follow us on : </h1>
       </div>
-      <NavLink to='https://www.linkedin.com/company/pando-india-software-consultants/'>
+      <NavLink to='https://www.linkedin.com/showcase/kabadi-jee/about/?viewAsMember=true'>
         <div className='ml-2 cursor-pointer'>
           <FaLinkedin />
         </div>
       </NavLink>
-      <NavLink to='https://www.facebook.com/people/Pando-India-Software-Consultants/100084361683435/'>
+      <NavLink to='https://www.facebook.com/people/Kabadi-Jee/61550222625098/?is_tour_dismissed=true'>
         <div className='ml-2 cursor-pointer'>
           <FaFacebook />
         </div>

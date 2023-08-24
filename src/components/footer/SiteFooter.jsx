@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import footerimg from '../../assets/footer illlustration.svg';
 import recyclerLogo from '../../assets/KabadiJeeDarkTheme.png';
 import SocialHandle from './SocialHandle';
@@ -10,7 +12,10 @@ function SiteFooter() {
     <div className='bg-[#606060] w-full'>
       <div className='p-5 grid grid-cols-2 text-start sm:grid-cols-2 lg:grid-cols-3 '>
         <div className='w-[130px] mt-5 m-auto mb-10 sm:w-auto sm:mb-5 md:mb-9 md:ml-9 lg:ml-5 flex flex-col justify-center'>
-          <img src={recyclerLogo} alt='companyLogo' className='m-auto text-white w-40 h-12 mb-5 sm:mb-0 sm:ml-[20px] xl:ml-' />
+          <NavHashLink to='/#herobar'>
+            <img src={recyclerLogo} alt='companyLogo' className='m-auto text-white w-52  mb-5 sm:mb-0 sm:ml-[20px] xl:ml-' />
+          </NavHashLink>
+
           <address className='py-5 text-white text-sm md:text-lg'>
             Noida Sector-62, Pin-201301
             <br />
