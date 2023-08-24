@@ -146,7 +146,7 @@ export default function Navigation() {
                 <p className=' px-2  text-xl'>{name}</p>
               </div>
             ) : (
-              <NavHashLink to='#herobar' smooth>
+              <NavHashLink to='/#herobar' smooth>
                 <button type='submit' className='border-2 my-1 mx-2 p-1 md:px-4 md:py-2 md:flex rounded-lg hidden items-center' onClick={handleLogin}>
                   <BiUserCircle className='mr-2 ' size={24} />
                   Login
