@@ -57,7 +57,7 @@ function ScrapRates() {
           {scrapRateData?.map((item, index) => (
             <div key={index} className='card justify-center p-4 bg-white rounded-md border-2 shadow-xl bg-center'>
               <div className=''>
-                <img src={item.image_url} className='' alt={item?.item_name} />
+                <img src={item.image_url} className='h-48 w-76' alt={item?.item_name} />
               </div>
               <div className='name text-center'>
                 <h3 className='font-bold text-xl mt-2'>{item?.item_name}</h3>
