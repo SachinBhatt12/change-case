@@ -64,10 +64,8 @@ function ScrapRates() {
                 <div className='name text-center'>
                   <h3 className='font-bold text-xl mt-2'>{item?.item_name}</h3>
                   <p className='mt-2'>
-                    Price:
+                    Price: Rs
                     {item?.rate}
-                    {' '}
-                    Rs
                   </p>
                 </div>
               </div>
