@@ -17,11 +17,11 @@ function ServiceForHouseHold() {
               <div className='w-full text-center'>
                 <div className='lg:w-11/12 md:w-10/12 sm:w-7/12 inline-block'>
                   <img src={HouseholdElement} alt='household element' className='absolute right-0' />
-                  <h2 className='sm:mt-28 mt-28 lg:mt-4 text-center text-4xl lg:w-11/12 mb-5 md:text-end text-white font-medium'>HouseHolds</h2>
-                  <p className='text-center lg:w-11/12 mb-5 text-end text-white'>
+                  <h2 className='sm:mt-28 mt-28 lg:mt-4 text-center text-4xl lg:w-11/12 mb-5  text-white font-medium'>HouseHolds</h2>
+                  <p className='text-center lg:w-11/12 mb-5  text-white'>
                     Any item that is left over or wasted after doing routine domestic tasks is referred to as household scrap. This can include outdated clothing, damaged furniture, discarded
-                    electronics, and other non-essential household items. It's crucial to properly dispose of household scrap in order to protect the environment and maintain public safety and
-                    health. We " Kabadi Jee ” will help you in minimizing your household scrap.
+                    electronics, and other non-essential household items. It's crucial to properly dispose of household scrap in order to protect the environment and maintain public safety and health.
+                    We " Kabadi Jee ” will help you in minimizing your household scrap.
                   </p>
                 </div>
               </div>

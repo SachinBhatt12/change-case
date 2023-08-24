@@ -123,7 +123,7 @@ export default function Navigation() {
       <header className=''>
         <nav className='w-full flex fixed z-50 justify-between py-2 bg-white shadow-lg'>
           <NavHashLink to='/#herobar'>
-            <img src={recyclerLogo} alt='' className=' mt-2 md:mx-2 w-30 h-10' />
+            <img src={recyclerLogo} alt='' className=' mt-2 mx-4 md:mx-2 w-30 h-10' />
           </NavHashLink>
 
           <div className='flex'>
@@ -131,7 +131,7 @@ export default function Navigation() {
               {navigationItems.map((item, index) => (
                 <div
                   key={index}
-                  className={`text-sm hover:bg-green-50 rounded-md  md:text-lg md:px-[15px] sm:text-sm py-3 px-4 items-center ${
+                  className={`text-sm hover:bg-green-50 rounded-md  md:text-lg md:px-[10px] sm:text-sm py-3 px-4 items-center ${
                     activeTab === index ? 'active border-b-4 text-green-500 border-green-500' : ''
                   }`}
                 >

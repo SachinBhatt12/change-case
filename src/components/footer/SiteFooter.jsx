@@ -10,7 +10,7 @@ import ContactUs from './ContactUs';
 function SiteFooter() {
   return (
     <div className='bg-[#606060] w-full'>
-      <div className='p-5 grid grid-cols-2 text-start sm:grid-cols-2 lg:grid-cols-3 '>
+      <div className='p-2 ml-2 grid grid-cols-2 text-start sm:grid-cols-2 lg:grid-cols-3 '>
         <div className='w-[130px] mt-5 m-auto mb-10 sm:w-auto sm:mb-5 md:mb-9 md:ml-9 lg:ml-5 flex flex-col justify-center'>
           <NavHashLink to='/#herobar'>
             <img src={recyclerLogo} alt='companyLogo' className='m-auto text-white w-52  mb-5 sm:mb-0 sm:ml-[20px] xl:ml-' />
@@ -39,7 +39,7 @@ function SiteFooter() {
           2023, All Rights are Reserved
           <span className='hidden md:inline'>with Pando Indian Software Consultant</span>
         </p>
-        <div className='p-5 w-auto'>
+        <div className='p-2 w-auto'>
           <SocialHandle />
         </div>
       </div>
