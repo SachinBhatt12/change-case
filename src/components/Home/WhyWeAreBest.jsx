@@ -26,7 +26,7 @@ function WhyWeAreBest() {
           </div>
           <div className='w-full md:w-10/12 lg:w-10/12'>
             <img src={element} alt='' className='float-right' />
-            <h1 className='w-full text-start text-4xl font-semibold'>Why we are the best</h1>
+            <h1 className='w-full text-center md:text-start text-4xl font-semibold '>Why we are the best</h1>
             <p className='py-5 text-xl md:w-full text-start'>
               Kabadi Jee removes junk from your home without any difficulty. We add a technological example to get rid of scrap in exchange for valuable money. The Kabadi Jee offers its customers an
               environmental report detailing their ecological impact in numbers once the discarded materials are dropped off at the appropriate recycling facilities.
