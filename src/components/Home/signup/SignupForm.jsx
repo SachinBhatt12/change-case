@@ -33,7 +33,8 @@ function SignupForm({ handleNewUser }) {
           setId(response?.data?.id);
           setShowPopup(true);
         } else {
-          toast.error(`${response.data.phone_number}`);
+          if(response.data.phone_number){ toast.error(`${response.data.phone_number}`);}
+          if(response.data.email){toast.error(`${response.data.email}`);}   
         }
       }
     } catch (e) {

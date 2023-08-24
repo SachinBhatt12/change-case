@@ -30,18 +30,18 @@ function UserInfo() {
   }
   return (
     <div className='flx grid grid-cols-1 md:grid-cols-2 gap-4'>
-      <label htmlFor='name' className='font-semibold text-xl'>
-        Name:
+      <label htmlFor='name' className=''>
+        <span className='font-semibold text-xl'>Name:</span>
         {' '}
-        <span>{userDetailsData?.name}</span>
+        <span className=''>{userDetailsData?.name}</span>
       </label>
-      <label htmlFor='email' className='font-semibold text-xl'>
-        Email-Id:
+      <label htmlFor='email' className=''>
+        <span className='font-semibold text-xl'>Email-Id:</span>
         {' '}
         <span className=''>{userDetailsData?.email}</span>
       </label>
-      <label htmlFor='mobile' className='font-semibold text-xl'>
-        Mobile Number:
+      <label htmlFor='mobile'>
+        <span className='font-semibold text-xl'> Mobile Number:</span>
         {' '}
         <span>{userDetailsData?.phone_number}</span>
       </label>

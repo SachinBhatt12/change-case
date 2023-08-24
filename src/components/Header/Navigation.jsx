@@ -122,7 +122,10 @@ export default function Navigation() {
       </div>
       <header className=''>
         <nav className='w-full flex fixed z-50 justify-between py-2 bg-white shadow-lg'>
-          <img src={recyclerLogo} alt='' className=' mt-2 md:mx-2 w-30 h-10' />
+          <NavHashLink to='/#herobar'>
+            <img src={recyclerLogo} alt='' className=' mt-2 md:mx-2 w-30 h-10' />
+          </NavHashLink>
+
           <div className='flex'>
             <ul className='hidden md:flex justify-between'>
               {navigationItems.map((item, index) => (

@@ -13,7 +13,7 @@ function OtpPopUpForm(props) {
   const [activeOtpIndex, setActiveOtpIndex] = useState(0);
   // const dispatch = useDispatch();
 
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(3);
   const inputRef = useRef(null);
 
   const handleChange = (event) => {
@@ -96,13 +96,14 @@ function OtpPopUpForm(props) {
         <MdOutlineCancel className='absolute top-0 right-0 cursor-pointer' size={32} onClick={() => props.setShowPopup(false)} />
         <div className='flex'>
           <h1 className='mx-auto text-xl font-bold justify-center'>Otp Verification</h1>
-          <p className='ml-auto'>
-            Attempts Left
+          <p className='ml-auto mt-1'>
+            <span className='px-1'>Attempts Left</span>
             {count}
           </p>
         </div>
         <h3 className='py-3 text-lg'>
-          Otp sent to the
+          OTP has sent to
+          <br />
           {props.mobile}
         </h3>
         <form onSubmit={() => handleSubmit(props.id, otp.join(''))}>
@@ -123,8 +124,8 @@ function OtpPopUpForm(props) {
           </div>
         </form>
         <div className='flex justify-between my-3'>
-          <p className='text-gray-500'>The Otp is valid for 15 minutes</p>
-          <button type='submit' className='text-blue-600 border-2 p-0.5' onClick={() => ResendOtp(props.id)}>
+          <p className='text-gray-500 px-1'>The Otp is valid for 15 minutes</p>
+          <button type='submit' className='text-blue-500 hover:text-blue-700 font-semibold ' onClick={() => ResendOtp(props.id)}>
             Resend Otp
           </button>
         </div>
