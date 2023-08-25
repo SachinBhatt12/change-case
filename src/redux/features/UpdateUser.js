@@ -12,7 +12,8 @@ export const initialUserState = {
 
 export const updateUser = createAsyncThunk('user/update', async (FormData, { rejectWithValue }) => {
   try {
-    const response = await api.updateUserApi(FormData);
+    const authToken = localStorage.getItem('AuthToken');
+    const response = await api.updateUserApi(authToken, FormData);
 
     return response;
   } catch (e) {
