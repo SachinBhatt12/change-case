@@ -58,6 +58,10 @@ function PickupRequest() {
         if (pickupResponseData?.status === 201) {
           toast.success('Pickup Request Added Successfully');
           navigate('/confirmpickup', { state: { pickupData: pickupResponseData?.data } });
+        } else if (formData.pickup_date === '') {
+          toast.error('Please Enter a valid date');
+        } else if (formData.pickup_time === '') {
+          toast.error('Please Enter a valid Time');
         } else {
           toast.error('Something went wrong');
         }
