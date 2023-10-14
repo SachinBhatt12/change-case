@@ -49,7 +49,9 @@ export default function Navigation() {
     }
   };
   useEffect(() => {
-    dispatch(fetchUserDetails(userid))?.then((response) => {});
+    if (userid) {
+      dispatch(fetchUserDetails(userid))?.then((response) => {});
+    }
   }, [dispatch, userid]);
   const { loading, data: userData, error } = useSelector((state) => state.userSlice);
   let name;
