@@ -23,10 +23,9 @@ function PickupRequest() {
   const navigate = useNavigate();
   const receivedData = location.state;
   const { data: scrapData } = useSelector((state) => state.scrapDetails);
-  const checkboxData = scrapData?.data;
+  const checkboxData = scrapData?.data?.data;
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-
   useEffect(() => {
     const initiallySelectedItem = checkboxData?.find((item) => item.id === receivedData?.pickupData.id);
     if (initiallySelectedItem) {

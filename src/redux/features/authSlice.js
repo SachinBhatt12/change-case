@@ -29,7 +29,6 @@ export const regenerateOtp = createAsyncThunk('user/regenerateOtp', ({ id }, { r
 export const loginUser = createAsyncThunk('/accounts/login', async ({ signInData }, { rejectWithValue }) => {
   try {
     const response = await api.login(signInData);
-    console.log(response)
     const { headers } = response;
     const serializedHeaders = {
       'content-length': headers['content-length'],
