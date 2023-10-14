@@ -55,7 +55,7 @@ function ScrapRates() {
       <div className='w-11/12 mx-auto pt-28 px-4'>
         <h1 className='text-center text-5xl text-[#3E3E3E] '>Scrap Rates</h1>
         <div className='pt-20 mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 justify-items-center'>
-          {scrapRateData?.map((item, index) => (
+          {scrapRateData?.data?.map((item, index) => (
             <div key={index} className=' w-72 sm:w-64 md:w-72 lg:w-72 justify-center p-4 my-4 bg-white rounded-md border-2 shadow-xl bg-center'>
               <div className='h-80'>
                 <div className='flex justify-center align-middle'>

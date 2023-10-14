@@ -30,7 +30,7 @@ function SignInForm({ handleNewUser }) {
           toast.error(`${response.data.email}`);
         } else {
           toast.success('OTP Sent Successfully');
-          setId(response?.data?.id);
+          setId(response?.data?.data?.id);
           setShowPopup(true);
         }
       }
@@ -38,7 +38,7 @@ function SignInForm({ handleNewUser }) {
       toast.warn('Check Credientials email is not registered');
     }
   };
-  const isFormValid = signInData.email
+  const isFormValid = signInData.email;
   return (
     <div className='relative w-full'>
       {showPopup && (

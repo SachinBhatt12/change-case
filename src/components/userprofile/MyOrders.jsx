@@ -28,7 +28,8 @@ function MyOrders() {
   } else if (error) {
     <Error />;
   }
-  const myItem = orderData?.filter((item) => item.user_id == userid);
+
+  const myItem = orderData?.data?.filter((item) => item.user_id.toString() === userid);
   const requestedList = [];
   const completedList = [];
   if (myItem) {
