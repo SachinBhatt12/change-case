@@ -69,13 +69,13 @@ export function Privacy() {
             </p>
             <p className='py-3'>Any Personal Data provided by the user will be retained by us and may be accessible to our employees, authorized Service Providers, and third parties.</p>
             <p className='py-3'>
-              To facilitate user transactions and assess their creditworthiness, we may share the user&39;s Account Information with banks. In the course of this assessment, it may be necessary to
+              To facilitate user transactions and assess their creditworthiness, we may share the user&apos;s Account Information with banks. In the course of this assessment, it may be necessary to
               make the Account Information available to banks or credit agencies.
             </p>
             <p className='py-3'>
               We have established security controls and associated procedures to safeguard your Account Information and other Personal Data from potential malicious users or intrusions. These controls
-              offer a reasonable level of assurance that essential security requirements are in place. It&39;s important to note that these controls do not guarantee the complete elimination of risks
-              related to data theft, data loss, or data misuse.
+              offer a reasonable level of assurance that essential security requirements are in place. It&apos;s important to note that these controls do not guarantee the complete elimination of
+              risks related to data theft, data loss, or data misuse.
             </p>
           </div>
         </div>
@@ -83,10 +83,10 @@ export function Privacy() {
           <h4 className='text-xl py-3 font-semibold'>Cookies</h4>
           <div className='data'>
             <p className='py-3'>
-              We utilize &#34;cookies&#34; to store specific user information and monitor their visits to the Site. A &quot;cookie&quot; is a small piece of data sent to the user&39;s browser and
-              stored on their system&39;s hard drive. Cookies are only sent to the user&39;s system&39;s hard drive if they access the site from that particular computer. Unless the user deactivates
-              or deletes the cookie, each time they use the same computer to access the Site, our web servers will be alerted to their visit, allowing us to track their visit and usage patterns. In
-              general, we use cookies to identify users and to enable the following:
+              We utilize &#34;cookies&#34; to store specific user information and monitor their visits to the Site. A &quot;cookie&quot; is a small piece of data sent to the user&apos;s browser and
+              stored on their system&apos;s hard drive. Cookies are only sent to the user&apos;s system&apos;s hard drive if they access the site from that particular computer. Unless the user
+              deactivates or deletes the cookie, each time they use the same computer to access the Site, our web servers will be alerted to their visit, allowing us to track their visit and usage
+              patterns. In general, we use cookies to identify users and to enable the following:
             </p>
             <p className='py-3'>Access user Registration Information or Account Information so that users don&apos;t have to re-enter it.</p>
             <p className='py-3'>Assist our partners in tracking user visits to the Site and processing bids.</p>
@@ -119,7 +119,7 @@ export function Privacy() {
               <li>If you use a shared computer, refrain from saving your login information (e.g., user ID and password) on that computer.</li>
               <li>Always remember to sign out of your account and close your browser window once your session is complete.</li>
               <li>
-                It&39;s important to note that no data transmission over the Internet or any wireless network can be guaranteed to be completely secure. Consequently, while we make every effort to
+                It&apos;s important to note that no data transmission over the Internet or any wireless network can be guaranteed to be completely secure. Consequently, while we make every effort to
                 protect the information we hold for you, we cannot assure the security of any information you transmit to us, and you do so at your own risk.
               </li>
             </ol>
