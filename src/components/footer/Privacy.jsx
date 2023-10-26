@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Privacy() {
   return (
-    <div className='container mx-20 px-20 py-10 text-start '>
+    <div className='px-20 py-10 text-start '>
       <h1 className='text-4xl mt-20 px-10 py-3 text-center font-extrabold'>Privacy Policy</h1>
       <div>
         <h4 className='text-xl py-3 font-semibold'>Introduction</h4>
