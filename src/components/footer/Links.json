@@ -5,5 +5,5 @@
   { "label": "Our Services", "path": "/" },
   { "label": "Scrap Rate", "path": "/scraprates" },
   { "label": "FAQ's", "path": "/" },
-  { "label": "privacy-policy", "path": "/privacy-policy" }
+  { "label": "Privacy Policy", "path": "/privacy-policy" }
 ]
