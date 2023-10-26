@@ -7,7 +7,7 @@ function TransactionTable(props) {
     name, heading, walletId, transactionTypeFilter,
   } = props;
   const dispatch = useDispatch();
-  const tableData = useSelector((state) => state.walletHistoryDetails.data?.data || []);
+  const tableData = useSelector((state) => state.walletHistoryDetails.data?.data?.data || []);
 
   useEffect(() => {
     if (walletId !== null) {

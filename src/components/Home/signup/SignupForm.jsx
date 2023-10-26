@@ -33,8 +33,12 @@ function SignupForm({ handleNewUser }) {
           setId(response?.data?.id);
           setShowPopup(true);
         } else {
-          if(response.data.phone_number){ toast.error(`${response.data.phone_number}`);}
-          if(response.data.email){toast.error(`${response.data.email}`);}   
+          if (response.data.phone_number) {
+            toast.error(`${response.data.phone_number}`);
+          }
+          if (response.data.email) {
+            toast.error(`${response.data.email}`);
+          }
         }
       }
     } catch (e) {
@@ -45,9 +49,9 @@ function SignupForm({ handleNewUser }) {
   return (
     <div>
       {showPopup && (
-      <div className=''>
-        <OtpPopUpForm mobile={FormData.email} id={id} setShowPopup={setShowPopup} state='signup' />
-      </div>
+        <div className=''>
+          <OtpPopUpForm mobile={FormData.email} id={id} setShowPopup={setShowPopup} state='signup' />
+        </div>
       )}
       <div className='relative h-64'>
         <h1 className='text-3xl font-bold text-green-500'>Register User</h1>

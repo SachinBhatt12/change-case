@@ -16,10 +16,10 @@ export function ConfirmPickup() {
   const pickupReturnData = useLocation();
   const userid = localStorage.getItem('userid');
   const pickupSuccess = pickupReturnData?.state?.pickupData;
-  const pickupSuccessItemId = pickupSuccess.items;
+  const pickupSuccessItemId = pickupSuccess.data.items;
   useEffect(() => {
     dispatch(fetchUserDetails(userid))?.then((response) => {
-      setUserDetails(response.payload.data);
+      setUserDetails(response?.payload?.data);
     });
   }, []);
   useEffect(() => {
@@ -32,7 +32,7 @@ export function ConfirmPickup() {
   } else if (error) {
     <Error />;
   }
-  const scrapDetails = scrapData?.data;
+  const scrapDetails = scrapData?.data.data;
   const filteredData = scrapDetails?.filter((item) => pickupSuccessItemId?.includes(item.id));
   return (
     <div className='bg-white pt-16'>
@@ -44,6 +44,7 @@ export function ConfirmPickup() {
             <p className=' py-5 text-left text-xl'>Thankyou, for Choosing Kabadijee </p>
           </div>
           <div className='text-left px-2 pb-10'>
+
             <NavLink to='/'>
               <button type='submit' className='border-2 border-green-600 px-2 py-2 rounded-lg text-green-600'>
                 Go to Home page
@@ -89,7 +90,7 @@ export function ConfirmPickup() {
         </div>
         {/*  */}
         <div className='w-full  flex justify-center'>
-          <OrderDetailsTable pickupSuccessData={pickupSuccess} UserDetails={UserDetails} />
+          <OrderDetailsTable pickupSuccessData={pickupSuccess.data} UserDetails={UserDetails} />
         </div>
       </div>
     </div>
