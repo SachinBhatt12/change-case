@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import UsefulLinks from './Links.json';
 
 function Links() {
@@ -7,7 +8,9 @@ function Links() {
       <h1 className='font-medium'>Links</h1>
       {UsefulLinks?.map((link, index) => (
         <ul key={index} className='text-lg'>
-          <li className='pt-3 text-sm md:text-lg cursor-pointer'>{link.label}</li>
+          <NavLink to={link.path}>
+            <li className='pt-3 text-sm md:text-lg cursor-pointer'>{link.label}</li>
+          </NavLink>
         </ul>
       ))}
     </div>

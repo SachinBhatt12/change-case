@@ -111,18 +111,20 @@ function PickupRequest() {
           <h4 className=' font-bold py-5'>Categories</h4>
           <div className='checkboxes grid grid-cols-1 md:grid-cols-2 '>
             {checkboxData?.map((item) => (
-              <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3 max-w-max'>
-                <input
-                  className='h-6 w-6   '
-                  type='checkbox'
-                  name={item?.item_name}
-                  id={item?.item_name}
-                  checked={selectedCheckboxes.some((selectedItem) => selectedItem.id === item.id)}
-                  onChange={(event) => handleCheckClick(event, item)}
-                />
-                {' '}
-                {item?.item_name}
-              </label>
+              <div className='text-start'>
+                <label key={item?.id} htmlFor={item?.item_name} className='mx-5 flex gap-3 max-w-max'>
+                  <input
+                    className='h-6 w-6 p-5   '
+                    type='checkbox'
+                    name={item?.item_name}
+                    id={item?.item_name}
+                    checked={selectedCheckboxes.some((selectedItem) => selectedItem.id === item.id)}
+                    onChange={(event) => handleCheckClick(event, item)}
+                  />
+                  {' '}
+                  {item?.item_name}
+                </label>
+              </div>
             ))}
           </div>
           <br />
