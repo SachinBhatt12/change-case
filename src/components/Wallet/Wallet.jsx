@@ -65,7 +65,7 @@ function Wallet() {
                 <div className='relative'>
                   <h1 className='text-2xl text-md font-medium mb-1'>Transfer to</h1>
                   <div className='flex'>
-                    <NavLink to='' onClick={() => handlePopupClick()}>
+                    <NavLink to=''  onClick={() => handlePopupClick()}>
                       <button
                         type='submit'
                         className='mr-2 border-green-600 border-2 lg:px-10 md:px-6 sm:px-6 px-3 text-green-600 lg:py-1 md:py-3 sm:py-3 sm:py-2 font-medium rounded-xl text-sm lg:text-xl md:text-xl sm:text-lg'
@@ -85,7 +85,7 @@ function Wallet() {
                   <div className='justify-end absolute bottom-1 right-1'>
                     <NavLink to='' className='flex relative text-green-600 font-medium'>
                       <AiOutlinePlus className='absolute top-1 -left-4' />
-                      Account Info
+                      Account  Info
                     </NavLink>
                   </div>
                 </div>
