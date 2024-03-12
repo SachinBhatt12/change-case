@@ -1,56 +1,58 @@
-name: Build & Deploy
+name: Node.js CI/CD
 
 on:
   push:
     branches:
       - main
-      
-env:
-  CI: false
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-
+    runs-on: self-hosted  # Use a self-hosted runner
     steps:
-      - name: Checkout repo
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: '16.x'
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Zip artifact for deployment
+        run: Compress-Archive -Path ./* -DestinationPath release.zip -Force
 
-      - name: Upload production-ready build files
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: production-files
-          path: ./build
-
+          name: node-app
+          path: release.zip
   deploy:
-    name: Deploy
+    runs-on: self-hosted
     needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
     steps:
-      - name: Download artifact
+      - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: production-files
-          path: ./build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./build
-
-         
+          name: node-app
+  
+      - name: Unzip artifact for deployment on Windows
+        run: Expand-Archive -Path release.zip -DestinationPath . -Force
+  
+      - name: Copy artifact to Windows Server
+        run: |
+          $serverAddress = "72.167.32.11"
+          $username = "devops"
+          $password = "SQLDev@123106"
+          $destination = "\\$serverAddress\C$\Users\niraj"
+          try {
+              New-PSDrive -Name Z -PSProvider FileSystem -Root $destination -Credential (New-Object PSCredential $username, (ConvertTo-SecureString $password -AsPlainText -Force)) -ErrorAction Stop
+              Copy-Item -Path .\* -Destination "Z:\" -Recurse -Force
+          } catch {
+              Write-Host "Error: $_"
+              Write-Host "Destination Path: $destination"
+              Write-Host "Server Address: $serverAddress"
+          } finally {
+              Remove-PSDrive -Name Z -ErrorAction SilentlyContinue
+          }
