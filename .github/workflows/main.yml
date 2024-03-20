@@ -41,7 +41,7 @@ jobs:
 
     - name: Unmap network drive
       run: |
-        Remove-PSDrive -Name Z
+        Remove-PSDrive -Name C
 
     - name: Restart IIS
       run: |
