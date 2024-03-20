@@ -31,11 +31,13 @@ jobs:
           path: build
 
   deploy:
-    runs-on: windows-latest
+    name: Deploy
     needs: build
+    runs-on: windows-latest
+  
 
     steps:
-      - name: Download Artifact
+      - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: production-files
