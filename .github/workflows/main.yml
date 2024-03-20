@@ -31,7 +31,7 @@ jobs:
           path: build
 
   deploy:
-    runs-on: self-hosted
+    runs-on: window-server
     needs: build
     steps:
     - name: Download artifact from build job
