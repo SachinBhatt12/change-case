@@ -28,7 +28,7 @@ jobs:
       run: |
         $secpasswd = ConvertTo-SecureString "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
         $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd)
-        New-PSDrive -Name Z -PSProvider FileSystem -Root "\\13.48.137.69\C$" -Credential $mycreds -Persist
+        
 
     - name: Copy files to server
       run: |
