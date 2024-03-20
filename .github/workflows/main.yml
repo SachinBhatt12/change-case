@@ -1,58 +1,54 @@
-name: Deploy to IIS
+name: Build & Deploy
 
 on:
   push:
     branches:
       - main
+      
+env:
+  CI: false
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build
+    runs-on: window-server
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Install Node.js and npm
-        uses: actions/setup-node@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: 16
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
-      - name: Build React App
+      - name: Build project
         run: npm run build
 
-      - name: Archive Build
+      - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
         with:
-          name: build
-          path: build
+          name: production-files
+          path: ./build
 
   deploy:
-    runs-on: window-server
+    name: Deploy
     needs: build
+    runs-on: window-server
+    if: github.ref == 'refs/heads/main'
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./build
 
-    - name: Install Node.js and npm
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build React App
-      run: npm run build
-
-    - name: Deploy to Windows Server
-      uses: appleboy/ssh-action@master
-      with:
-        host: 13.48.137.69
-        username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-
-
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: ./build
