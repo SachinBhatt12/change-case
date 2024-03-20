@@ -1,4 +1,4 @@
-name: Node.js CI/CD
+name: Deploy to IIS
 
 on:
   push:
@@ -7,52 +7,42 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted  # Use a self-hosted runner
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
         with:
-          node-version: '16.x'
+          node-version: '14'
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Zip artifact for deployment
-        run: Compress-Archive -Path ./* -DestinationPath release.zip -Force
+      - name: Build React App
+        run: npm run build
 
-      - name: Upload artifact for deployment job
+      - name: Archive Build
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
-          path: release.zip
+          name: build
+          path: build
+
   deploy:
-    runs-on: self-hosted
+    runs-on: windows-latest
     needs: build
+
     steps:
-      - name: Download artifact from build job
+      - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: node-app
-  
-      - name: Unzip artifact for deployment on Windows
-        run: Expand-Archive -Path release.zip -DestinationPath . -Force
-  
-      - name: Copy artifact to Windows Server
-        run: |
-          $serverAddress = "13.48.137.69"
-          $username = "Administrator"
-          $password = "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp"
-          $destination = "\\$serverAddress\C$\Users\niraj"
-          try {
-              New-PSDrive -Name Z -PSProvider FileSystem -Root $destination -Credential (New-Object PSCredential $username, (ConvertTo-SecureString $password -AsPlainText -Force)) -ErrorAction Stop
-              Copy-Item -Path .\* -Destination "Z:\" -Recurse -Force
-          } catch {
-              Write-Host "Error: $_"
-              Write-Host "Destination Path: $destination"
-              Write-Host "Server Address: $serverAddress"
-          } finally {
-              Remove-PSDrive -Name Z -ErrorAction SilentlyContinue
-          }
+          name: build
+
+      - name: Install IIS Web Deployment Tool
+        uses: microsoft/iis-web-deploy@v1
+
+      - name: Deploy to IIS
+        run: msdeploy -verb:sync -source:artifact -dest:auto,computerName="13.48.137.69",username="Administrator",password="cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp",authtype="Basic",includeAcls="False",dirPath="build" -enableRule:DoNotDeleteRule
+
