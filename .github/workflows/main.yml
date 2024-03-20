@@ -11,7 +11,7 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: window-server
+    runs-on: 13.48.137.69
 
     steps:
       - name: Checkout repo
