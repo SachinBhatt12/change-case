@@ -43,6 +43,12 @@ jobs:
           name: production-files
           path: ./build
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: ./build
+
       #- name: Install IIS Web Deployment Tool
       #uses: microsoft/iis-web-deploy@v1
 
