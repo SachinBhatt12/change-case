@@ -40,8 +40,8 @@ jobs:
         with:
           name: build
 
-      - name: Install IIS Web Deployment Tool
-        uses: microsoft/iis-web-deploy@v1
+      #- name: Install IIS Web Deployment Tool
+      #uses: microsoft/iis-web-deploy@v1
 
       - name: Deploy to IIS
         run: msdeploy -verb:sync -source:artifact -dest:auto,computerName="13.48.137.69",username="Administrator",password="cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp",authtype="Basic",includeAcls="False",dirPath="build" -enableRule:DoNotDeleteRule
