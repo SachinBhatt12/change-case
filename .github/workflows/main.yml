@@ -32,7 +32,7 @@ jobs:
 
     - name: Copy files to server
       run: |
-        Copy-Item  "c:\inetpub\wwwroot\react" -Recurse -Force
+        Copy-Item -Path "dist/*" -Destination "c:\inetpub\wwwroot\react" -Recurse -Force
 
     - name: Unmap network drive
       run: |
