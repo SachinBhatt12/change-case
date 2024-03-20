@@ -28,7 +28,12 @@ jobs:
       run: |
         $secpasswd = ConvertTo-SecureString "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
         $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd)
-        
+
+    - name: Create destination directory if it doesn't exist
+      run: |
+        if (-not (Test-Path "C:\inetpub\wwwroot\react")) {
+          New-Item -Path "C:\inetpub\wwwroot\react" -ItemType Directory
+        }
 
     - name: Copy files to server
       run: |
