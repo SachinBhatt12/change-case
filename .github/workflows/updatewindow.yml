@@ -42,9 +42,9 @@ jobs:
   
       - name: Copy artifact to Windows Server
         run: |
-          $serverAddress = "72.167.32.11"
-          $username = "devops"
-          $password = "SQLDev@123106"
+          $serverAddress = "13.48.137.69"
+          $username = "Administrator"
+          $password = "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp"
           $destination = "\\$serverAddress\C$\Users\niraj"
           try {
               New-PSDrive -Name Z -PSProvider FileSystem -Root $destination -Credential (New-Object PSCredential $username, (ConvertTo-SecureString $password -AsPlainText -Force)) -ErrorAction Stop
