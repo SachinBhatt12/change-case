@@ -27,11 +27,35 @@ jobs:
     - name: Copy files to server
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: 13.48.137.69 
+        username: Administrator 
+        key: MIIEpAIBAAKCAQEAi2te8Xz1fy61YKb3kAQwFoEl1sw0u3Gh0HglDk0bfzX9C1rx
+                    pBnMSLyv0z//tbMSe3DcRxkDH2/VJtAmpXFH1+Lvibv8hG4v+cLVNd9TW+T9Dw79
+                    FeHEzsstuKuUcTKvc9NB2ekeOQQfOJ1a+DaC+fwfdkfl5048H9NL2HDn6usZeq5O
+                    jR43oEsMWbI1L9SirT1NN0HZBK0zu8YSF+1zU0wGb3jaW8hATkmwgK/WqVJ3WyE4
+                     6tYUgsTg8XUGpzO5EygGrxCRlgyymZm6TaT14q6pVBaQRKYTrPakUZNKG2A7TbRm
+                    V/uClFnWRkfAlK4A/0V8qUqYmpxWUGekWg11nQIDAQABAoIBAElD+3jcOgbD/Pz1
+                    wVMlYD/zTnc6iNuYM3jiKlcBnlmTfY7iE+owxHHU9nEFSNOrbyL/hEK4mjODCXiE
+                     GksG5MJGt6qh52mQnhWalYDiA2RfSb0IG2fMZShnDXfmcvOptxofApQJNaCw0ddm
+                    mc+mld3Y6I+36NFNA7uVxl3Pt5Bzg+4h4UQsD9BBBGv/MBgHEvm462Xa6w3RUAP9
+                    fhLeWGaJ0xcv1hGsCJySEKjRhG96lnIAeO0wGppGkrYi4HM4GxSbiUJYu/aQsaex
+                    uUhjI0vIGEDqhvIgNYLn4CX8wKYAeX/wdDOQO8NF5PDWH2UI7uYi61GCek7hOUa1
+                     Kgt/k+ECgYEA07llfPIPtUoFpU3DESStpr5gGT8vWtnW6yjkrUVjHMPf3bTXRAoZ
+                    +AhvTkaR+o/Tg69qNDdSLKxkwLSwKaaC9wp9az5HmpOy1JOoB6iCnfMpxtE9G+8f
+                    yCh/jamtk7oltG9YJJaxeSFtfkMbWqZUrV5mb5IlFFM2hC/p1y7srF8CgYEAqJMn
+                    wqKCf0WsinNv6cXhgXy4akU2OZkN1zFQ0TnMrXZ9ZF2a41DkYRDKK457eq/zlF9e
+                    c728VxSCKahNDOMDTxxrWfwJ+TbxkA+NbmwS2uMgADyKTnqya9f5eWKGGgYeZzrQ
+                    qPUref3Spyu0z5QEnkPLPPykJn3IWrhg5T9GX4MCgYEAxSakLF6y5dtRuoXYmMQQ
+                    t24ayieeDvk+OafQmNA95HE4qphUw1Ssrdwc2US5dhormTnkqU7CRDsbbp5SU9Zr
+                    qWKpOw25W2UhZvU/yDHPvwjI5Au+3Z4jeBzN+boAmckChywPZbK0+9h2vtX6SMUN
+                    oIqA1G+/+1cpMpnzI57cX/0CgYAxbCNGDvsPcU/qr3lqIlfA7N3sWipRrKvAIXc+
+                    QCHf4VNV75OPfZHXW2LKblWJXLifEW7RpBjpttuKdwtP8eZwdTaMBTavWApuYADp
+                    FMpaXihtqVIrPBG/SGydx+LlElIrlbTDNE3w0BfIZyn1icHo3JtjX/aISmxJHLFb
+                    xLdPHQKBgQCQ0hrFj1zZ6i09b/YpwqAvwGPBgJtLCWTTPRJ29Y7I4DfPmAuc9hFZ
+                    Dhu3gfwxsc8p37xGpARX4u8yBqyZIsqTyGSDZjX/s+IECYN2VdixSmXs4NXUQMRg
+                    J9PXFnjUDr8cWgEcoO41XdQw41P11VwTPTFunYLy5tIugszOE50pTA==
         source: 'build/'
-        target: 'C:/inetpub/wwwroot/my-react-app'
+        target: 'C:/inetpub/wwwroot/react'
 
     - name: Restart IIS
       run: |
