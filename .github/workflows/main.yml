@@ -27,7 +27,7 @@ jobs:
     - name: Copy files to server
       run: |
         $secpasswd = ConvertTo-SecureString "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
-        $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp)
+        $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd)
         Copy-Item -Path "build/*" -Destination "\\13.48.137.69\C$\inetpub\wwwroot\react" -Recurse -Force -Credential $mycreds
 
     - name: Restart IIS
