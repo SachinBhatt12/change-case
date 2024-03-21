@@ -26,7 +26,7 @@ jobs:
     
     - name: Map network drive
       run: |
-        $secpasswd = ConvertTo-SecureString "cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
+        $secpasswd = ConvertTo-SecureString "ccyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
         $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd)
 
     - name: Create destination directory if it doesn't exist
