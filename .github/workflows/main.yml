@@ -1,4 +1,4 @@
-name: Deploy to Windows Server
+name: Deploy to IIS Server
 
 on:
   push:
@@ -12,8 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Install Node.js
+      
+    - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '14'
@@ -23,26 +23,13 @@ jobs:
 
     - name: Build React app
       run: npm run build
-    
-    - name: Map network drive
-      run: |
-        $secpasswd = ConvertTo-SecureString "ccyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp" -AsPlainText -Force
-        $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd)
 
-    - name: Create destination directory if it doesn't exist
-      run: |
-        if (-not (Test-Path "C:\inetpub\wwwroot\react")) {
-          New-Item -Path "C:\inetpub\wwwroot\react" -ItemType Directory
-        }
-
-    - name: Copy files to server
-      run: |
-        Copy-Item -Path "dist/*" -Destination "C:\inetpub\wwwroot\react" -Recurse -Force
-
-    - name: Unmap network drive
-      run: |
-        Remove-PSDrive -Name C
-
-    - name: Restart IIS
-      run: |
-        Restart-Service -Name 'W3SVC' -Force
+    - name: Deploy to IIS
+      uses: appleboy/rsync-action@master
+      with:
+        args: -avz --delete
+        remote_host: 13.50.232.115
+        remote_user: Administrator
+        remote_password: cyOV@lnZc@Jh-;u1bV8aJ.c8lIdBYhNp
+        source: ./build/
+        destination: "C:/inetpub/wwwroot/react"
