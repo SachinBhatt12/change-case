@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                // Clone your repository here
+                git branch: 'main', url: 'https://github.com/SachinBhatt12/change-case.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build your project here
+                sh 'docker build -t react-app .'
+            }
+        }
+        stage('push to Docker Hub') {
+            steps {
+                echo "pushing image to docker Hub"
+                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                sh "docker tag react-app ${env.dockerHubUser}/react-app:latest"
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}" 
+                sh "docker push ${env.dockerHubUser}/react-app:latest"
+                    
+                }
+            }
+        }
+    }
+}
